@@ -67,3 +67,19 @@ exports.getUserFromID = (user_id) => {
     })
 
 }
+
+//User Dashboard
+exports.getAllNotesByUser = async (req) => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * FROM notes WHERE user_id = ?', [req.user.id], function(error, results) {
+            if (error) return reject(error);
+            
+            if (results.length == 0) {
+                return resolve(null);
+            } else {
+                return resolve(results);
+            }
+        })
+    })
+    
+}

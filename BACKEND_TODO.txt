@@ -8,7 +8,6 @@ Admin Dashboard:
 Notifications
 
 User Dashboard:
- - Get all notes owned by user (will have to render slightly different information from cards in admin panel)
  - Get number of notes where note_status != pending
  - Search through notes
  - Everything above, but for campaigns

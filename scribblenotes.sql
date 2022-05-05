@@ -22,10 +22,10 @@ CREATE TABLE IF NOT EXISTS users (
   PRIMARY KEY (user_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-DROP TABLE IF EXISTS notes
+DROP TABLE IF EXISTS notes;
 CREATE TABLE IF NOT EXISTS notes (
   note_id int NOT NULL AUTO_INCREMENT,
-  csv_file VARCHAR(255),
+  filename VARCHAR(255),
   user_id int NOT NULL,
   note_status VARCHAR(32),
   PRIMARY KEY (note_id),

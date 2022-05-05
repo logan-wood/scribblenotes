@@ -5,8 +5,10 @@ const adminController = require('../controllers/adminController');
 const userController = require('../controllers/userController');
 const router = express.Router();
 
-router.get('/', isAuthenticated, (req, res) => {
-    res.render('index', { user: req.user});
+router.get('/', isAuthenticated, async (req, res) => {
+    res.render('index', { 
+        user: req.user,
+        allNotes: await userController.getAllNotesByUser(req) } );
 });
 
 router.get('/register', (req, res) => {
