@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
+<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <head>
         <%- include('./partials/head.ejs');  %>
         <title>Admin Dashboard</title>
     </head>
-    <body>
+    <body style="font-family: Poppins;">
         <%- include('./partials/nav.ejs');  %>
         <!--Track Note Order Status-->
+        <div class="form">
         <div class="content">
             <h1 style="text-align: center;">Track Note Order Status</h1>
             <br>
@@ -41,7 +43,10 @@
                     </div>
                 </div>
             </div>
-            
+            </div>
+        </div>
+        </div>
+
     </body>
     <%- include('./partials/footer.ejs');  %>
 </html>

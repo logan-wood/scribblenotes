@@ -7,14 +7,14 @@
     <%- include('./partials/nav.ejs'); %>
 
 
-
+  <div class="form">
     <form class="regform" action="/user/login" method="POST">
         
-      <h3 class="centre">scribblenotes.io</h3>   
+      <h6 class="centre">scribblenotes.io</h6>   
       <br>
-      <h1 class="centre">Login to Scribble Notes</h1>
+      <h5 class="centre">Login to Scribble Notes</h5>
       <br>
-      <h6 class="centre form-label">Enter you email and password below</h6>
+      <p class="centre form-label">Enter you email and password below</p>
       <br>
         <div class="mb-3">
           <label for="email" class="form-label">EMAIL</label>
@@ -26,13 +26,18 @@
           <input type="password" class="form-control" id="password" name="password">
         </div>
         
-        <button type="submit" class="btn">Submit</button>
+        <button type="submit" class="btn">Log In</button>
+        <br>
+        <p class="centre form-label">Don't have account? 
+          <a href="/register">Sign up </a></p>
+        <br>
 
         <br>
 
         <%- include ('./partials/messages.ejs'); %>
 
       </form>
+    </div>
     
 
       

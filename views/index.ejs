@@ -1,5 +1,5 @@
 <html>
-
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <%- include('./partials/head.ejs'); %>
 
 
@@ -31,45 +31,42 @@
         }
         </style>
 
-<body>
+<body style="font-family: Poppins;">
 
     <%- include('./partials/nav.ejs'); %>
 
 
-
+<div class="form">
 <div class="content">
-<h1 class="title">Welcome <%- user.username %>! </h1>    
+<h4 class="title">Welcome <%- user.username %>, </h4>     
+  <br>
+  <p class="centre"> <b>Create a</b>
+     <button onclick="window.location.href='/new_note'" class="new-note-btn">New Note</button>
+    <b>start a</b> 
+    <button onclick="window.location.href='/new_note'" class="new-campaign-btn">New Campaign</button>
+    </p>
+  <br>
+<div class="content-data">
+<h5 class="text-large">Current Campaign and Notes</h5>
+<p class="text-med">8 notes are approved out of 10</p>
+</div>
 
+<% if (allNotes) { %>
+  <% allNotes.forEach(element => { %>
+    <%- include ('./partials/userDashboard/note_card', { note_id: element.note_id, filename: element.filename, status: element.note_status }); %>
+  <% }); %>
+<% } %>
+<% if (!allNotes) { %>
+  <p>No Notes Found</p>
+<% } %>
+<!-- <div class="card">
+  <div class="content-data">
+  <h5 class="text-large">Campaign 1 </h5>
+  <p class="text-med">Due date : December, 2022</p>
+  <p class="text-med">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div> -->
+</div>
 <!-- <h2>Accordion</h2> -->
-
-<button class="accordion">Create a...</button>
-<div class="panel">
-    <div class="container">
-        <!-- <div class="centre"> -->
-            <p class="text">Create a </p>
-            <br>
-            <button onclick="window.location.href='/new_note'" class="new-note-btn">New Note</button>
-            <br>
-            <br>
-            <p class="text">Or start a </p>
-            <br>
-            <button onclick="window.location.href='/new_note'" class="new-campaign-btn">New Campaign</button>
-        <!-- </div> -->
-        </div>  
-</div>
-
-<button class="accordion">Current Campaigns and Notes</button>
-<div class="panel">
-  <% if (allNotes) { %>
-    <% allNotes.forEach(element => { %>
-      <%- include ('./partials/userDashboard/note_card', { note_id: element.note_id, filename: element.filename, status: element.note_status }); %>
-    <% }); %>
-  <% } %>
-  <% if (!allNotes) { %>
-    <p>No Notes Found</p>
-  <% } %>
-  
-</div>
 
 <button class="accordion">Past Campaigns and Notes</button>
 <div class="panel">
@@ -77,6 +74,7 @@
 </div>
 
 
+</div>
 </div>
 
 
