@@ -37,6 +37,7 @@ app.use(express.json());
 const mainRoutes = require('./routes/mainRoutes');
 const user = require('./routes/user');
 const admin = require('./routes/admin');
+const payment = require('./routes/stripe-payment');
 
 //Register View engine
 app.set('view engine', 'ejs');
@@ -64,12 +65,13 @@ app.use(fileUpload());
 //Use routes
 app.use(mainRoutes);
 app.use('/user', user);
-app.use('/admin', admin)
+app.use('/admin', admin);
+app.use('/payment', payment);
 
 //listen for requests
 const port = process.env.PORT || 3000
 app.listen(port);
-console.log("App listening on http://localhost:%d", port)
+console.log("App listening on " + process.env.DOMAIN)
 
 // 404
 app.use((req, res) => {
