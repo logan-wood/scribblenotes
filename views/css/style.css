@@ -982,3 +982,14 @@ border-radius: 4px;
     
     
   }
+
+
+
+
+
+
+  /*  Nav change */
+
+  #main{
+    transition: 0.5s;
+  }
