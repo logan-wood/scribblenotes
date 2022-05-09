@@ -20,11 +20,14 @@ module.exports = {
             db.query(`SELECT * FROM notes WHERE note_status <> 'completed'`, function(error, results) {
                 if (error) { return reject(error) }
 
+                if (results.length === 0) { 
+                    return resolve(null) 
+                }
+
                 var pending = results.length //used as an index, return function called when this reaches 0
 
                 results.forEach(element => {
                     //get username
-                    var username
                     userController.getUserFromID(element.user_id).then(function(result, error) {
                         if (error) throw (error)
 

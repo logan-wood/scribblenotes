@@ -28,18 +28,22 @@
                                 </p>
 
                             <!-- iterate through array of cards to be rendered, and render, passing through information from array -->
-                            <% noteCardInformation.forEach(element => { %>
-                                <% if (element) { %>
-                                    <%- include('./partials/admin/note_card.ejs', { 
-                                        note_id: element.note_id, 
-                                        user_id: element.user_id, 
-                                        username: element.username, 
-                                        email: element.email, 
-                                        filename: element.filename, 
-                                        status: element.note_status,
-                                            }) %>
-                                <% } %>
-                            <% }) %>
+                            <% if (noteCardInformation) { %>
+                                <% noteCardInformation.forEach(element => { %>
+                                    <% if (element) { %>
+                                        <%- include('./partials/admin/note_card.ejs', { 
+                                            note_id: element.note_id, 
+                                            user_id: element.user_id, 
+                                            username: element.username, 
+                                            email: element.email, 
+                                            filename: element.filename, 
+                                            status: element.note_status,
+                                                }) %>
+                                    <% } %>
+                                <% }) %>
+                            <% } else { %>
+                                <p>No notes exist</p> 
+                            <% } %>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,29 @@
-<nav>
+<head>
+    <script src="../js/main.js"></script>
+</head>
+
+
+
+
+
+
+<style>
+
+#openBtn {
+    display: none;
+}
+
+#mySidebar{
+    transition: 0.5s;
+}
+
+
+
+</style>
+
+
+
+<nav id="mySidebar">
     <div class="logo">
 
         <a href="/"><img src="../images/logo.jpg" alt="scribblenotes logo" class="logo"></a>
@@ -9,13 +34,15 @@
         <li><a href="/">Home</a></li>
         <li><a href="/register">Sign Up</a></li>
         <li><a href="/login">Login</a></li>
+        <li><a href="/user_settings">Settings</a></li>
         <li><a href="/admin">Admin</a></li>
-        <li><a href="/user_settings">User Settings</a></li>
         <button onclick="window.location.href='/new_note'" class="new-note-btn"> New Note</button>
         <br>
         <button onclick="window.location.href='/new_note'" class="new-campaign-btn"> New Campaign</button>
         <br><br><br>
         <li><a href="/logout">Logout</a></li>
+        <li id="closeBtn"><button onclick="closeNav()">Collapse Menu</button></li>
+        <li id="openBtn"><button onclick="openNav()">Open Menu</button></li>
         <!-- <li><a href="/about">About</a></li> -->
         <!-- <li><a href="/contact">Contact</a></li> -->
     </ul>
