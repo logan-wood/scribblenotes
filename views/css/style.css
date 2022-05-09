@@ -215,7 +215,7 @@ ul.breadcrumb li a:hover {
 }
 
 .card-body-text {
-  line-height: 2;
+  font-size: 14px;
 }
 .card-bottom-content{
   position: absolute;
