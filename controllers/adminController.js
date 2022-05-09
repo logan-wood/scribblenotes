@@ -46,8 +46,6 @@ module.exports = {
     updateNoteStatus: (note_id, note_status) => {
         db.query('UPDATE notes SET note_status = ? WHERE note_id = ?', [note_status, note_id], function(error) {
             if (error) console.log(error)
-
-            console.log('note status updated to ' + note_status)
         })
     }
 }

@@ -62,13 +62,11 @@ router.get('/contact', (req, res) => {
 });
 
 router.get('/logout', function(req, res, next) {
-    console.log('hi');
     req.logout();
     res.redirect('/');
 });
 
 router.get('/user_settings', isAuthenticated, function(req, res) {
-    console.log(req.user)
     res.render('user_settings', { user: req.user })
 })
 

@@ -1,9 +1,7 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
-const endpointSecret = process.env.STRIPE_ENDPOINT_SECRET
 const bodyParser = require('body-parser');
-const { response } = require('express');
 const express = require('express');
-const db = require('../db');
+const stripeController = require('../controllers/stripeController')
 
 const router = express.Router();
 
@@ -27,27 +25,24 @@ router.get('/success', (req, res) => {
 });
 
 router.get('/cancel', (req, res) => {
-    res.render('payments/success')
+    res.render('payments/cancel')
 });
 
 //webhook called on successfull payment
-router.post('/webhook', bodyParser.raw({type: 'application/json'}), (req, res) => {
-    const payload = req.body;
+router.post('/webhook', bodyParser.raw({type: 'application/json'}), async (req, res) => {
     const sig = req.headers['stripe-signature'];
-
     let event;
 
     try {
-        event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
+        event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_ENDPOINT_SECRET);
     } catch (e) {
-        console.log('error catched ' + e)
-        return response.status(400).send('Webhook Error: ' + e.message);
+        return res.status(400).send('Webhook Error: ' + e.message);
     }
 
-    console.log(event.type)
-
     if (event.type === 'checkout.session.completed') {
-        console.log(event.data.object)
+        const session = event.data.object;
+
+        await stripeController.fufillSingleNote(session)
     }
 
     res.status(200);

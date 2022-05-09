@@ -22,6 +22,7 @@ db.connect((err) => {
 const app = express();
 
 //body-parser middleware
+app.use('/payment/webhook', bodyParser.raw({type: "*/*"}))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
@@ -32,6 +33,7 @@ app.use(express.urlencoded({ extended: false}));
 
 //Values that we grab from form comes as JSON
 app.use(express.json());
+
 
 //Add routes
 const mainRoutes = require('./routes/mainRoutes');
