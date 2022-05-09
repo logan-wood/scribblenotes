@@ -177,6 +177,15 @@ ul.breadcrumb li a:hover {
 }
 
 /* Used For CARD SUBSCRIPTION */
+.card-content{
+  width: 90%;
+    margin: auto;
+    margin-top: 20px;
+    padding: 35px;
+    align-items: center;
+    z-index: 1;
+    border-radius: 15px;
+}
 
 .card-container{
   display: flex;
@@ -239,6 +248,7 @@ ul.breadcrumb li a:hover {
   color: #fff;
   padding: 10px 50px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 /* 
@@ -327,6 +337,7 @@ ul.breadcrumb li a:hover {
     width: 3%;
     height: 3%;
     border-radius: 50%;
+}
 }
 
 /* 
@@ -616,6 +627,14 @@ ul.breadcrumb li a:hover {
     justify-content: center;
     align-items: center;
   }
+  .card-container{
+    display: flex;
+    flex-direction: column;
+  }
+  .card-wrapper{
+    width: 100%;
+    margin-bottom: 20;
+  }
 }
 
 /* 
@@ -696,6 +715,18 @@ ul.breadcrumb li a:hover {
     justify-content: center;
     align-items: center;
   }
+  .card-container{
+    display: flex;
+    flex-direction: column;
+  }
+  .card-wrapper{
+    width: 100%;
+    margin-bottom: 20;
+  }
+ 
+
+  
+
 }
 
 @media (max-width: 320px) {
@@ -771,4 +802,6 @@ ul.breadcrumb li a:hover {
     z-index: 1;
     border-radius: 2.5%;
   }
+
+ 
 }
