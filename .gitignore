@@ -1,5 +1,9 @@
+#node js / express
 node_modules
-.env
 package-lock.json
 
+#file upload
 uploads/
+
+#env files
+.env

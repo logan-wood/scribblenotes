@@ -38,13 +38,6 @@ router.get('/about', (req, res) => {
      });
 });
 
-router.get('/settings',isAuthenticated, (req, res) => {
-    res.render('settings', { 
-        title: 'Settings',
-        user: req.user
-     });
-});
-
 router.get('/admin', async (req, res) => {
     res.render('admin_dashboard', {
         title: 'Admin',
@@ -69,9 +62,16 @@ router.get('/contact', (req, res) => {
 });
 
 router.get('/logout', function(req, res, next) {
-    console.log('hi');
     req.logout();
     res.redirect('/');
 });
+
+router.get('/user_settings', isAuthenticated, function(req, res) {
+    res.render('user_settings', { user: req.user })
+})
+
+router.get('/subscriptions', isAuthenticated, function(req, res) {
+    res.render('subscriptions', { user: req.user })
+})
 
 module.exports = router;
