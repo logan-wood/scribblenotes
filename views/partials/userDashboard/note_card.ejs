@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="../../css/card.css">
-    </head>
-    <body>
-        <div class='card'>
-            <p> 
-                Note id: <%- note_id %>
-                <br>
-                Note Status: <%- status %>
-                <br> 
-                <a href="/admin/download/<%= filename %>">Download CSV</a>
-                <br>
-            </p>
-        </div>
-    </body>
+  <head>
+    <link rel="stylesheet" href="../../css/card.css" />
+  </head>
+  <body>
+    <div class="card">
+      <p style="font-size: 2vh">Note <%- note_id %></p>
+      <p style="font-size: 1.5vh; color: #a6acb1">Due Date : 22 May 2022</p>
+      <img src="../images/avatar.png" alt="Avatar" class="avatar"" /> John Doe
+      <button class="button" style="align-content: right">
+        <%- status %>
+      </button>
+      <br />
+      <a href="/admin/download/<%= filename %>">Download CSV</a>
+      <br /> 
+    </div>
+  </body>
 </html>

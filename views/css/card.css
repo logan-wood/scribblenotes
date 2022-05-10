@@ -1,4 +1,21 @@
 .card {
-    padding: 10px;
-    margin: 10px;
+  height: auto;
+  width: auto;
+  background: #ffffff;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  border-width: 0;
+  padding: 3vh;
+  margin-bottom: 10px;
+}
+
+.card-wrapper {
+}
+
+.status {
+  background-color: green;
+  display: flex;
+  border-radius: 5px;
+  color: whitesmoke;
+  padding: 1vh;
 }
