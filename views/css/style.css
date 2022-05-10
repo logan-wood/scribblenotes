@@ -129,6 +129,8 @@ nav li a:hover {
 
 .text-med {
   font-size: 1.5vh;
+  color: #A6ACB1;
+
 }
 
 .dashboard-btn-wrapper {
@@ -251,6 +253,61 @@ ul.breadcrumb li a:hover {
   border-radius: 5px;
   cursor: pointer;
   border: none;
+}
+
+.dashboard-card-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.dashboard-card-name{
+ 
+}
+.dashboard-ava-container{
+ float: left;
+}
+.dashboard-ava{
+  display: inline-block;
+	margin-right: 15px;
+}
+.dashboard-text{
+  display: inline-block;
+  color: #707683;
+}
+.dashboard-image{
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+}
+.dashboard-caption{
+  color: #323C47;
+  font-size: 15px;
+  margin-bottom: 7px;
+}
+.dashboard-date{
+  color: #4C5862;
+}
+.dashboard-button
+{
+  padding: 3px 8px;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.dashboard-success{
+  background-color: #2ED47A;
+}
+.dashboard-alert{
+  background-color: #F7685B;
+}
+
+.dashboard-ava-container{
+  display: flex;
+  flex-direction: flow;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* 
