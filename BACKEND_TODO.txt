@@ -22,3 +22,6 @@ CSV upload:
 
 New Note/Campaign Confirmation Page:
  - Check if user has correct subscription/amount of points
+
+ Stripe
+  - Block post requests from third parties to webhook
