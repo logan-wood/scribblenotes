@@ -5,15 +5,35 @@
   </head>
   <body>
     <div class="card">
-      <p style="font-size: 2vh">Note <%- note_id %></p>
-      <p style="font-size: 1.5vh; color: #a6acb1">Due Date : 22 May 2022</p>
-      <img src="../images/avatar.png" alt="Avatar" class="avatar"" /> John Doe
-      <button class="button" style="align-content: right">
-        <%- status %>
-      </button>
-      <br />
-      <a href="/admin/download/<%= filename %>">Download CSV</a>
-      <br /> 
+      <div class="dashboard-card-header">
+        <div class="dashboard-caption">
+            Note <%- note_id %>
+        </div>
+        <div>
+            Reminder
+        </div>
+    </div>
+    <div>
+      <p style="font-size: 13px; color: #a6acb1">Due Date : <span class="dashboard-date">22 May 2022</span></p>
+    </div>
+    <div class="dashboard-ava-container">
+      <div class="dashboard-card-name">
+        <div class="dashboard-ava">
+          <img src="../images/avatar.png" alt="Avatar" class="dashboard-image"/> 
+        </div>
+        <div class="dashboard-text">
+          John Doe
+        </div>
+      </div>
+      <div>
+        <div class="dashboard-button dashboard-success">
+          <%- status %>
+        </div>
+        <br />
+        <a href="/admin/download/<%= filename %>">Download CSV</a>
+        <br /> 
+      </div>
+    </div>
     </div>
   </body>
 </html>
