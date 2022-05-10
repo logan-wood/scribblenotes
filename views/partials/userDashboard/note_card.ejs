@@ -5,17 +5,15 @@
   </head>
   <body>
     <div class="card">
-      <div class="card-wrapper">
-        <p style="font-size: 2vh">Note <%- note_id %></p>
-        <p style="font-size: 1.5vh; color: #a6acb1">Due Date : 22 May 2022</p>
-        <img src="../images/avatar.png" alt="Avatar" class="avatar"" /> John Doe
-        <button class="button" style="align-content: right">
-          <%- status %>
-        </button>
-        <br />
-        <a href="/admin/download/<%= filename %>">Download CSV</a>
-        <br />
-      </div>
+      <p style="font-size: 2vh">Note <%- note_id %></p>
+      <p style="font-size: 1.5vh; color: #a6acb1">Due Date : 22 May 2022</p>
+      <img src="../images/avatar.png" alt="Avatar" class="avatar"" /> John Doe
+      <button class="button" style="align-content: right">
+        <%- status %>
+      </button>
+      <br />
+      <a href="/admin/download/<%= filename %>">Download CSV</a>
+      <br /> 
     </div>
   </body>
 </html>

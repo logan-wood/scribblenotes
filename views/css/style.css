@@ -244,13 +244,13 @@ ul.breadcrumb li a:hover {
   margin-right: 5px;
 }
 .card-btn-bottom {
-  width: 60%;
   text-align: center;
   background-color: #ff5733;
   color: #fff;
-  padding: 10px 50px;
+  padding: 10px 60px;
   border-radius: 5px;
   cursor: pointer;
+  border: none;
 }
 
 /* 
