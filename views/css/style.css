@@ -323,7 +323,45 @@ ul.breadcrumb li a:hover {
   height: 5px;
   border-radius: 10px;
 }
-
+.dashboard-widget-number{
+  font-size: 64px;
+}
+.dashboard-widget-title{
+  display: inline-block;
+}
+.dashboard-widget-subscription{
+  font-size: 15px;
+}
+.dashboard-widget-up{
+  font-size: 13px;
+  color: #21B499;
+}
+.widget-container{
+  -webkit-box-shadow: 1px 4px 6px 4px #ccc; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 1px 4px 6px 4px #ccc; /* Firefox 3.5 - 3.6 */
+  box-shadow: 1px 4px 6px 4px #ccc;
+  width: 320px;
+  height: 183px;
+  padding: 10px;
+}
+.dashboard-widget{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+ 
+}
+.widget-wrapper{
+  display: flex;
+  direction: row;
+  justify-content: space-between;
+  width: 70%;
+  margin: auto;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+.text-top{
+  font-size: 16px;
+}
 /* 
   ##Device = Desktops
   ##Screen = 1281px to higher resolution desktops
