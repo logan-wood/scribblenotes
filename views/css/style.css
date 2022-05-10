@@ -68,27 +68,45 @@ body {
   box-shadow: 1px 4px 6px 4px #ccc;
 }
 
-nav ul {
+nav {
+  height: 100%;
+  width: 250px;
+  position: fixed;
   z-index: 1;
-  position: absolute;
-  /* display: flex; */
-  justify-content: space-around;
-}
-
-nav li {
-  list-style: none;
-}
-
-nav li a {
-  color: white;
+  top: 0;
+  left: 0;
+  background-color: #005030;
+  white-space: nowrap;
+  overflow-x: hidden;
+  transition: 0.3s;
+} nav a {
+  display: inline;
+  width: 80%;
+  padding: 8px 8px 8px 8px;
+  margin: 0 auto;
   text-decoration: none;
-  font-weight: bold;
-  padding: 5px 8px;
-  text-align: center;
+  align-items: center;
+  color: white;
+  display: block;
+} nav span {
+  display: inline;
+  margin-left: 16px;
+} .material-symbols-outlined, nav span {
+  margin-left: 21px;
+  vertical-align: middle;
 }
 
-nav li a:hover {
-  color: black;
+nav .toggle-nav {
+  display: block;
+  margin: 0 auto !important;
+  margin-left: -12px !important;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+}
+
+nav a:hover {
+  color: #9be0b7;
   text-decoration: none;
 }
 
@@ -259,24 +277,18 @@ ul.breadcrumb li a:hover {
 */
 
 @media (min-width: 1281px) {
-  nav {
-    height: 100%;
-    width: 256px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #005030;
-    overflow-x: hidden;
-    padding-top: 20px;
-  }
-
+  
   .logo {
-    padding: auto;
-    margin: auto;
+    display: block;
+    margin: 0 auto;
     width: 60%;
-    height: auto;
   }
+  .material-symbols-outlined {
+    color: white;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+  } 
 
   .regform {
     width: 380px;
@@ -290,6 +302,7 @@ ul.breadcrumb li a:hover {
   }
 
   .form {
+    /* margin-left: 256px; */
     margin-left: 256px;
     margin-top: 150px;
   }
@@ -347,17 +360,7 @@ ul.breadcrumb li a:hover {
   */
 
 @media (min-width: 1025px) and (max-width: 1280px) {
-  nav {
-    height: 100%;
-    width: 256px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #005030;
-    overflow-x: hidden;
-    padding-top: 20px;
-  }
+  
 
   .logo {
     padding: auto;
@@ -435,17 +438,7 @@ ul.breadcrumb li a:hover {
   */
 
 @media (min-width: 768px) and (max-width: 1024px) {
-  nav {
-    height: 100%;
-    width: 256px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #005030;
-    overflow-x: hidden;
-    padding-top: 20px;
-  }
+  
 
   .logo {
     padding: auto;
@@ -541,17 +534,7 @@ ul.breadcrumb li a:hover {
     display: flex;
     flex-direction: column;
   }
-  nav {
-    height: 100%;
-    width: 256px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #005030;
-    overflow-x: hidden;
-    padding-top: 20px;
-  }
+ 
 
   .logo {
     padding: auto;
@@ -648,17 +631,7 @@ ul.breadcrumb li a:hover {
     display: flex;
     flex-direction: column;
   }
-  nav {
-    height: 100%;
-    width: 70px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #005030;
-    overflow-x: hidden;
-    padding-top: 20px;
-  }
+  
   .form {
     margin-left: 90px;
     margin-top: 50px;
@@ -731,17 +704,7 @@ ul.breadcrumb li a:hover {
     display: flex;
     flex-direction: column;
   }
-  nav {
-    height: 100%;
-    width: 70px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #005030;
-    overflow-x: hidden;
-    padding-top: 20px;
-  }
+  
 
   .btn-child {
     display: flex;
