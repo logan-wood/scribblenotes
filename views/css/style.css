@@ -310,6 +310,21 @@ ul.breadcrumb li a:hover {
   justify-content: space-between;
 }
 
+#progressbar {
+  background-color: #EBEFF2;
+  border-radius: 13px;
+  /* (height of inner div) / 2 + padding */
+  padding: 3px;
+}
+
+#progressbar>div {
+  background-color: #2ED47A;
+  width: 40%;
+  /* Adjust with JavaScript */
+  height: 5px;
+  border-radius: 10px;
+}
+
 /* 
   ##Device = Desktops
   ##Screen = 1281px to higher resolution desktops

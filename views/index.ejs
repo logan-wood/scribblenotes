@@ -38,7 +38,6 @@
 <div class="content">
 <h4 class="title">Welcome <%- user.username %>, </h4>     
   <br>
-  
     <div class="dashboard-btn-wrapper"> 
       <div class="btn-child">
       <b>Create a</b>
@@ -48,13 +47,15 @@
      <b>start a</b> 
       <button onclick="window.location.href='/new_note'" class="new-campaign-btn">New Campaign</button>
     </div>
-    
   </div>
-  
   <br>
 <div class="content-data">
 <h5 class="text-large">Current Campaign and Notes</h5>
 <p class="text-med">8 notes are approved out of 10</p>
+</div>
+
+<div id="progressbar">
+  <div></div>
 </div>
 
 <div>
