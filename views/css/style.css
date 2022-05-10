@@ -430,6 +430,10 @@ ul.breadcrumb li a:hover {
     z-index: 1;
     border-radius: 2.5%;
   }
+
+  nav span {
+    color: white;
+  }
 }
 
 /* 
@@ -513,6 +517,10 @@ ul.breadcrumb li a:hover {
     justify-content: center;
     align-items: center;
   }
+
+  nav span {
+    color: white;
+  }
 }
 
 /* 
@@ -521,6 +529,9 @@ ul.breadcrumb li a:hover {
   */
 
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  nav span {
+    color: white;
+  }
   /* CSS */
 }
 
@@ -619,6 +630,10 @@ ul.breadcrumb li a:hover {
     width: 100%;
     margin-bottom: 20;
   }
+
+  nav span {
+    color: white;
+  }
 }
 
 /* 
@@ -627,6 +642,14 @@ ul.breadcrumb li a:hover {
   */
 
 @media (min-width: 320px) and (max-width: 480px) {
+
+  .logo {
+    padding: auto;
+    margin: auto;
+    width: 60%;
+    height: auto;
+  }
+
   .dashboard-btn-wrapper {
     display: flex;
     flex-direction: column;
@@ -697,9 +720,21 @@ ul.breadcrumb li a:hover {
     width: 100%;
     margin-bottom: 20;
   }
+
+  nav span {
+    color: white;
+  }
 }
 
 @media (max-width: 320px) {
+
+  .logo {
+    padding: auto;
+    margin: auto;
+    width: 60%;
+    height: auto;
+  }
+
   .dashboard-btn-wrapper {
     display: flex;
     flex-direction: column;
@@ -761,5 +796,9 @@ ul.breadcrumb li a:hover {
     align-items: center;
     z-index: 1;
     border-radius: 2.5%;
+  }
+
+  nav span {
+    color: white;
   }
 }
