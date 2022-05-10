@@ -38,7 +38,7 @@ router.get('/about', (req, res) => {
      });
 });
 
-router.get('/admin', async (req, res) => {
+router.get('/admin', isAuthenticated, async (req, res) => {
     res.render('admin_dashboard', {
         title: 'Admin',
         user: req.user,
