@@ -6,6 +6,21 @@ body {
   margin-bottom: 0;
   width: auto;
 }
+
+.card-base{
+  height: auto;
+  width: auto;
+  background: #ffffff;
+  box-shadow: 0px 2px 10px rgb(0 0 0 / 8%);
+  border-radius: 4px;
+  border-width: 0;
+  padding: 2vh;
+  margin-bottom: 10px;
+}
+
+.card-base-wrapper{
+  
+}
 .new-note-btn {
   background-color: #21b499;
   margin: auto;
@@ -398,7 +413,7 @@ ul.breadcrumb li a:hover {
 .widget-container{
   -webkit-box-shadow: 1px 4px 6px 4px #ccc; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
   -moz-box-shadow: 1px 4px 6px 4px #ccc; /* Firefox 3.5 - 3.6 */
-  box-shadow: 1px 4px 6px 4px #ccc;
+  box-shadow: 0px 2px 10px rgb(0 0 0 / 8%);
   width: 320px;
   height: 183px;
   padding: 20px;
