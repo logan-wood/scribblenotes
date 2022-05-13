@@ -23,11 +23,37 @@ body {
 }
 
 .video{
+  width: 100%;
   margin-top: 2vh;
   display: flex;
   justify-content:center;
 }
 
+.upload-file{
+  padding: 35;
+  width: 380px;
+  margin: auto;
+}
+
+.pending-box {
+  background-color: #BEBEBE;
+  margin-left: 15px;
+  font-size: 11px;
+  width: 84px;
+  color: #fcfdfe;
+  border-radius: 4px;
+  border-width: 0;
+}
+
+.submit-btn {
+  background-color: #027931;
+  margin-left: 15px;
+  font-size: 11px;
+  width: 84px;
+  color: #fcfdfe;
+  border-radius: 4px;
+  border-width: 0;
+}
 .new-note-btn {
   background-color: #21b499;
   margin: auto;
@@ -224,7 +250,10 @@ nav a:hover {
 }
 
 .btn-wrapper{
-
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: coloumn;
+  justify-content: right;
 }
 
 /* Style the list */
@@ -518,8 +547,8 @@ padding-bottom: 10px;
 
  
   .form {
-    margin-left: 250px;
-    margin-top: 50px;
+  
+    margin: 50 0 50 250;
   }
 
   .form-control {
