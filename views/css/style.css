@@ -546,8 +546,12 @@ padding-bottom: 10px;
   }
 
  
+  .form-1 {
+    margin-left: 250px;
+    margin-top: 50px;
+  }
+
   .form {
-  
     margin: 50 0 50 250;
   }
 
