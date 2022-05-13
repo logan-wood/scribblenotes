@@ -1,4 +1,6 @@
 <html>
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
     <%- include('./partials/head.ejs'); %>
 
 
@@ -31,22 +33,65 @@
         </style>
 
 
-    <body>
+    <body style="font-family: Poppins;">
 
         <%- include('./partials/nav.ejs'); %>
 
         
-<div class="form">
+<div class="form" id="dashboardContainer">
 <div class="content">
-    <h4 class="title">New Note </h4>
-            
+  <h4 class="title">New Note </h4>
+  <div class="card-base">
+    <div class="card-base-wrapper">
+      <h6>Download Template</h6>
+      <div class="dashboard-button dashboard-success">
+        Complete
+      </div>
 
+  <a style="text-align: center;" target="_blank" href="https://docs.google.com/spreadsheets/d/1hOC-ADPe_Aiv_cGbYfBlVTSlyOaQMZzc/edit#gid=724155891">Download Template Here!</a>
+  
+    </div>
+  </div>
+  <div class="card-base">
+    <div class="dashboard-caption">
+      <h6>Video Tutorial</h6>
+      <div class="video">
+        <iframe style="align-items: center;" width="100%" height="416" src="https://www.youtube.com/embed/iJ6rpgbnIRM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
 
+    <div class="btn-wrapper">
+      <input type="submit" value="SKIP" class="submit-btn" />
+      <input type="submit" value="Pending.." class="pending-box" />
+    </div>
+    </div>
+  </div>
+  <div class="card-base">
+    <div class="dashboard-caption">
+      <h6>Upload Template</h6>
+
+    <form name="submit" action="./new_note" method="post" enctype="multipart/form-data" id="uploadForm" class="upload-file">
+      <label class="custom-file-upload">
+      <input name="csv" type="file" />
+      </label>
+    </form>
+    <div class="btn-wrapper">
+      <input type="submit" value="Upload" class="submit-btn" />
+    </div>
+    </div>
+  
+  </div>
+  <br>
+  <div class="btn-wrapper">
+    <input type="submit" value="Submit" class="submit-btn" />
+  </div>
+  
+
+<!--
 <button class="accordion">Download Template</button>
 <div class="panel">
-  <!--Link to Template-->
+  Link to Template
   <a style="text-align: center;" target="_blank" href="https://docs.google.com/spreadsheets/d/1hOC-ADPe_Aiv_cGbYfBlVTSlyOaQMZzc/edit#gid=724155891">Download Template Here!</a>
-  <!--End Link to Template-->
+  End Link to Template
 </div>
 
 <button class="accordion">Video Tutorial</button>
@@ -65,6 +110,7 @@
         <input type="submit" value="Upload" />
     </form>
 </div>
+-->
 
 </div>
 </div>
