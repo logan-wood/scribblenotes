@@ -21,6 +21,13 @@ body {
 .card-base-wrapper{
   
 }
+
+.video{
+  margin-top: 2vh;
+  display: flex;
+  justify-content:center;
+}
+
 .new-note-btn {
   background-color: #21b499;
   margin: auto;
