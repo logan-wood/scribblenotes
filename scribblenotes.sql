@@ -20,6 +20,8 @@ CREATE TABLE IF NOT EXISTS users (
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
   credits int DEFAULT 0,
+  stripe_cust_id VARCHAR(128),
+  subscription VARCHAR(16) DEFAULT 'none',
   PRIMARY KEY (user_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
