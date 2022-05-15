@@ -34,7 +34,9 @@ exports.register = (req, res) => {
                 errors
             }); 
         }
-
+        
+        //hash pasword and create user
+        if (result.length == 0 & password == password2) {
             //salt for hashed password
             const saltRounds = 10;
 
@@ -54,7 +56,12 @@ exports.register = (req, res) => {
                     })
                 });
             });
-            });
+        }
+    });    
+}
+
+exports.changePassword = (req, res) => {
+    
 }
 
 exports.getUserFromID = (user_id) => {
