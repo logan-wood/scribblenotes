@@ -10,4 +10,24 @@ module.exports = {
             })
         })
     },
+
+    changeSubscription: (subscription, email) => {
+        db.query('UPDATE users SET subscription = ? WHERE email = ?', [subscription, email], function(error) {
+            if (error) return error;
+        });
+    },
+
+    fufillRegularSender: (email) => {
+        db.query('UPDATE users SET credits = credits + 250 WHERE email = ?', email, function(error) {
+            if (error) return error;
+        })
+    },
+
+    fufillBulkNotes: (email) => {
+        db.query('UPDATE users SET credits = credits + 1000 WHERE email = ?', email, function(error) {
+            if (error) return error;
+        })
+    }
+
+    
 }

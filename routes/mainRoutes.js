@@ -70,7 +70,7 @@ router.get('/user_settings', isAuthenticated, function(req, res) {
     res.render('user_settings', { user: req.user })
 })
 
-router.get('/subscriptions', isAuthenticated, function(req, res) {
+router.get('/subscriptions', function(req, res) {
     res.render('subscriptions', { user: req.user })
 })
 
