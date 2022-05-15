@@ -152,6 +152,7 @@ body {
   box-shadow: 1px 4px 6px 4px #ccc;
 }
 
+
 nav {
   height: 100%;
   width: 250px;
@@ -162,7 +163,11 @@ nav {
   background-color: #005030;
   white-space: nowrap;
   overflow-x: hidden;
+  overflow-y: auto;
   transition: 0.3s;
+
+
+
 } nav a {
   display: inline;
   width: 80%;
