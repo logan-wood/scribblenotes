@@ -9,6 +9,7 @@ function openNav() {
     document.getElementById("closeBtn").style.display = "block";
     
     document.getElementById("main").style.marginLeft = "250px";
+    document.getElementById("dashboardContainer").style.marginLeft = "0px";
 
   }
   
