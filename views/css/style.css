@@ -18,8 +18,9 @@ body {
   margin-bottom: 10px;
 }
 
-.card-base-wrapper{
-  
+.form-wrapper{
+  display: flex;
+  flex-direction: row;
 }
 
 .video{
@@ -53,6 +54,7 @@ body {
   color: #fcfdfe;
   border-radius: 4px;
   border-width: 0;
+  height: 20px;
 }
 .new-note-btn {
   background-color: #21b499;
@@ -87,6 +89,18 @@ body {
   -webkit-box-shadow: 1px 4px 6px 4px #ccc; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
   -moz-box-shadow: 1px 4px 6px 4px #ccc; /* Firefox 3.5 - 3.6 */
   box-shadow: 1px 4px 6px 4px #ccc;
+}
+
+.small-btn{
+  background-color: #21b499;
+  margin: auto;
+  margin-inline: 20px;
+  width: 160px;
+  height: 30px;
+  color: #fcfdfe;
+  box-shadow: 0px 4px 10px rgb(16 156 241 / 24%);
+  border-radius: 4px;
+  border-width: 0;
 }
 
 .save-settings-btn {
@@ -265,7 +279,7 @@ ul.breadcrumb {
 /* Display list items side by side */
 ul.breadcrumb li {
   display: inline;
-  font-size: 1.5vh;
+  font-size: 13px;
   color: #21b499;
 }
 
@@ -371,9 +385,7 @@ ul.breadcrumb li a:hover {
   flex-direction: row;
   justify-content: space-between;
 }
-.dashboard-card-name{
- 
-}
+
 .dashboard-ava{
   display: inline-block;
     margin-right: 15px;
@@ -453,6 +465,7 @@ ul.breadcrumb li a:hover {
   width: 320px;
   height: 183px;
   padding: 20px;
+  margin-bottom: 40px;
 }
 .dashboard-widget{
   justify-content: center;
@@ -462,7 +475,7 @@ ul.breadcrumb li a:hover {
 }
 .widget-wrapper{
   display: flex;
-  direction: row;
+  flex-direction: row;
   justify-content: space-evenly;
   margin: auto;
   margin-top: 60px;
@@ -503,6 +516,7 @@ letter-spacing: 0.01em;
 border: 0;
 border-bottom: 1px solid #D3D8DD ;
 padding-bottom: 10px;
+width: 300px;
 }
 
 .change-password{
@@ -748,6 +762,14 @@ padding-bottom: 10px;
     border-radius: 15px;
   }
 
+  .widget-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
   
   .content-data {
     width: 100%;
@@ -781,6 +803,12 @@ padding-bottom: 10px;
   nav span {
     color: white;
   }
+
+
+  .form-wrapper{
+    display: flex;
+    flex-direction: column;
+  }
  
   .form {
     margin-left: 250px;
@@ -788,7 +816,16 @@ padding-bottom: 10px;
   }
 
 
-  .card-container {
+  .widget-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+
+  .card-containers {
     display: flex;
     flex-direction: row;
   }
@@ -813,6 +850,15 @@ padding-bottom: 10px;
     height: auto;
   }
 
+
+  .widget-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
   .regform {
     width: 380px;
     margin: auto;
@@ -917,6 +963,16 @@ padding-bottom: 10px;
     display: flex;
     flex-direction: column;
   }
+
+
+  .widget-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
   
   .form {
     margin-left: 250px;
@@ -1007,6 +1063,15 @@ padding-bottom: 10px;
     flex-direction: column;
   }
   
+
+  .widget-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
 
   .btn-child {
     display: flex;
