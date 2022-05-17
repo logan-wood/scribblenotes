@@ -23,6 +23,16 @@ router.get('/login', (req, res) => {
      });
 });
 
+router.get('/forgot_password', (req, res) => {
+    res.render('forgot_password', {
+        title: 'scribblenotes'
+    });
+}); router.get('/reset_password/:uuid', (req, res) => {
+    res.render('reset_password', {
+        uuid: req.params['uuid']
+    })
+});
+
 
 router.get('/new_note', isAuthenticated, (req, res) => {
     res.render('new_note', { user: req.user });
