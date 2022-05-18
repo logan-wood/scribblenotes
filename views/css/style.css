@@ -7,7 +7,7 @@ body {
   width: auto;
 }
 
-.card-base{
+.card-base {
   height: auto;
   width: auto;
   background: #ffffff;
@@ -18,25 +18,24 @@ body {
   margin-bottom: 10px;
 }
 
-.card-base-wrapper{
-  
+.card-base-wrapper {
 }
 
-.video{
+.video {
   width: 100%;
   margin-top: 2vh;
   display: flex;
-  justify-content:center;
+  justify-content: center;
 }
 
-.upload-file{
+.upload-file {
   padding: 35;
   width: 380px;
   margin: auto;
 }
 
 .pending-box {
-  background-color: #BEBEBE;
+  background-color: #bebebe;
   margin-left: 15px;
   font-size: 11px;
   width: 84px;
@@ -108,7 +107,7 @@ body {
 }
 
 .close-account-btn {
-  background-color: #EF3C3C;
+  background-color: #ef3c3c;
   margin: auto;
   margin-inline: 20px;
   width: 160px;
@@ -152,7 +151,6 @@ body {
   box-shadow: 1px 4px 6px 4px #ccc;
 }
 
-
 nav {
   height: 100%;
   width: 250px;
@@ -165,10 +163,8 @@ nav {
   overflow-x: hidden;
   overflow-y: auto;
   transition: 0.3s;
-
-
-
-} nav a {
+}
+nav a {
   display: inline;
   width: 80%;
   padding: 8px 8px 8px 8px;
@@ -177,10 +173,13 @@ nav {
   align-items: center;
   color: white;
   display: block;
-} nav span {
+}
+nav span {
   display: inline;
   margin-left: 16px;
-} .material-symbols-outlined, nav span {
+}
+.material-symbols-outlined,
+nav span {
   margin-left: 21px;
   vertical-align: middle;
 }
@@ -236,8 +235,7 @@ nav a:hover {
 
 .text-med {
   font-size: 1.5vh;
-  color: #A6ACB1;
-
+  color: #a6acb1;
 }
 
 .dashboard-btn-wrapper {
@@ -254,7 +252,7 @@ nav a:hover {
   margin-top: 20px;
 }
 
-.btn-wrapper{
+.btn-wrapper {
   margin-top: 2vh;
   display: flex;
   flex-direction: coloumn;
@@ -371,37 +369,35 @@ ul.breadcrumb li a:hover {
   border: none;
 }
 
-.dashboard-card-header{
+.dashboard-card-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.dashboard-card-name{
- 
+.dashboard-card-name {
 }
-.dashboard-ava{
+.dashboard-ava {
   display: inline-block;
-    margin-right: 15px;
+  margin-right: 15px;
 }
-.dashboard-text{
+.dashboard-text {
   display: inline-block;
   color: #707683;
 }
-.dashboard-image{
+.dashboard-image {
   width: 50px;
   height: 50px;
   border-radius: 100px;
 }
-.dashboard-caption{
-  color: #323C47;
+.dashboard-caption {
+  color: #323c47;
   font-size: 15px;
   margin-bottom: 7px;
 }
-.dashboard-date{
-  color: #4C5862;
+.dashboard-date {
+  color: #4c5862;
 }
-.dashboard-button
-{
+.dashboard-button {
   padding: 3px 8px;
   color: #fff;
   border-radius: 5px;
@@ -409,14 +405,14 @@ ul.breadcrumb li a:hover {
   text-align: center;
 }
 
-.dashboard-success{
-  background-color: #2ED47A;
+.dashboard-success {
+  background-color: #2ed47a;
 }
-.dashboard-alert{
-  background-color: #F7685B;
+.dashboard-alert {
+  background-color: #f7685b;
 }
 
-.dashboard-ava-container{
+.dashboard-ava-container {
   display: flex;
   flex-direction: flow;
   align-items: center;
@@ -424,34 +420,34 @@ ul.breadcrumb li a:hover {
   float: left;
 }
 #progressbar {
-  background-color: #EBEFF2;
+  background-color: #ebeff2;
   border-radius: 13px;
   /* (height of inner div) / 2 + padding */
   padding: 3px;
 }
 
-#progressbar>div {
-  background-color: #2ED47A;
+#progressbar > div {
+  background-color: #2ed47a;
   width: 40%;
   /* Adjust with JavaScript */
   height: 5px;
   border-radius: 10px;
 }
-.dashboard-widget-number{
+.dashboard-widget-number {
   font-size: 64px;
 }
-.dashboard-widget-title{
+.dashboard-widget-title {
   display: inline-block;
   font-style: normal;
 }
-.dashboard-widget-subscription{
+.dashboard-widget-subscription {
   font-size: 15px;
 }
-.dashboard-widget-up{
+.dashboard-widget-up {
   font-size: 13px;
-  color: #21B499;
+  color: #21b499;
 }
-.widget-container{
+.widget-container {
   -webkit-box-shadow: 1px 4px 6px 4px #ccc; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
   -moz-box-shadow: 1px 4px 6px 4px #ccc; /* Firefox 3.5 - 3.6 */
   box-shadow: 0px 2px 10px rgb(0 0 0 / 8%);
@@ -459,13 +455,12 @@ ul.breadcrumb li a:hover {
   height: 183px;
   padding: 20px;
 }
-.dashboard-widget{
+.dashboard-widget {
   justify-content: center;
   align-items: center;
   display: flex;
- 
 }
-.widget-wrapper{
+.widget-wrapper {
   display: flex;
   direction: row;
   justify-content: space-between;
@@ -474,51 +469,51 @@ ul.breadcrumb li a:hover {
   margin-top: 60px;
   margin-bottom: 60px;
 }
-.text-top{
+.text-top {
   font-size: 16px;
 }
 /*
 SETTING PAGE
 */
-.field-wrapper{
+.field-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-.field-container{
+.field-container {
   margin-top: 40px;
   display: flex;
   flex-direction: column;
   width: 300px;
 }
-.text-label{
-font-style: normal;
-font-weight: 500;
-font-size: 11px;
-line-height: 16px;letter-spacing: 0.01em;
-  color: #818E9B;
+.text-label {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #818e9b;
 }
 
-.text-field{
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-line-height: 20px;
-letter-spacing: 0.01em;
-border: 0;
-border-bottom: 1px solid #D3D8DD ;
-padding-bottom: 10px;
+.text-field {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  border: 0;
+  border-bottom: 1px solid #d3d8dd;
+  padding-bottom: 10px;
 }
 
-.change-password{
+.change-password {
   margin-bottom: 30px;
   font-style: normal;
   font-weight: 500;
   font-size: 11px;
   display: flex;
   justify-content: right;
-
 }
 /* 
   ##Device = Desktops
@@ -526,7 +521,6 @@ padding-bottom: 10px;
 */
 
 @media (min-width: 1281px) {
-  
   .logo {
     display: block;
     margin: 0 auto;
@@ -537,7 +531,7 @@ padding-bottom: 10px;
     cursor: pointer;
     display: block;
     margin: 0 auto;
-  } 
+  }
 
   .regform {
     width: 380px;
@@ -550,7 +544,6 @@ padding-bottom: 10px;
     border-radius: 2.5%;
   }
 
- 
   .form-1 {
     margin-left: 250px;
     margin-top: 50px;
@@ -613,8 +606,6 @@ padding-bottom: 10px;
   */
 
 @media (min-width: 1025px) and (max-width: 1280px) {
-  
-
   .logo {
     padding: auto;
     margin: auto;
@@ -695,8 +686,6 @@ padding-bottom: 10px;
   */
 
 @media (min-width: 768px) and (max-width: 1024px) {
-  
-
   .logo {
     padding: auto;
     margin: auto;
@@ -715,7 +704,6 @@ padding-bottom: 10px;
     border-radius: 2.5%;
   }
 
-  
   .form {
     margin-left: 250px;
     margin-top: 50px;
@@ -754,7 +742,6 @@ padding-bottom: 10px;
     border-radius: 15px;
   }
 
-  
   .content-data {
     width: 100%;
     margin: auto;
@@ -787,12 +774,11 @@ padding-bottom: 10px;
   nav span {
     color: white;
   }
- 
+
   .form {
     margin-left: 250px;
     margin-top: 50px;
   }
-
 
   .card-container {
     display: flex;
@@ -810,7 +796,6 @@ padding-bottom: 10px;
     display: flex;
     flex-direction: column;
   }
- 
 
   .logo {
     padding: auto;
@@ -900,9 +885,9 @@ padding-bottom: 10px;
     color: white;
   }
 
-.field-container{
-  width: 100%;
-}
+  .field-container {
+    width: 100%;
+  }
 }
 
 /* 
@@ -911,7 +896,6 @@ padding-bottom: 10px;
   */
 
 @media (min-width: 320px) and (max-width: 480px) {
-
   .logo {
     padding: auto;
     margin: auto;
@@ -923,7 +907,7 @@ padding-bottom: 10px;
     display: flex;
     flex-direction: column;
   }
-  
+
   .form {
     margin-left: 250px;
     margin-top: 50px;
@@ -994,13 +978,12 @@ padding-bottom: 10px;
     color: white;
   }
 
-.field-container{
-  width: 100%;
-}
+  .field-container {
+    width: 100%;
+  }
 }
 
 @media (max-width: 320px) {
-
   .logo {
     padding: auto;
     margin: auto;
@@ -1012,7 +995,6 @@ padding-bottom: 10px;
     display: flex;
     flex-direction: column;
   }
-  
 
   .btn-child {
     display: flex;
@@ -1075,7 +1057,7 @@ padding-bottom: 10px;
     color: white;
   }
 
-.field-container{
-  width: 100%;
-}
+  .field-container {
+    width: 100%;
+  }
 }
