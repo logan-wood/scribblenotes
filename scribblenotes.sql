@@ -34,10 +34,10 @@ CREATE TABLE IF NOT EXISTS notes (
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 )
 
-CREATE TABLE IF NOT EXISTS resetPassword (
+CREATE TABLE IF NOT EXISTS reset_password (
   uuid VARCHAR(128) NOT NULL,
   user_id int NOT NULL,
   createdAt datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (token),
+  PRIMARY KEY (uuid),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 )

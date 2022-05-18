@@ -47,11 +47,7 @@ exports.register = (req, res) => {
                         if(error){
                             console.log(error);
                         } else {
-                            console.log(result);
-                            errors.push({ msg: 'Success!' });
-                            res.render('register', {
-                                errors
-                            }); 
+                            res.redirect('/');
                         }
                     })
                 });

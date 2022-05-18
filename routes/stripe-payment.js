@@ -3,8 +3,12 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const stripeController = require('../controllers/stripeController');
 const { isAuthenticated } = require('../auth/isAuthenticated');
+const db = require('../db')
 
 const router = express.Router();
+
+const REGULAR_SENDER = 'price_1Ky7ejKpJ99xu55gG1aoy4V1';
+const BULK_NOTES = 'price_1KyzgjKpJ99xu55g1k1jPVwX';
 
 router.post('/single_note', isAuthenticated, async function(req, res) {
     const session = await stripe.checkout.sessions.create({
@@ -23,17 +27,14 @@ router.post('/single_note', isAuthenticated, async function(req, res) {
 });
 
 router.post('/regular_sender', isAuthenticated, async (req, res) => {
-    const prices = await stripe.prices.list({
-        lookup_keys: [req.body.lookup_key],
-        expand: ['data.product'],
-    });
+    console.log('regular sender')
 
     const session = await stripe.checkout.sessions.create({
         customer_email: req.user.email,
         billing_address_collection: 'auto',
         line_items: [
             {
-                price: prices.data[0].id,
+                price: REGULAR_SENDER,
                 quantity: 1,
             },
         ],
@@ -57,7 +58,7 @@ router.post('/bulk_notes', isAuthenticated, async (req, res) => {
         billing_address_collection: 'auto',
         line_items: [
             {
-                price: prices.data[0].id,
+                price: BULK_NOTES,
                 quantity: 1,
             },
         ],
@@ -67,6 +68,16 @@ router.post('/bulk_notes', isAuthenticated, async (req, res) => {
     });
 
     res.redirect(303, session.url);
+})
+
+router.post('/create-customer-portal-session', async (req, res) => {
+    console.log('router called');
+    const session = await stripe.billingPortal.sessions.create({
+        customer: req.user.stripe_id,
+        return_url: process.env.DOMAIN + 'user_settings'
+    });
+
+    res.redirect(session.url);
 })
 
 router.get('/success', (req, res) => {
@@ -80,8 +91,6 @@ router.get('/cancel', (req, res) => {
 //webhook called on successfull payment
 router.post('/webhook', bodyParser.raw({type: 'application/json'}), async (req, res) => {
     const sig = req.headers['stripe-signature'];
-    const REGULAR_SENDER = 'price_1Ky7ejKpJ99xu55gG1aoy4V1';
-    const BULK_NOTES = 'price_1KyzgjKpJ99xu55g1k1jPVwX';
 
     let event;
 
@@ -97,17 +106,20 @@ router.post('/webhook', bodyParser.raw({type: 'application/json'}), async (req, 
         const priceID = lines[0].price.id;
 
         //store customer email in variable
-        const user_email = event.data.object.customer_email
+        const user_email = event.data.object.customer_email;
+        const customer_id = event.data.object.customer;
 
         //regular sender
         if (priceID === REGULAR_SENDER) {
             stripeController.changeSubscription('regular_sender', user_email);
             stripeController.fufillRegularSender(user_email);
+            stripeController.updateStripeCustomerID(customer_id, user_email);
         }
 
         if (priceID === BULK_NOTES) {
             stripeController.changeSubscription('bulk_notes', user_email);
             stripeController.fufillBulkNotes(user_email);
+            stripeController.updateStripeCustomerID(customer_id, user_email);
         }
         
     }
@@ -116,8 +128,17 @@ router.post('/webhook', bodyParser.raw({type: 'application/json'}), async (req, 
         const session = event.data.object;
 
         if (session.mode === 'payment') {
-            await stripeController.fufillSingleNote(session)
+            await stripeController.fufillSingleNote(session);
         }
+    }
+
+    if (event.type === 'customer.subscription.deleted') {
+        const customer = event.data.object.customer
+        
+        //set subscription to 'none' in database (this doesn't use the function in stripeController because the user email isnt sent in this post request)
+        db.query(`UPDATE users SET subscription = 'none' WHERE stripe_cust_id = ?`, customer, function(error) {
+            if (error) return error;
+        });
     }
 
     res.status(200);
