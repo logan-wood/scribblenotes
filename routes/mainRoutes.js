@@ -81,7 +81,19 @@ router.get('/user_settings', isAuthenticated, function(req, res) {
 })
 
 router.get('/subscriptions', function(req, res) {
-    res.render('subscriptions', { user: req.user })
+    if (req.user) {
+        res.render('subscriptions', { 
+            user: req.user,
+            subscription: req.user.subscription
+        })
+    } else {
+        res.render('subscriptions', {
+            user: req.user,
+            subscription: 'none'
+        })
+    }
+
+    
 })
 
 module.exports = router;
