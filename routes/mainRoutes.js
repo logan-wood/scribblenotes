@@ -9,6 +9,8 @@ router.get('/', isAuthenticated, async (req, res) => {
     res.render('index', { 
         user: req.user,
         allNotes: await userController.getAllNotesByUser(req),
+        allCampaigns: await userController.getAllCampaignsByUser(req),
+        notifications: await userController.getUserNotifications(req),
         isAdmin: userController.isAdmin(req)
     });
 });
@@ -42,9 +44,15 @@ router.get('/new_note', isAuthenticated, (req, res) => {
         isAdmin: userController.isAdmin(req)
     });
 });
-router.post('/new_note', isAuthenticated, mainController.fileUpload, function(req, res) {
-    console.log(req.user)
-});
+router.post('/new_note', isAuthenticated, mainController.newNote);
+
+router.get('/new_campaign', isAuthenticated, (req, res) => {
+    res.render('new_campaign', {
+        user: req.user,
+        isAdmin: userController.isAdmin(req)
+    });
+})
+router.post('/new_campaign', isAuthenticated, mainController.newCampaign);
 
 router.get('/admin', isAuthenticated, async (req, res) => {
     if (userController.isAdmin(req)) {
@@ -53,6 +61,7 @@ router.get('/admin', isAuthenticated, async (req, res) => {
             user: req.user,
             userController: userController,
             noteCardInformation: await adminController.getAllNoteCardInformation(),
+            campaignCardInformation: await adminController.getAllCampaignCardInformation(),
             isAdmin: userController.isAdmin(req)
         })
     } else {

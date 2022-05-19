@@ -165,6 +165,7 @@ body {
   -webkit-box-shadow: 1px 4px 6px 4px #ccc; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
   -moz-box-shadow: 1px 4px 6px 4px #ccc; /* Firefox 3.5 - 3.6 */
   box-shadow: 1px 4px 6px 4px #ccc;
+  color: white;
 }
 
 nav {
