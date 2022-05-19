@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 CREATE TABLE IF NOT EXISTS notes (
   note_id int NOT NULL AUTO_INCREMENT,
+  name VARCHAR(32),
   filename VARCHAR(255),
   user_id int NOT NULL,
   note_status VARCHAR(32),

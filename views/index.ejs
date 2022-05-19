@@ -72,7 +72,7 @@
 
 <% if (allNotes) { %>
   <% allNotes.forEach(element => { %>
-    <%- include ('./partials/userDashboard/note_card', { note_id: element.note_id, filename: element.filename, status: element.note_status }); %>
+    <%- include ('./partials/userDashboard/note_card', { filename: element.filename, status: element.note_status, name: element.note_name }); %>
   <% }); %>
 <% } %>
 <% if (!allNotes) { %>

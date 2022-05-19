@@ -33,7 +33,7 @@ module.exports = {
 
                         if (result) {
                             //create new data entry and append to data array
-                            data.push({ filename: element.filename, note_id: element.note_id, user_id: element.user_id, note_status: element.note_status, username: result.username, email: result.email })
+                            data.push({ filename: element.filename, note_id: element.note_id, user_id: element.user_id, note_status: element.note_status, name: element.note_name, username: result.username, email: result.email })
 
                             //check if getUserFromID needs to run any more times, and call return function accordingly
                             if (--pending === 0) {

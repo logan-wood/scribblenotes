@@ -49,12 +49,15 @@
                     </span>
                 </a>
 
-                <a href="/admin">
-                    <span>
-                        <i class="material-symbols-outlined">settings</i>
-                        <span class="icon-text">Admin</span>
-                    </span>
-                </a>
+                <% if (isAdmin) { %>
+                    <a href="/admin">
+                        <span>
+                            <i class="material-symbols-outlined">settings</i>
+                            <span class="icon-text">Admin</span>
+                        </span>
+                    </a>
+                <% } %>
+                
 
                 <a href="/logout">
                     <span>

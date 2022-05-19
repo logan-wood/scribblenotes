@@ -68,13 +68,13 @@
       <h6>Upload Template</h6>
 
     <form name="submit" action="./new_note" method="post" enctype="multipart/form-data" id="uploadForm" class="upload-file">
-      <label class="custom-file-upload">
-      <input name="csv" type="file" />
-      </label>
+      <label for="name">Note Name</label>
+      <input type="text" name="name" id="name" maxlength="31" required>
+      <input name="csv" type="file" required/>
+      <div class="btn-wrapper">
+        <input type="submit" value="Upload" class="submit-btn" />
+      </div>
     </form>
-    <div class="btn-wrapper">
-      <input type="submit" value="Upload" class="submit-btn" />
-    </div>
     </div>
   
   </div>

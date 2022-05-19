@@ -135,3 +135,11 @@ exports.getAllNotesByUser = async (req) => {
     })
     
 }
+
+exports.isAdmin = (req) => {
+    if (req.user.is_admin === 1) {
+        return true
+    }
+
+    return false;
+}

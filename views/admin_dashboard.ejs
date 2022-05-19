@@ -62,9 +62,7 @@
                             <input class="text-field" type="text" name="order_id" placeholder="Order ID">
                             <input class="small-btn" type="submit" value="Track Order">
                         </form> <br>
-                            <p class="text-med">Note from developer: if a CSV file fails to download, create a new note and download that. 
-                                <br> A file may fail to download due to the nature of the development process, but this will not be a problem in production
-                            </p> <br>
+                            
                             <h5 class="text-large">Campaign and Notes to be Shipped</h5>
                             <p class="text-med">8 notes are approved out of 10</p>
                             </div>
@@ -89,7 +87,8 @@
                             <% if (noteCardInformation) { %>
                                 <% noteCardInformation.forEach(element => { %>
                                     <% if (element) { %>
-                                        <%- include('./partials/admin/note_card.ejs', { 
+                                        <%- include('./partials/admin/note_card.ejs', {
+                                            name: element.name,
                                             note_id: element.note_id, 
                                             user_id: element.user_id, 
                                             username: element.username, 
@@ -100,7 +99,7 @@
                                     <% } %>
                                 <% }) %>
                             <% } else { %>
-                                <p>No notes exist</p> 
+                                <p>No pending notes</p> 
                             <% } %>
                     </div>
                 </div>
