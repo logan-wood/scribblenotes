@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../../css/card.css">
+    </head>
+    <body>
+        <div class='card'>
+            <div class="dashboard-card-header">
+                <div class="dashboard-caption">
+                    <%- name %>, ID: <%- campaign_id %>
+                </div>
+                <div>
+                    <div class="dashboard-button dashboard-success">
+                        <%- status %>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <p style="font-size: 13px; color: #a6acb1">Due Date : <span class="dashboard-date">22 May 2022</span></p>
+            </div>
+            <div class="dashboard-ava-container">
+                <div class="dashboard-card-name">
+                  <div class="dashboard-ava">
+                    <img src="../images/avatar.png" alt="Avatar" class="dashboard-image"/> 
+                  </div>
+                  <div class="dashboard-text">
+                    User: <%- username %> <%- email %>
+                  </div>
+                </div>
+                <div>
+                  <br />
+                  <a href="/admin/download/<%= filename %>">Download CSV</a>
+                  <br /> 
+                </div>
+              </div>
+              <div class="form-wrapper">
+                <form action="/admin/updateCampaign" method="post">
+                    <select class="dropdown" name="campaign_status" required>
+                        <option value="pending">Pending</option>
+                        <option value="approved">Approved</option>
+                        <option value="processing">Processing</option>
+                        <option value="ready_to_ship">Ready To Ship</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                    
+                    <input name="campaign_id" value=<%= campaign_id %>  type="hidden">
+                    <input class="small-btn" type="submit" value="Update Order">
+                </form>
+              </div>
+
+                
+            </p>
+        </div>
+    </body>
+</html>
