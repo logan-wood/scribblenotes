@@ -6,6 +6,7 @@
         <title>Admin Dashboard</title>
     </head>
     <body style="font-family: Poppins;">
+        <%- include('./partials/searchbar.ejs');  %>
         <%- include('./partials/nav.ejs');  %>
         <!--Track Note Order Status-->
         <div class="form-1" id="dashboardContainer">
@@ -48,20 +49,20 @@
                     </div>
                 </div>
             </div>
-            <br>
-            <h1 style="text-align: center;">Track Note Order Status</h1>
+
         
-            <br>
             <!--settings page-->
             <div class="settings-page">
                 <div class="settings-container">
                     <div class="settings-item">
-                        <h3>Track Note Order Status</h3>
-                        <form action="#" method="POST">
-                            <input type="text" name="order_id" placeholder="Order ID">
-                            <input type="submit" value="Track Order">
-                        </form>
                         <div class="content-data">
+
+                        <h5 class="text-large">Track Note Order Status</h3>
+                        <form class="card-containers" action="#" method="POST" style="display: flex ;">
+                            <input class="text-field" type="text" name="order_id" placeholder="Order ID">
+                            <input class="small-btn" type="submit" value="Track Order">
+                        </form> <br>
+                            
                             <h5 class="text-large">Campaign and Notes to be Shipped</h5>
                             <p class="text-med">8 notes are approved out of 10</p>
                             </div>
