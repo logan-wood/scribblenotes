@@ -9,7 +9,17 @@
   margin-bottom: 10px;
 }
 
-.card-wrapper {
+.dropdown{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  margin-top: 20px;
+  border: 0;
+  border-bottom: 1px solid #D3D8DD ;
+  padding-bottom: 10px;
+  width: 200px;
 }
 
 .status {
