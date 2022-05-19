@@ -16,7 +16,7 @@ exports.fileUpload = (req, res) => {
     }
 
     //UPDATE TO CSV MIMETYPE
-    if (file.mimetype === 'application/vnd.ms-excel') {
+    if (file.mimetype === 'text/csv') {
 
 
         //insert into db

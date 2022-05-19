@@ -27,6 +27,12 @@ module.exports = {
         db.query('UPDATE users SET credits = credits + 1000 WHERE email = ?', email, function(error) {
             if (error) return error;
         })
+    },
+
+    updateStripeCustomerID: (cust_id, email) => {
+        db.query('UPDATE users SET stripe_cust_id = ? WHERE email = ?', [cust_id, email], function(error) {
+            if (error) return error;
+        })
     }
 
     
