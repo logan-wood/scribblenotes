@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS users (
   credits int DEFAULT 0,
   stripe_cust_id VARCHAR(128),
   subscription VARCHAR(16) DEFAULT 'none',
+  is_admin BOOLEAN DEFAULT false,
   PRIMARY KEY (user_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
@@ -32,6 +33,16 @@ CREATE TABLE IF NOT EXISTS notes (
   user_id int NOT NULL,
   note_status VARCHAR(32),
   PRIMARY KEY (note_id),
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
+)
+
+CREATE TABLE IF NOT EXISTS campaigns (
+  campaign_id int NOT NULL AUTO_INCREMENT,
+  name VARCHAR(32),
+  filename VARCHAR(255),
+  user_id int NOT NULL,
+  campaign_status VARCHAR(32),
+  PRIMARY KEY (campaign_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 )
 
