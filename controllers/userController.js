@@ -133,7 +133,20 @@ exports.getAllNotesByUser = async (req) => {
             }
         })
     })
-    
+}
+
+exports.getAllCampaignsByUser = async (req) => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * FROM campaigns WHERE user_id = ?', [req.user.id], function(error, results) {
+            if (error) return reject(error);
+            
+            if (results.length == 0) {
+                return resolve(null);
+            } else {
+                return resolve(results);
+            }
+        })
+    })
 }
 
 exports.isAdmin = (req) => {

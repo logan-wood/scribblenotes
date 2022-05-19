@@ -32,93 +32,119 @@
         }
         </style>
 
-<body style="font-family: Poppins; ">
+  <body style="font-family: Poppins; ">
 
-  <%- include('./partials/searchbar.ejs');  %>
-    <%- include('./partials/nav.ejs'); %>
+    <%- include('./partials/searchbar.ejs');  %>
+      <%- include('./partials/nav.ejs'); %>
 
 
-<div class="form" id="dashboardContainer">
-<div class="content">
-<h4 class="title">Welcome <%- user.username %>, </h4>     
-  <br>
-    <div class="dashboard-btn-wrapper"> 
-      <div class="btn-child">
-      <b>Create a</b>
-       <button onclick="window.location.href='/new_note'" class="new-note-btn">New Note</button>
-      </div> 
-      <div class="btn-child">
-     <b>start a</b> 
-      <button onclick="window.location.href='/new_campaign'" class="new-campaign-btn">New Campaign</button>
+    <div class="form" id="dashboardContainer">
+      <div class="content">
+        <h4 class="title">Welcome <%- user.username %>, </h4>     
+        <br>
+        <div class="dashboard-btn-wrapper"> 
+          <div class="btn-child">
+            <b>Create a</b>
+            <button onclick="window.location.href='/new_note'" class="new-note-btn">New Note</button>
+          </div> 
+        <div class="btn-child">
+          <b>start a</b> 
+            <button onclick="window.location.href='/new_campaign'" class="new-campaign-btn">New Campaign</button>
+          </div>
+        </div>
+      <br>
+      <div class="content-data">
+      <h5 class="text-large">Current Campaign and Notes</h5>
+      <p class="text-med">8 notes are approved out of 10</p>
+    </div>
+
+    <div id="progressbar">
+      <div></div>
+    </div>
+
+    <% var cardArray = allNotes %>
+
+    <div>
+      <ul class="breadcrumb">
+        <li><a href="#" onclick="showOnlyNotes()">Show Notes</a></li>
+        <li><a href="#" onclick="showOnlyCampaigns()">Campaigns</a></li>
+        <li><a href="#" onclick="showNotesAndCampaigns()">Notes & Campaigns</a></li>
+      </ul>
+    </div>
+
+    <div id="notes">
+      <% if (allNotes) { %>
+        <% allNotes.forEach(element => { %>
+          <%- include ('./partials/userDashboard/note_card', { filename: element.filename, status: element.note_status, name: element.note_name }); %>
+        <% }); %>
+      <% } %>
+      <% if (!allNotes) { %>
+        <p>No Notes Found</p>
+      <% } %>
+    </div>
+
+    <div id="campaigns">
+      <% if (allCampaigns) { %>
+        <% allCampaigns.forEach(element => { %>
+          <%- include ('./partials/userDashboard/note_card', { filename: element.filename, status: element.campaign_status, name: element.campaign_name }); %>
+        <% }); %>
+      <% } %>
+      <% if (!allCampaigns) { %>
+        <p>No Notes Found</p>
+      <% } %>
+    </div>
+
+
     </div>
   </div>
-  <br>
-<div class="content-data">
-<h5 class="text-large">Current Campaign and Notes</h5>
-<p class="text-med">8 notes are approved out of 10</p>
-</div>
-
-<div id="progressbar">
-  <div></div>
-</div>
-
-<div>
-  <ul class="breadcrumb">
-    <li>Show Notes</li>
-    <li><a href="#">Campaigns</a></li>
-    <li><a href="#">Notes & Campaigns</a></li>
-  </ul>
-</div>
-
-<% if (allNotes) { %>
-  <% allNotes.forEach(element => { %>
-    <%- include ('./partials/userDashboard/note_card', { filename: element.filename, status: element.note_status, name: element.note_name }); %>
-  <% }); %>
-<% } %>
-<% if (!allNotes) { %>
-  <p>No Notes Found</p>
-<% } %>
-<!-- <div class="card">
-  <div class="content-data">
-  <h5 class="text-large">Campaign 1 </h5>
-  <p class="text-med">Due date : December, 2022</p>
-  <p class="text-med">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-</div> -->
-</div>
-<!-- <h2>Accordion</h2> 
-
-<button class="accordion">Past Campaigns and Notes</button>
-<div class="panel">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-</div>
--->
-
-</div>
-</div>
+  </div>
 
 
 
 
 
-<script>
-var acc = document.getElementsByClassName("accordion");
-var i;
+  <script>
+  var acc = document.getElementsByClassName("accordion");
+  var i;
 
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
-    } else {
-      panel.style.display = "block";
-    }
-  });
-}
-</script>
+  for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var panel = this.nextElementSibling;
+      if (panel.style.display === "block") {
+        panel.style.display = "none";
+      } else {
+        panel.style.display = "block";
+      }
+    });
+  }
+
+  function showOnlyNotes() {
+    //show notes
+    document.getElementById("notes").style.display="block"
+
+    //hide campaigns
+    document.getElementById("campaigns").style.display="none"
+  }
+
+  function showOnlyCampaigns() {
+    //show campaigns
+    document.getElementById("campaigns").style.display="block"
+
+    //hide notes
+    document.getElementById("notes").style.display="none"
+  }
+
+  function showNotesAndCampaigns() {
+    //show notes and campaigns
+    document.getElementById("notes").style.display="block"
+    document.getElementById("campaigns").style.display="block"
+  }
+
+  </script>
 
 
-</body>
+  </body>
 
     <%- include('./partials/footer.ejs'); %>
 

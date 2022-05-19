@@ -9,6 +9,7 @@ router.get('/', isAuthenticated, async (req, res) => {
     res.render('index', { 
         user: req.user,
         allNotes: await userController.getAllNotesByUser(req),
+        allCampaigns: await userController.getAllCampaignsByUser(req),
         isAdmin: userController.isAdmin(req)
     });
 });
