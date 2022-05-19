@@ -77,7 +77,7 @@ exports.newCampaign = (req, res) => {
             
             // rename file to format 'note*id*_user*id*
             campaign_id = result.insertId
-            const new_filename = 'campaign ' + campaign_id + '_user' + user_id + '.csv'
+            const new_filename = 'campaign' + campaign_id + '_user' + user_id + '.csv'
 
             //update in DB
             db.query('UPDATE campaigns SET filename = ? WHERE campaign_id = ?', [ new_filename, campaign_id ], function(err) {
