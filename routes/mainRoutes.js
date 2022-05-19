@@ -8,7 +8,9 @@ const router = express.Router();
 router.get('/', isAuthenticated, async (req, res) => {
     res.render('index', { 
         user: req.user,
-        allNotes: await userController.getAllNotesByUser(req) } );
+        allNotes: await userController.getAllNotesByUser(req),
+        isAdmin: userController.isAdmin(req)
+    });
 });
 
 router.get('/register', (req, res) => {
@@ -35,26 +37,27 @@ router.get('/forgot_password', (req, res) => {
 
 
 router.get('/new_note', isAuthenticated, (req, res) => {
-    res.render('new_note', { user: req.user });
+    res.render('new_note', { 
+        user: req.user,
+        isAdmin: userController.isAdmin(req)
+    });
 });
 router.post('/new_note', isAuthenticated, mainController.fileUpload, function(req, res) {
     console.log(req.user)
 });
 
-router.get('/about', (req, res) => {
-    res.render('about', { 
-        title: 'scribblenotes',
-        user: req.body.user
-     });
-});
-
 router.get('/admin', isAuthenticated, async (req, res) => {
-    res.render('admin_dashboard', {
-        title: 'Admin',
-        user: req.user,
-        userController: userController,
-        noteCardInformation: await adminController.getAllNoteCardInformation(),
-    })
+    if (userController.isAdmin(req)) {
+        res.render('admin_dashboard', {
+            title: 'Admin',
+            user: req.user,
+            userController: userController,
+            noteCardInformation: await adminController.getAllNoteCardInformation(),
+            isAdmin: userController.isAdmin(req)
+        })
+    } else {
+        res.redirect('/')
+    }
 });
 //download CSV file
 router.get('/admin/download/:filename', (req, res) => {
@@ -63,12 +66,12 @@ router.get('/admin/download/:filename', (req, res) => {
     res.download(filename)
 })
 
-
 router.get('/contact', (req, res) => {
     res.render('contact', { 
         title: 'scribblenotes',
-        user: req.body.user
-     });
+        user: req.body.user,
+        isAdmin: userController.isAdmin(req)
+    });
 });
 
 router.get('/logout', function(req, res, next) {
@@ -77,14 +80,18 @@ router.get('/logout', function(req, res, next) {
 });
 
 router.get('/user_settings', isAuthenticated, function(req, res) {
-    res.render('user_settings', { user: req.user })
+    res.render('user_settings', { 
+        user: req.user,
+        isAdmin: userController.isAdmin(req) 
+    })
 })
 
 router.get('/subscriptions', function(req, res) {
     if (req.user) {
         res.render('subscriptions', { 
             user: req.user,
-            subscription: req.user.subscription
+            subscription: req.user.subscription,
+            isAdmin: userController.isAdmin(req)
         })
     } else {
         res.render('subscriptions', {
@@ -92,8 +99,6 @@ router.get('/subscriptions', function(req, res) {
             subscription: 'none'
         })
     }
-
-    
 })
 
 module.exports = router;

@@ -29,7 +29,7 @@ module.exports = function(passport) {
 
 passport.serializeUser(function(user, cb) {
   process.nextTick(function() {
-      cb(null, { id: user.user_id, email: user.email, username: user.username, credits: user.credits, stripe_id: user.stripe_cust_id, subscription: user.subscription });
+      cb(null, { id: user.user_id, email: user.email, username: user.username, credits: user.credits, stripe_id: user.stripe_cust_id, subscription: user.subscription, is_admin: user.is_admin });
   });
 });
 

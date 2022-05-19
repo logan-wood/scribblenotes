@@ -5,6 +5,7 @@ exports.fileUpload = (req, res) => {
 
     //local variable
     const file = req.files.csv;
+    const note_name = req.body.name;
     const user_id = req.user.id;
 
     //handle no file upload
@@ -21,7 +22,7 @@ exports.fileUpload = (req, res) => {
 
         //insert into db
         let note_id;
-        db.query(`INSERT INTO notes SET ?`, {filename: req.files.csv.name, user_id: user_id, note_status: 'pending' }, function(err, result) {
+        db.query(`INSERT INTO notes SET ?`, {filename: req.files.csv.name, user_id: user_id, note_status: 'pending', note_name: note_name }, function(err, result) {
             if (err) throw err;
             
             // rename file to format 'note*id*_user*id*
@@ -39,9 +40,7 @@ exports.fileUpload = (req, res) => {
                         res.redirect('/');
                         return res.status(500);
                     }
-
-                    console.log(new_filename + ' successfully uploaded to database.');
-                    
+                                        
                     res.redirect('/');
                 });
             });
