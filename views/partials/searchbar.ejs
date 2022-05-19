@@ -21,8 +21,38 @@
         <div class="topnav">
             <input type="text" placeholder="Search..">
             <% if (locals.user) { %>
-                <span class="material-symbols-outlined" style="color: black">notifications</span>
-            <% } %>        
+            
+            <div class="dropdown">
+                <span class="material-symbols-outlined" 
+                style= "color: black;
+                display: flex;
+                float: right;
+                margin-top: 16px;
+                margin-right: 40px;">notifications</span>
+            <% } %> 
+            </div>
+                   
+        </div>
+        <div class="notif-box">
+            <div class="notif-title">
+                <b>Notification</b>
+            </div>
+            <div class="notif-card">
+                Card Content
+            </div>
+            <div class="notif-card">
+                Card Content
+            </div>
+            <div class="notif-card">
+                Card Content
+            </div>
+            <div class="notif-card">
+                Card Content
+            </div>
+            <div class="notif-card">
+                Card Content
+            </div>
+
         </div>
 
     </body>
