@@ -69,7 +69,7 @@ module.exports = {
             let data = []
 
             //get note information
-            db.query(`SELECT * FROM campaigns WHERE note_status <> 'completed'`, function(error, results) {
+            db.query(`SELECT * FROM campaigns WHERE campaign_status <> 'completed'`, function(error, results) {
                 if (error) { return reject(error) }
 
                 if (results.length === 0) { 

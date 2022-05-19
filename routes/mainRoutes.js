@@ -60,6 +60,7 @@ router.get('/admin', isAuthenticated, async (req, res) => {
             user: req.user,
             userController: userController,
             noteCardInformation: await adminController.getAllNoteCardInformation(),
+            campaignCardInformation: await adminController.getAllCampaignCardInformation(),
             isAdmin: userController.isAdmin(req)
         })
     } else {

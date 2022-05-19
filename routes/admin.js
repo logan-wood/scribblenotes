@@ -8,4 +8,10 @@ router.post('/updateNote', function(req, res) {
     res.redirect('/admin')
 })
 
+router.post('/updateCampaign', function(req, res) {
+    adminController.updateCampaignStatus(req.body.campaign_id, req.body.campaign_status)
+
+    res.redirect('/admin')
+})
+
 module.exports = router
