@@ -77,8 +77,7 @@
         <% allNotes.forEach(element => { %>
           <%- include ('./partials/userDashboard/note_card', { filename: element.filename, status: element.note_status, name: element.note_name }); %>
         <% }); %>
-      <% } %>
-      <% if (!allNotes) { %>
+      <% } else { %>
         <p>No Notes Found</p>
       <% } %>
     </div>
@@ -88,10 +87,21 @@
         <% allCampaigns.forEach(element => { %>
           <%- include ('./partials/userDashboard/campaign_card', { filename: element.filename, status: element.campaign_status, name: element.campaign_name }); %>
         <% }); %>
-      <% } %>
-      <% if (!allCampaigns) { %>
+      <% } else { %>
         <p>No Notes Found</p>
       <% } %>
+    </div>
+
+    <div>
+      <p>(notification display method will be updated)</p>
+      <% if (notifications) { %>
+        <% notifications.forEach(element => { %>
+          <%- include('./partials/notification', { name: element.name, message: element.message }); %>
+        <% }); %>
+      <% } else { %>
+        <p>No Notifications</p>
+      <% } %>
+      
     </div>
 
 

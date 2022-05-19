@@ -1,5 +1,5 @@
 const db = require("../db");
-const mysql = require('mysql');
+const userController = require('./userController');
 
 exports.newNote = (req, res) => {
 
@@ -17,7 +17,7 @@ exports.newNote = (req, res) => {
     }
 
     //UPDATE TO CSV MIMETYPE
-    if (file.mimetype === 'text/csv') {
+    if (file.mimetype === 'application/vnd.ms-excel') {
 
 
         //insert into db
@@ -40,6 +40,9 @@ exports.newNote = (req, res) => {
                         res.redirect('/');
                         return res.status(500);
                     }
+
+                    //create notification before ending function
+                    userController.createNotification(user_id, "New Note", "New note has been sent to our team for approval.");
                                         
                     res.redirect('/');
                 });
@@ -90,6 +93,9 @@ exports.newCampaign = (req, res) => {
                         res.redirect('/');
                         return res.status(500);
                     }
+
+                    //create notification before ending function
+                    userController.createNotification(user_id, "New Campaign", "New campaign has been sent to our team for approval.");
                                         
                     res.redirect('/');
                 });

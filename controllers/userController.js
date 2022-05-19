@@ -156,3 +156,23 @@ exports.isAdmin = (req) => {
 
     return false;
 }
+
+exports.createNotification = (user_id, name, message) => {
+    db.query('INSERT INTO notifications SET ?', {user_id: user_id, name: name, message: message}, function(error) {
+        if (error) throw error;
+    });
+}
+
+exports.getUserNotifications = (req) => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * FROM notifications WHERE user_id = ?', [req.user.id], function(error, results) {
+            if (error) return reject(error);
+            
+            if (results.length == 0) {
+                return resolve(null);
+            } else {
+                return resolve(results);
+            }
+        })
+    })
+}

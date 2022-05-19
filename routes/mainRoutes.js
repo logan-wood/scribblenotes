@@ -10,6 +10,7 @@ router.get('/', isAuthenticated, async (req, res) => {
         user: req.user,
         allNotes: await userController.getAllNotesByUser(req),
         allCampaigns: await userController.getAllCampaignsByUser(req),
+        notifications: await userController.getUserNotifications(req),
         isAdmin: userController.isAdmin(req)
     });
 });
