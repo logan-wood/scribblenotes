@@ -53,8 +53,6 @@ CREATE TABLE IF NOT EXISTS reset_password (
   PRIMARY KEY (uuid),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 )
-<<<<<<< HEAD
-=======
 
 CREATE TABLE IF NOT EXISTS notifications (
   notification_id int NOT NULL AUTO_INCREMENT,
@@ -64,4 +62,4 @@ CREATE TABLE IF NOT EXISTS notifications (
   PRIMARY KEY (notification_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 )
->>>>>>> main
+
