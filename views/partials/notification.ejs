@@ -2,12 +2,24 @@
 <html>
   <head>
     <link rel="stylesheet" href="../../css/card.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
   </head>
   <body>
-    <div class="card">
-      <%= name %>
+    <div class="notif-card" id="notif-card">
+      <span class="notif-card-topline">
+        <h1 class="notif-name"><%= name %></h1>
+        <span class="material-symbols-outlined" id="close-notif" onclick='deleteNotificationReq()'>close</span>
+      <span class="notif-card-topline">
+      
       <br>
-      <%= message %>
-    </div>
+    
+      <p class="notif-msg"><%= message %></p>
+
+    </div>  
   </body>
+    <script>
+      function deleteNotificationReq() {
+        document.getElementById("notif-card").style.display='none'
+      }
+    </script>
 </html>

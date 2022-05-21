@@ -29,3 +29,26 @@
   color: whitesmoke;
   padding: 1vh;
 }
+
+/* Notifications */
+
+#close-notif {
+  color: black;
+  display: inline-block;
+  margin: 8px 8px 0px 0px;
+  float: right;
+}
+
+.notif-name {
+  display: inline-block;
+  font-size: 16px;
+  padding: 10px 10px 0px 10px;
+  margin: 0;
+  top: 20px;
+}
+
+.notif-msg {
+  display: block;
+  font-size: 12px;
+  padding: 8px;
+}

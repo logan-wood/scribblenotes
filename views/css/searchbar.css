@@ -37,7 +37,47 @@
     margin-left: 345px;
     font-size: 14px;
   }
-  
+
+  .notif-box{
+    display: none; /* user can toggle on/off */
+    background: #558a7f4f;
+    margin: 10px 20px;
+    float: right;
+    width: 300px;
+    border-radius: 10px;
+  }
+
+  .notif-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #005030;
+    height: 40px;
+    color: white;
+    border-radius: 5px 5px 0px 0px;
+  }
+
+  .notif-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    width: 93%;
+    border-radius: 5px;
+    margin: 10;
+  }
+
+  #notif-bell {
+    color: black;
+    position: fixed;
+    top: 20px;
+    right: 50px;
+    width: 32px;
+    height: 32px;
+  }
+
+
   /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
   @media screen and (max-width: 600px) {
     .topnav a, .topnav input[type=text] {

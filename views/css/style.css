@@ -7,6 +7,15 @@ body {
   width: auto;
 }
 
+.navbar-btns{
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+
 .card-base {
   height: auto;
   width: auto;
@@ -17,7 +26,6 @@ body {
   padding: 2vh;
   margin-bottom: 10px;
 }
-
 
 .form-wrapper{
   display: flex;
@@ -253,6 +261,7 @@ nav a:hover {
 .text-med {
   font-size: 13px;
   color: #A6ACB1;
+
 }
 
 .dashboard-btn-wrapper {
@@ -554,7 +563,7 @@ width: 300px;
     width: 380px;
     margin: auto;
     background-color: white;
-    margin-top: 20vh;
+    margin-top: 50px;
     padding: 35;
     align-items: center;
     z-index: 1;
@@ -634,7 +643,7 @@ width: 300px;
     width: 380px;
     margin: auto;
     background-color: white;
-    margin-top: 20vh;
+    margin-top: 50px;
     padding: 35;
     align-items: center;
     z-index: 1;
@@ -714,7 +723,7 @@ width: 300px;
     width: 380px;
     margin: auto;
     background-color: white;
-    margin-top: 20vh;
+    margin-top: 50px;
     padding: 35;
     align-items: center;
     z-index: 1;
@@ -801,15 +810,17 @@ width: 300px;
     color: white;
   }
 
+
   .form-wrapper{
     display: flex;
     flex-direction: column;
   }
-
+ 
   .form {
     margin-left: 250px;
     margin-top: 50px;
   }
+
 
   .widget-wrapper{
     display: flex;
@@ -857,7 +868,7 @@ width: 300px;
     width: 380px;
     margin: auto;
     background-color: white;
-    margin-top: 20vh;
+    margin-top: 50px;
     padding: 35;
     align-items: center;
     z-index: 1;
@@ -957,6 +968,7 @@ width: 300px;
     flex-direction: column;
   }
 
+
   .widget-wrapper{
     display: flex;
     flex-direction: column;
@@ -970,7 +982,6 @@ width: 300px;
     margin-left: 250px;
     margin-top: 50px;
   }
-  
   .regform {
     width: 380px;
     margin: auto;

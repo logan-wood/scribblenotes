@@ -163,6 +163,12 @@ exports.createNotification = (user_id, name, message) => {
     });
 }
 
+exports.deleteNotification = (notification_id) => {
+    db.query('DELETE FROM notifications WHERE notification_id = ?', notification_id, function(error) {
+        if (error) throw error;
+    })
+}
+
 exports.getUserNotifications = (req) => {
     return new Promise((resolve, reject) => {
         db.query('SELECT * FROM notifications WHERE user_id = ?', [req.user.id], function(error, results) {
@@ -175,4 +181,12 @@ exports.getUserNotifications = (req) => {
             }
         })
     })
+}
+
+exports.changeUsername = (req, res) => {
+    db.query('UPDATE users SET username = ? WHERE user_id = ?', [req.body.username, req.user.id], function(error) {
+        if (error) throw error
+
+        res.redirect('/logout')
+    });
 }

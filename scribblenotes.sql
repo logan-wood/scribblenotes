@@ -62,3 +62,4 @@ CREATE TABLE IF NOT EXISTS notifications (
   PRIMARY KEY (notification_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 )
+

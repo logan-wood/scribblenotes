@@ -58,10 +58,35 @@
                         <div class="content-data">
 
                         <h5 class="text-large">Track Note Order Status</h3>
-                        <form class="card-containers" action="#" method="POST" style="display: flex ;">
-                            <input class="text-field" type="text" name="order_id" placeholder="Order ID">
-                            <input class="small-btn" type="submit" value="Track Order">
-                        </form> <br>
+                        
+                            <input class="text-field" type="text" name="order_id" placeholder="Order ID" id="track_order_input" style="margin-bottom: 40px;" onkeyup="trackOrder()">
+
+                            <script>
+                                function trackOrder() {
+                                    // input = document.getElementById('track_order_input');
+                                    // filter = input.value;
+
+                                    console.log('hui')
+                                    
+
+                                    cards = document.getElementsByClassName('order_card')
+
+                                    
+                                    for (i = 0; i < cards.length; i++) {
+                                        element = cards[i]
+                                        var a = element.firstChild
+                                        if (a.innerText != filter) {
+                                            cards[i].style.display = "none";
+                                        } else {
+                                            cards[i].style.display = "";
+                                        }
+
+                                    }
+
+                                }
+                            </script>
+
+                            <br>
                             
                             <h5 class="text-large">Campaign and Notes to be Shipped</h5>
                             <p class="text-med">8 notes are approved out of 10</p>
@@ -75,6 +100,31 @@
                                     <li><a href="#" onclick="showOnlyNotes()">Show Notes</a></li>
                                     <li><a href="#" onclick="showOnlyCampaigns()">Campaigns</a></li>
                                     <li><a href="#" onclick="showNotesAndCampaigns()">Notes & Campaigns</a></li>
+
+                                    <script>
+                                        function showOnlyNotes() {
+                                            //show notes
+                                            document.getElementById("notes").style.display="block"
+                            
+                                            //hide campaigns
+                                            document.getElementById("campaigns").style.display="none"
+                                        }
+                            
+                                        function showOnlyCampaigns() {
+                                            //show campaigns
+                                            document.getElementById("campaigns").style.display="block"
+                            
+                                            //hide notes
+                                            document.getElementById("notes").style.display="none"
+                                        }
+                            
+                                        function showNotesAndCampaigns() {
+                                            //show notes and campaigns
+                                            document.getElementById("notes").style.display="block"
+                                            document.getElementById("campaigns").style.display="block"
+                                        }
+                                    </script>
+
                                 </ul>
                               </div>
                               
@@ -88,15 +138,23 @@
                                 <% if (noteCardInformation) { %>
                                     <% noteCardInformation.forEach(element => { %>
                                         <% if (element) { %>
-                                            <%- include('./partials/admin/note_card.ejs', {
-                                                name: element.name,
-                                                note_id: element.note_id, 
-                                                user_id: element.user_id, 
-                                                username: element.username, 
-                                                email: element.email, 
-                                                filename: element.filename, 
-                                                status: element.note_status,
-                                                    }) %>
+                                            <div class="order_card">
+
+                                                <!-- used for sorting in javascript function -->
+                                                <a style="display:none"><%- element.note_id %></a> 
+                                                <!-- -->
+
+                                                <%- include('./partials/admin/note_card.ejs', {
+                                                    name: element.name,
+                                                    note_id: element.note_id, 
+                                                    user_id: element.user_id, 
+                                                    username: element.username, 
+                                                    email: element.email, 
+                                                    filename: element.filename, 
+                                                    status: element.note_status,
+                                                        }) %>
+
+                                            </div>
                                         <% } %>
                                     <% }) %>
                                 <% } else { %>
@@ -108,15 +166,17 @@
                                 <% if (campaignCardInformation) { %>
                                     <% campaignCardInformation.forEach(element => { %>
                                         <% if (element) { %>
-                                            <%- include('./partials/admin/campaign_card.ejs', {
-                                                name: element.name,
-                                                campaign_id: element.campaign_id, 
-                                                user_id: element.campaign_id, 
-                                                username: element.username, 
-                                                email: element.email, 
-                                                filename: element.filename, 
-                                                status: element.campaign_status,
-                                                    }) %>
+                                            <div class="order_card">
+                                                <%- include('./partials/admin/campaign_card.ejs', {
+                                                    name: element.name,
+                                                    campaign_id: element.campaign_id, 
+                                                    user_id: element.campaign_id, 
+                                                    username: element.username, 
+                                                    email: element.email, 
+                                                    filename: element.filename, 
+                                                    status: element.campaign_status,
+                                                        }) %>
+                                            </div>
                                         <% } %>
                                     <% }) %>
                                 <% } else { %>
@@ -126,35 +186,11 @@
                     </div>
                 </div>
             </div>
-            </div>
         </div>
-        </div>
+    </div>
+</div>
 
-        <script>
-
-            function showOnlyNotes() {
-                //show notes
-                document.getElementById("notes").style.display="block"
-
-                //hide campaigns
-                document.getElementById("campaigns").style.display="none"
-            }
-
-            function showOnlyCampaigns() {
-                //show campaigns
-                document.getElementById("campaigns").style.display="block"
-
-                //hide notes
-                document.getElementById("notes").style.display="none"
-            }
-
-            function showNotesAndCampaigns() {
-                //show notes and campaigns
-                document.getElementById("notes").style.display="block"
-                document.getElementById("campaigns").style.display="block"
-            }
-
-        </script>
+        
 
     </body>
     <%- include('./partials/footer.ejs');  %>

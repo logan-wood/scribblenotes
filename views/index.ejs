@@ -34,7 +34,7 @@
 
   <body style="font-family: Poppins; ">
 
-    <%- include('./partials/searchbar.ejs');  %>
+    <%- include('./partials/searchbar.ejs', { notifications: notifications, user: user});  %>
       <%- include('./partials/nav.ejs'); %>
 
 
@@ -62,8 +62,6 @@
       <div></div>
     </div>
 
-    <% var cardArray = allNotes %>
-
     <div>
       <ul class="breadcrumb">
         <li><a href="#" onclick="showOnlyNotes()">Show Notes</a></li>
@@ -75,8 +73,10 @@
     <div id="notes">
       <% if (allNotes) { %>
         <% allNotes.forEach(element => { %>
-          <%- include ('./partials/userDashboard/note_card', { filename: element.filename, status: element.note_status, name: element.note_name }); %>
-        <% }); %>
+          <div class="note-js">
+            <%- include ('./partials/userDashboard/note_card', { filename: element.filename, status: element.note_status, name: element.note_name }); %>
+          </div>
+          <% }); %>
       <% } else { %>
         <p>No Notes Found</p>
       <% } %>
@@ -91,20 +91,6 @@
         <p>No Notes Found</p>
       <% } %>
     </div>
-
-    <div>
-      <p>(notification display method will be updated)</p>
-      <% if (notifications) { %>
-        <% notifications.forEach(element => { %>
-          <%- include('./partials/notification', { name: element.name, message: element.message }); %>
-        <% }); %>
-      <% } else { %>
-        <p>No Notifications</p>
-      <% } %>
-      
-    </div>
-
-
     </div>
   </div>
   </div>
