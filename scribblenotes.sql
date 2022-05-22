@@ -59,6 +59,7 @@ CREATE TABLE IF NOT EXISTS notifications (
   user_id int NOT NULL,
   message VARCHAR(64),
   createdAt datetime DEFAULT CURRENT_TIMESTAMP,
+  name varchar(16),
   PRIMARY KEY (notification_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 )

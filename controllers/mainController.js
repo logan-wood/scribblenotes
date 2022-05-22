@@ -44,6 +44,8 @@ exports.newNote = (req, res) => {
                     });
                 });
             });
+        } else {
+            res.send("Not enough credits")
         }
 
     } else {
