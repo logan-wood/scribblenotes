@@ -18,11 +18,11 @@
     </head>
 
     <body>
-        <a onclick="toggleSidebar()" class="toggle-nav medium material-icons" style="cursor: pointer;">menu</a>
         
 
 
         <nav id="mySidenav" class="sidenav">
+            <div class="navContent">
             <a href="/" class="logo-a"><img src="../images/logo.jpg" alt="scribblenotes logo" class="logo"></a>
             
             <% if (locals.user) { %>
@@ -99,7 +99,7 @@
             </div>
             <span class="material-symbols-outlined toggle-nav" onclick="toggleSidebar()">indeterminate_check_box</span>
 
-            
+        </div>
         </nav>
     </body>
 </html>

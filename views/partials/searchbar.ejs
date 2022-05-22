@@ -19,7 +19,9 @@
     </head>
     <body>
         <div class="topnav">
-            <input type="text" placeholder="Search..." />
+            <a onclick="toggleSidebar()" class="toggle-nav medium material-icons" style="cursor: pointer;">menu</a>
+
+            <input class="searchBar" style="width: 80%;" type="text" placeholder="Search..." />
             <% if (locals.user) { %>
             
                 <span class="material-symbols-outlined" id="notif-bell" onclick="showNotifications()">notifications</span>
