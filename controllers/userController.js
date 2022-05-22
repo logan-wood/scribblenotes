@@ -62,6 +62,7 @@ exports.changePassword = async (req, res) => {
     const uuid = req.params['uuid']
     const user = await this.getUserfromEmail(req.body.email)
     const user_id = user.user_id
+    let errors = [];
 
     //check uuid matches email
     db.query('SELECT * FROM reset_password where uuid = ? AND user_id = ?', [ uuid, user_id ], function(error, result) {
@@ -91,10 +92,17 @@ exports.changePassword = async (req, res) => {
                     });
                 });
             } else {
-                console.log('passwords do not match. ');
+                errors.push({ msg: 'Passwords do not match'});
+                res.render('reset_password', {
+                    uuid: req.params['uuid'],
+                    errors: errors
+                });
+                res.();
             }
         } else {
             console.log('uuid did not match email')
+
+            res.end();
         }
     })
 }
