@@ -77,7 +77,7 @@ router.post('/create-customer-portal-session', async (req, res) => {
         return_url: process.env.DOMAIN + 'user_settings'
     });
 
-    res.redirect(session.url);
+    res.redirect(303, session.url);
 })
 
 router.get('/success', (req, res) => {
