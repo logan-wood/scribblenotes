@@ -12,7 +12,7 @@ exports.newNote = (req, res) => {
     if(!req.files) return res.status(400).send('No files were uploaded')
 
     //UPDATE TO CSV MIMETYPE
-    if (file.mimetype === 'application/vnd.ms-excel') {
+    if (file.mimetype === 'text/csv') {
 
         //check user has enough credits
         if (req.user.credits >= 5) {
