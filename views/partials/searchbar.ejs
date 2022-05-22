@@ -19,7 +19,7 @@
     </head>
     <body>
         <div class="topnav">
-            <input type="text" placeholder="Search...">
+            <input type="text" placeholder="Search..." />
             <% if (locals.user) { %>
             
                 <span class="material-symbols-outlined" id="notif-bell" onclick="showNotifications()">notifications</span>
@@ -30,12 +30,12 @@
             <% if (notifications) { %>
                 <div class="notif-box" id="notif-box">
                     <div class="notif-title">
-                        <b>Notification</b>
+                        <b>Notifications</b>
                     </div>
-                <% notifications.forEach(element => { %>
-                  <%- include('./notification', { name: element.name, message: element.message, id: element.notification_id}); %>
+                    <% notifications.forEach(element => { %>
+                    <%- include('./notification', { name: element.name, message: element.message, id: element.notification_id}); %>
+                    <% }); %>
                 </div>
-                <% }); %>
               <% } else { %>
                 <p>No Notifications</p>
               <% } %>
