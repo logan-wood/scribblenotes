@@ -1,0 +1,30 @@
+<html>
+
+
+
+
+    <%- include('./partials/head.ejs'); %>
+
+<body>
+
+    <%- include('./partials/nav.ejs'); %>
+
+
+    <div class="form" id="dashboardContainer">
+        <form class="regform" action="/user/forgot_password" method="POST">
+
+            <p>An email has been sent with a password reset link</p> 
+            <%- include ('./partials/messages.ejs'); %>
+
+        </form>
+    </div>
+    
+
+      
+
+
+</body>
+
+    <%- include('./partials/footer.ejs'); %>
+
+</html>

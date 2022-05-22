@@ -10,8 +10,6 @@ const sendEmail = async (email, subject, text) => {
         },
     });
 
-    console.log(email, subject, text)
-
     const mailOptions = {
         from: process.env.EMAIL_USER,
         to: email,
@@ -22,13 +20,8 @@ const sendEmail = async (email, subject, text) => {
     await transporter.sendMail(mailOptions, function(error, info) {
         if (error) {
             console.log(error)
-        } else {
-            console.log(info.response)
         }
-    });
-
-    console.log('Email sent.');
-    
+    });    
 }
 
 module.exports = sendEmail;

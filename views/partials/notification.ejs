@@ -5,10 +5,14 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
   </head>
   <body>
-    <div class="notif-card" id="notif-card">
+    <div class="notif-card" id="<%- id %>">
       <span class="notif-card-topline">
         <h1 class="notif-name"><%= name %></h1>
-        <span class="material-symbols-outlined" id="close-notif" onclick='deleteNotificationReq()'>close</span>
+        <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+        <form id="deleteNotificationForm" method="post" action="user/delete_notification" target="dummyframe" style="margin: 0; display: block; float: right;">
+          <input type="text" id="notification_id" name="notification_id" value="<%- id %> " style="display: none">
+          <span class="material-symbols-outlined" id="close-notif" onclick='deleteNotificationReq()'>close</span>
+        </form>
       <span class="notif-card-topline">
       
       <br>
@@ -18,8 +22,14 @@
     </div>  
   </body>
     <script>
+      var notif_id = '<%= id %>'
+
       function deleteNotificationReq() {
-        document.getElementById("notif-card").style.display='none'
+        
+        // console.log('notif_id + ' + notif_id)
+
+        // document.getElementById('notification_id').value = notif_id
+        document.getElementById("deleteNotificationForm").submit();
       }
     </script>
 </html>

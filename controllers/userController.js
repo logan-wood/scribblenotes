@@ -1,6 +1,8 @@
 const db = require('../db');
 const bcrypt = require('bcryptjs');
-const mysql = require('mysql');
+const crypto = require('crypto')
+const emailService = require('../utils/emailService')
+
 
 //code for login is in auth/passport.js
 
@@ -92,17 +94,10 @@ exports.changePassword = async (req, res) => {
                     });
                 });
             } else {
-                errors.push({ msg: 'Passwords do not match'});
-                res.render('reset_password', {
-                    uuid: req.params['uuid'],
-                    errors: errors
-                });
-                res.();
+                res.send('Passwords do not match')
             }
         } else {
-            console.log('uuid did not match email')
-
-            res.end();
+            res.send('Invalid email entered')
         }
     })
 }
@@ -118,7 +113,7 @@ exports.getUserFromID = async (user_id) => {
 
 }
 
-exports.getUserfromEmail = (email) => {
+exports.getUserfromEmail = async (email) => {
     return new Promise((resolve, reject) => {
         db.query('SELECT * FROM users WHERE email = ?', [email], function(error, result) {
             if (error) { return reject(error) }
@@ -171,10 +166,18 @@ exports.createNotification = (user_id, name, message) => {
     });
 }
 
-exports.deleteNotification = (notification_id) => {
-    db.query('DELETE FROM notifications WHERE notification_id = ?', notification_id, function(error) {
-        if (error) throw error;
-    })
+exports.deleteNotification = (req, res) => {
+    const notification_id = req.body.notification_id;
+
+    if (notification_id) {
+        db.query('DELETE FROM notifications WHERE notification_id = ?', notification_id, function(error) {
+            if (error) throw error;
+
+            res.end();
+        })
+    }
+
+    res.end()
 }
 
 exports.getUserNotifications = (req) => {
@@ -196,5 +199,39 @@ exports.changeUsername = (req, res) => {
         if (error) throw error
 
         res.redirect('/logout')
+    });
+}
+
+exports.sendPasswordReset = async (req, res) => {
+    const user = await exports.getUserfromEmail(req.body.email);
+    
+    var user_id
+    if (user) {
+        user_id = user.user_id;
+    } else {
+        req.flash('no_email_found', 'No matching email was found')
+        res.redirect('/forgot_password');
+        return;
+    }
+    var uuid = crypto.randomUUID();
+    
+    db.query('SELECT user_id FROM users WHERE email = ?', req.body.email, function(error, result) {
+        //error handling
+        if (error) throw error;
+
+        //no email found
+        if (!result) {
+            req.flash('no_email_found', 'No matching email was found');
+        } else {
+            db.query('INSERT INTO reset_password SET ?', {uuid: uuid, user_id: user_id}, function(error) {
+                if (error) throw error;
+
+                emailService(req.body.email, 'Password reset link', 'Visit this link to reset your password: ' + process.env.DOMAIN + 'reset_password/' + uuid)
+                exports.createNotification(user_id, 'Reset Password', 'A link to reset your password has been sent to your email')
+
+                req.flash('password_reset_sent', 'A password reset link has been sent to your email');
+                res.redirect('/')
+            })
+        }
     });
 }

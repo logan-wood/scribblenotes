@@ -3,6 +3,7 @@ const mainController = require('../controllers/mainController');
 const { isAuthenticated } = require('../auth/isAuthenticated');
 const adminController = require('../controllers/adminController');
 const userController = require('../controllers/userController');
+const { response } = require('express');
 const router = express.Router();
 
 router.get('/', isAuthenticated, async (req, res) => {
@@ -11,7 +12,8 @@ router.get('/', isAuthenticated, async (req, res) => {
         allNotes: await userController.getAllNotesByUser(req),
         allCampaigns: await userController.getAllCampaignsByUser(req),
         notifications: await userController.getUserNotifications(req),
-        isAdmin: userController.isAdmin(req)
+        isAdmin: userController.isAdmin(req),
+        errors: req.flash('password_reset_sent')
     });
 });
 
@@ -23,17 +25,19 @@ router.get('/register', (req, res) => {
 
 router.get('/login', (req, res) => {
     res.render('login', { 
-        title: 'scribblenotes'
-     });
+        title: 'scribblenotes',
+        errors: req.flash('password_reset_sent')
+    });
 });
 
 router.get('/forgot_password', (req, res) => {
     res.render('forgot_password', {
-        title: 'scribblenotes'
+        title: 'scribblenotes',
+        errors: req.flash('no_email_found')
     });
 }); router.get('/reset_password/:uuid', (req, res) => {
     res.render('reset_password', {
-        uuid: req.params['uuid']
+        uuid: req.params['uuid'],
     })
 });
 
@@ -109,6 +113,10 @@ router.get('/subscriptions', function(req, res) {
             subscription: 'none'
         })
     }
+})
+
+router.get('/confirmation_message', function(req, res) {
+    res.render('blank_card')
 })
 
 module.exports = router;
