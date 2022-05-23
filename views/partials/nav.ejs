@@ -18,9 +18,12 @@
     </head>
 
     <body>
+
         <span class="material-symbols-outlined toggle-nav-closed" onclick="toggleSidebar()">indeterminate_check_box</span>
 
+
         <nav id="mySidenav" class="sidenav">
+            <div class="navContent">
             <a href="/" class="logo-a"><img src="../images/logo.jpg" alt="scribblenotes logo" class="logo"></a>
             
             <% if (locals.user) { %>
@@ -97,7 +100,7 @@
             </div>
             <span class="material-symbols-outlined toggle-nav" onclick="toggleSidebar()">indeterminate_check_box</span>
 
-            
+        </div>
         </nav>
     </body>
 </html>
