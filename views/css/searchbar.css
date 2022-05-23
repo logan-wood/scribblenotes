@@ -34,7 +34,7 @@
     padding: 6px;
     border: none;
     margin-top: 13px;
-    margin-left: 345px;
+    margin-left: 80px;
     font-size: 14px;
   }
 
@@ -83,7 +83,7 @@
 
 
   /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
-  @media screen and (max-width: 600px) {
+  /* @media screen and (max-width: 600px) {
     .topnav a, .topnav input[type=text] {
       float: none;
       display: block;
@@ -95,4 +95,4 @@
     .topnav input[type=text] {
       border: 1px solid #ccc;
     }
-  }
+  } */
