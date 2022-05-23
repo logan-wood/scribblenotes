@@ -18,9 +18,7 @@
     </head>
 
     <body>
-        <a onclick="toggleSidebar()" class="toggle-nav medium material-icons" style="cursor: pointer;">menu</a>
-        
-
+        <span class="material-symbols-outlined toggle-nav-closed" onclick="toggleSidebar()">indeterminate_check_box</span>
 
         <nav id="mySidenav" class="sidenav">
             <a href="/" class="logo-a"><img src="../images/logo.jpg" alt="scribblenotes logo" class="logo"></a>
@@ -114,7 +112,7 @@
             document.getElementById("mySidenav").style.width = "250px";
            
 
-           document.getElementById("dashboardContainer").style.marginLeft = "auto";
+           document.getElementById("dashboardContainer").style.marginLeft = "";
 
             var text = document.getElementsByClassName("icon-text")
 
@@ -127,7 +125,8 @@
             console.log('closing sidebar');
 
             document.getElementById("mySidenav").style.width = "0px";
-            document.getElementById("dashboardContainer").style.marginLeft = "auto";
+            
+            document.getElementById("dashboardContainer").style.marginLeft -= "";
 
             var text = document.getElementsByClassName("icon-text")
             for (let i = 0; i < text.length; i++) {

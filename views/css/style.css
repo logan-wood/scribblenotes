@@ -217,6 +217,11 @@ nav .toggle-nav {
   bottom: 20px;
   left: 50%;
 }
+.toggle-nav-closed {
+  color: black !important;
+  margin-top: -44px !important;
+  margin-left: 20px !important;
+}
 
 nav a:hover {
   color: #9be0b7;
