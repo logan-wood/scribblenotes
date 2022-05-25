@@ -23,10 +23,10 @@
                     <div class="dashboard-widget">
                         <div class="dashboard-content">
                             <div class="dashboard-widget-title dashboard-widget-number">
-                                114
+                                <%- totalSubscriptions %>
                             </div>
                             <div class="dashboard-widget-title dashboard-widget-subscription">
-                                Subscriptions <br>
+                                Subscription<% if (totalSubscriptions != 1) { %>s<% } %> <br>
                                 <div class="dashboard-widget-up">
                                     Up 8
                                 </div>
@@ -99,8 +99,10 @@
                             <div>
                                 <ul class="breadcrumb">
                                     <li><a href="#" onclick="showOnlyNotes()">Show Notes</a></li>
-                                    <li><a href="#" onclick="showOnlyCampaigns()">Campaigns</a></li>
+                                    <li><a href="#" onclick="showOnlyCampaigns()">Show Campaigns</a></li>
                                     <li><a href="#" onclick="showNotesAndCampaigns()">Notes & Campaigns</a></li>
+                                    <li><a href="#" onclick="showOnlyCompletedNotes()">Show Completed Notes</a></li>
+                                    <li><a href="#" onclick="showOnlyCompletedCampaigns()">Show Completed Campaigns</a></li>
 
                                     <script>
                                         function showOnlyNotes() {
@@ -123,6 +125,26 @@
                                             //show notes and campaigns
                                             document.getElementById("notes").style.display="block"
                                             document.getElementById("campaigns").style.display="block"
+                                        }
+
+                                        function showOnlyCompletedNotes() {
+                                            //show completed notes
+                                            document.getElementById("completed-notes").style.display="";
+
+                                            //hide everything else
+                                            document.getElementById("notes").style.display="none";
+                                            document.getElementById("campaigns").style.display="none";
+                                            document.getElementById("completed-campaigns").style.display="none";
+                                        }
+
+                                        function showOnlyCompletedNotes() {
+                                            //show completed campaigns
+                                            document.getElementById("completed-campaigns").style.display="";
+
+                                            //hide everything else
+                                            document.getElementById("notes").style.display="none";
+                                            document.getElementById("campaigns").style.display="none";
+                                            document.getElementById("completed-notes").style.display="none";
                                         }
                                     </script>
 
@@ -163,6 +185,34 @@
                                 <% } %>
                             </div>
 
+                            <div id="completed-notes">
+                                <% if (completedNoteCardInformation) { %>
+                                    <% completedNoteCardInformation.forEach(element => { %>
+                                        <% if (element) { %>
+                                            <div class="order_card">
+
+                                                <!-- used for sorting in javascript function -->
+                                                <a style="display:none"><%- element.note_id %></a> 
+                                                <!-- -->
+
+                                                <%- include('./partials/admin/note_card.ejs', {
+                                                    name: element.name,
+                                                    note_id: element.note_id, 
+                                                    user_id: element.user_id, 
+                                                    username: element.username, 
+                                                    email: element.email, 
+                                                    filename: element.filename, 
+                                                    status: element.note_status,
+                                                        }) %>
+
+                                            </div>
+                                        <% } %>
+                                    <% }) %>
+                                <% } else { %>
+                                    <p>No completed notes</p> 
+                                <% } %>
+                            </div>
+
                             <div id="campaigns">
                                 <% if (campaignCardInformation) { %>
                                     <% campaignCardInformation.forEach(element => { %>
@@ -181,7 +231,29 @@
                                         <% } %>
                                     <% }) %>
                                 <% } else { %>
-                                    <p>No pending notes</p> 
+                                    <p>No pending campaigns</p> 
+                                <% } %>
+                            </div>
+
+                            <div id="completed-campaigns">
+                                <% if (completedCampaignCardInformation) { %>
+                                    <% completedCampaignCardInformation.forEach(element => { %>
+                                        <% if (element) { %>
+                                            <div class="order_card">
+                                                <%- include('./partials/admin/campaign_card.ejs', {
+                                                    name: element.name,
+                                                    campaign_id: element.campaign_id, 
+                                                    user_id: element.campaign_id, 
+                                                    username: element.username, 
+                                                    email: element.email, 
+                                                    filename: element.filename, 
+                                                    status: element.campaign_status,
+                                                        }) %>
+                                            </div>
+                                        <% } %>
+                                    <% }) %>
+                                <% } else { %>
+                                    <p>No completed campaigns</p> 
                                 <% } %>
                             </div>
                     </div>
