@@ -66,14 +66,27 @@
   <div class="card-base">
     <div class="dashboard-caption">
       <h6>Upload Template</h6>
-
+    <% if (user.credits >= 5) { %>
     <form name="submit" action="./new_note" method="post" enctype="multipart/form-data" id="uploadForm" class="upload-file">
       <label class="text-label" for="name">Note Name</label>
       <input class="text-field" type="text" name="name" id="name" maxlength="31" required style="margin-bottom: 20px;"> <br>
       <input name="csv" type="file" required/>
       <!-- must remain in form -->
       <div class="btn-wrapper">
-        <input type="submit" value="Upload" class="submit-btn" />
+          <input type="submit" value="Upload" class="submit-btn" />
+      </div>
+      </form>
+    <% } else { %>
+      <!-- If not enough credits -->
+      <form name="submit" action="/subscriptions" method="get" enctype="multipart/form-data" id="uploadForm" class="upload-file">
+        <label class="text-label" for="name">Note Name</label>
+        <input class="text-field" type="text" name="" id="name" maxlength="31" style="margin-bottom: 20px;" disabled> <br>
+        <input name="" type="file" disabled/>
+        <div class="btn-wrapper">
+          <input type="submit" value="Insufficient credits" class="submit-btn" style="width: auto; background-color: #f24913;"/>
+        </div>
+      </form>
+    <% } %>
       </div>
     </form>
     </div>

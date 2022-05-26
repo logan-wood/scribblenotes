@@ -106,7 +106,7 @@ router.post('/webhook', bodyParser.raw({type: 'application/json'}), async (req, 
         const lines = event.data.object.lines.data;
         const priceID = lines[0].price.id;
 
-        //store customer email in variable
+        //store customer email and stripe id in variable
         const user_email = event.data.object.customer_email;
         const customer_id = event.data.object.customer;
 
@@ -142,11 +142,11 @@ router.post('/webhook', bodyParser.raw({type: 'application/json'}), async (req, 
         
         //set subscription to 'none' in database (this doesn't use the function in stripeController because the user email isnt sent in this post request)
         db.query(`UPDATE users SET subscription = 'none' WHERE stripe_cust_id = ?`, customer, function(error) {
-            if (error) return error;
+            if (error) throw error;
         });
     }
 
-    res.status(200);
+    res.json({received: true});
 });
 
 module.exports = router
