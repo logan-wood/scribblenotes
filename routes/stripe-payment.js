@@ -115,14 +115,16 @@ router.post('/webhook', bodyParser.raw({type: 'application/json'}), async (req, 
             stripeController.changeSubscription('regular_sender', user_email);
             stripeController.fufillRegularSender(user_email);
             stripeController.updateStripeCustomerID(customer_id, user_email);
-            adminController.updateTotalSubscriptions(1);
+            // to-do
+            // adminController.updateTotalSubscriptions(1);
         }
 
         if (priceID === BULK_NOTES) {
             stripeController.changeSubscription('bulk_notes', user_email);
             stripeController.fufillBulkNotes(user_email);
             stripeController.updateStripeCustomerID(customer_id, user_email);
-            adminController.updateTotalSubscriptions(1);
+            // to-do
+            // adminController.updateTotalSubscriptions(1);
         }
         
     }
@@ -136,7 +138,8 @@ router.post('/webhook', bodyParser.raw({type: 'application/json'}), async (req, 
     }
 
     if (event.type === 'customer.subscription.deleted') {
-        adminController.updateTotalSubscriptions(-1);
+        // todo
+        // adminController.updateTotalSubscriptions(-1);
         
         const customer = event.data.object.customer
         
