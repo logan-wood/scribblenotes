@@ -65,9 +65,12 @@ router.get('/admin', isAuthenticated, async (req, res) => {
             user: req.user,
             userController: userController,
             noteCardInformation: await adminController.getAllNoteCardInformation(),
+            completedNoteCardInformation: await adminController.getAllCompletedNoteCardInformation(),
             campaignCardInformation: await adminController.getAllCampaignCardInformation(),
+            completedCampaignCardInformation: await adminController.getAllCompletedCampaignCardInformation(),
             notifications: await userController.getUserNotifications(req),
-            isAdmin: userController.isAdmin(req)
+            isAdmin: userController.isAdmin(req),
+            totalSubscriptions: await adminController.readTotalSubscriptions()
         })
     } else {
         res.redirect('/')

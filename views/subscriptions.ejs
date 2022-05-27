@@ -56,9 +56,13 @@
                 <div class="card-price-bottom">
                   <span class="card-price-sign">$200</span> per month
                 </div>
-                <% if (subscription == 'regular_sender') { %>
+                <% if (subscription != 'none') { %>
                   <form action="payment/create-customer-portal-session" method="POST" >
-                    <input type="submit" class="card-btn-bottom" value="manage" />
+                    <% if (subscription == 'regular_sender') { %>
+                      <input type="submit" class="card-btn-bottom" value="manage" />
+                    <% } else { %>
+                      <input type="submit" class="card-btn-bottom" value="select" />
+                    <% } %>
                   </form>
                 <% } else { %>
                   <form action="payment/regular_sender" method="POST" >
@@ -91,9 +95,13 @@
                 <div class="card-price-bottom">
                   <span class="card-price-sign">$450</span> per month
                 </div>
-                <% if (subscription == 'bulk_notes') { %>
+                <% if (subscription != 'none') { %>
                   <form action="payment/create-customer-portal-session" method="POST" >
-                    <input type="submit" class="card-btn-bottom" value="manage" />
+                    <% if (subscription == 'bulk_notes') { %>
+                      <input type="submit" class="card-btn-bottom" value="manage" />
+                    <% } else { %>
+                      <input type="submit" class="card-btn-bottom" value="select" />
+                    <% } %>
                   </form>
                 <% } else { %>
                   <form action="payment/bulk_notes" method="POST" >

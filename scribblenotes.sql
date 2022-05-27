@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS campaigns (
   user_id int NOT NULL,
   campaign_status VARCHAR(32),
   PRIMARY KEY (campaign_id),
+  recipents int DEFAULT 1,
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 )
 

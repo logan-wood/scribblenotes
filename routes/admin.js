@@ -14,4 +14,6 @@ router.post('/updateCampaign', function(req, res) {
     res.redirect('/admin')
 })
 
+router.post('/approve_campaign', adminController.approveCampaign)
+
 module.exports = router
