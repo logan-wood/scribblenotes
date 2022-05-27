@@ -133,8 +133,8 @@ module.exports = {
         })
     }, 
 
-    updateCampaignStatus: (note_id, note_status) => {
-        db.query('UPDATE campaigns SET campaign_status = ? WHERE campaign_id = ?', [note_status, note_id], function(error) {
+    updateCampaignStatus: (campaign_id, campaign_status) => {
+        db.query('UPDATE campaigns SET campaign_status = ? WHERE campaign_id = ?', [campaign_status, campaign_id], function(error) {
             if (error) console.log(error)
         })
     },
@@ -171,6 +171,39 @@ module.exports = {
                 });
             })
         })
+    },
+
+    approveCampaign: async (req, res) => {
+        res.send('this function is under maintenance')
+
+        return
+
+        //check user has enough credits
+        const customer = await userController.getUserFromID(req.user_id)
+
+        userController.getUserFromID(req.user_id).then(function(res) {
+            console.log(res)
+        })
+        
+        if (customer.credits > req.recipents * 5) {
+            //update recipents record in database
+            db.query('UPDATE campaigns SET recipents = ?, campaign_status = ? WHERE campaign_id = ?', [req.recipents, req.campaign_id], function(err) {
+                if (error) throw error;
+            });
+
+            //deduct credits from user
+            db.query('UPDATE users SET credits = credits - ? WHERE user_id = ?', [req.recipents, req.user_id], function(err) {
+                if (error) throw error;
+
+                //update order status
+                updateCampaignStatus(req.campaign_id, 'approved');
+
+                //send user a notification
+                userController.createNotification(req.user_id, 'Campaign Approved', 'Your campaign: ' + req.campaign_name + ' has been approved.')
+            });
+        } else {
+            res.send('User does not have enough credits for this many recipents. (credits required: ' + req.recipents * 5 + ', credit balance: ' + customer.credits)
+        }
     },
 
     readTotalSubscriptions: () => {

@@ -1,3 +1,4 @@
+const { getSystemErrorMap } = require("util");
 const db = require("../db");
 const userController = require('./userController');
 
@@ -45,11 +46,11 @@ exports.newNote = (req, res) => {
                 });
             });
         } else {
-            res.send("Not enough credits")
+            res.status(400).send("Not enough credits")
         }
 
     } else {
-        res.send("Please upload CSV filetype");
+        res.status(400).send("Please upload CSV filetype");
     }
 }
 
@@ -68,8 +69,7 @@ exports.newCampaign = (req, res) => {
         return res.send('No user logged in. (this may be a bug)')
     }
 
-    //UPDATE TO CSV MIMETYPE
-    if (file.mimetype === 'application/vnd.ms-excel') {
+    if (file.mimetype === 'test/csv') {
 
 
         //insert into db

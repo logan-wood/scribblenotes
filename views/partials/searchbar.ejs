@@ -28,19 +28,22 @@
             <% } %> 
                    
         </div>
-            <% if (notifications) { %>
-                <div class="notif-box" id="notif-box">
-                    <div class="notif-title">
-                        <b>Notifications</b>
-                    </div>
+            <div class="notif-box" id="notif-box">
+                <div class="notif-title">
+                    <b>Notifications</b>
+                    <form action="user/clear_notifications" method="post" id="clear-notifs">
+                        <a href="javascript:{}" onclick="document.getElementById('clear-notifs').submit()" class="clear-notifs">Clear All</a>
+                    </form>
+                </div>
+                <% if (notifications) { %>
                     <% notifications.forEach(element => { %>
                     <%- include('./notification', { name: element.name, message: element.message, id: element.notification_id}); %>
                     <% }); %>
-                </div>
-              <% } else { %>
-                <p>No Notifications</p>
-              <% } %>
-        
+                <% } else { %>
+                    <p style="text-align: center;">No Notifications</p>
+                <% } %>
+            </div>
+            
 
     </body>
 

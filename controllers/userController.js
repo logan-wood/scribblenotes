@@ -166,6 +166,14 @@ exports.createNotification = (user_id, name, message) => {
     });
 }
 
+exports.clearNotifications = (req, res) => {
+    db.query('DELETE FROM notifications WHERE user_id = ?', req.user.id, function(err) {
+        if (err) throw err;
+
+        res.redirect('/');
+    })
+}
+
 exports.deleteNotification = (req, res) => {
     const notification_id = req.body.notification_id;
 

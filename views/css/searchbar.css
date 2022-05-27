@@ -54,7 +54,7 @@
   .notif-title{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     background-color: #005030;
     height: 40px;
     color: white;
@@ -79,6 +79,14 @@
     float: right;
     display: block;
     margin: 18px 20px 0 0;
+  }
+
+  .clear-notifs {
+    text-decoration: none;
+    color: white;
+    padding-top: 20px;
+  } .clear-notifs:hover {
+    color: #9be0b7;
   }
 
 
