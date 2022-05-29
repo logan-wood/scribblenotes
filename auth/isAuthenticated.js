@@ -4,8 +4,10 @@ module.exports = {
             console.log('isAuthenticated(): User is authenticated');
             return next();
         }
-  
-        console.log('isAuthenticated(): User authenticated failed');
-        res.redirect('/login')
+        else{
+            console.log('isAuthenticated(): User is not authenticated');
+            res.redirect('/login');
+        }
+        
     }
 }

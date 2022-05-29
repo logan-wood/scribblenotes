@@ -1,7 +1,7 @@
 const db = require('../db');
 const bcrypt = require('bcryptjs');
-const crypto = require('crypto')
-const emailService = require('../utils/emailService')
+const crypto = require('crypto');
+const emailService = require('../utils/emailService');
 
 
 //code for login is in auth/passport.js

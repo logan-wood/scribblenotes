@@ -69,7 +69,7 @@ exports.newCampaign = (req, res) => {
         return res.send('No user logged in. (this may be a bug)')
     }
 
-    if (file.mimetype === 'test/csv') {
+    if (file.mimetype === 'text/csv') {
 
 
         //insert into db
