@@ -68,19 +68,19 @@
     <div class="dashboard-caption">
       <h6>Enter Details</h6>
     <% if (user.credits >= 5) { %>
-    <form name="submit" style="text-align: center;" action="./new_note" method="post" enctype="multipart/form-data" id="uploadForm" class="upload-file">
+    <form name="submit" style="text-align: center;" action="./new_note_autogen" method="post" id="uploadForm" class="upload-file">
       <label class="text-label" for="name">Recipient Name</label>
-      <input class="text-field" type="text" name="recipient_name" id="recipient_name" maxlength="31" required style="margin-bottom: 20px;"> <br>
+      <input class="text-field" type="text" name="name" id="name" maxlength="31" required style="margin-bottom: 20px;"> <br>
       <label class="text-label" for="name">Recipient Address</label>
-      <input class="text-field" type="text" name="recipient_address" id="recipient_address" maxlength="31" required style="margin-bottom: 20px;"> <br>
+      <input class="text-field" type="text" name="address" id="address" maxlength="31" required style="margin-bottom: 20px;"> <br>
       <label class="text-label" for="name">Recipient State</label>
-      <input class="text-field" type="text" name="recipient_state" id="recipient_state" maxlength="31" required style="margin-bottom: 20px;"> <br>
+      <input class="text-field" type="text" name="state" id="state" maxlength="31" required style="margin-bottom: 20px;"> <br>
       <label class="text-label" for="name">Recipient Country</label>
-      <input class="text-field" type="text" name="recipient_country" id="recipient_country" maxlength="31" required style="margin-bottom: 20px;"> <br>
+      <input class="text-field" type="text" name="country" id="country" maxlength="31" required style="margin-bottom: 20px;"> <br>
       <label class="text-label" for="name">Recipient Post Code</label>
-      <input class="text-field" type="text" name="recipient_post_code" id="recipient_post_code" maxlength="31" required style="margin-bottom: 20px;"> <br>
+      <input class="text-field" type="text" name="postcode" id="postcode" maxlength="31" required style="margin-bottom: 20px;"> <br>
       <label class="text-label" for="name">Recipient Message</label>
-      <textarea class="text-field" name="recipient_message" id="recipient_message" cols="50" rows="20"> </textarea>
+      <textarea class="text-field" name="message" id="message" cols="50" rows="20"> </textarea>
       <div class="btn-wrapper">
         <input type="submit" value="Next" class="submit-btn" />
       </div>

@@ -49,6 +49,8 @@ router.get('/new_note', isAuthenticated, (req, res) => {
     });
 });
 router.post('/new_note', isAuthenticated, mainController.newNote);
+//csv automatically generated
+router.post('/new_note_autogen', isAuthenticated, mainController.newNoteAutoGen);
 
 
 router.get('/new_campaign', isAuthenticated, (req, res) => {

@@ -65,3 +65,15 @@ CREATE TABLE IF NOT EXISTS notifications (
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 )
 
+CREATE TABLE IF NOT EXISTS recipients (
+  recipient_id int NOT NULL AUTO_INCREMENT,
+  user_id int NOT NULL,
+  name VARCHAR(16) NOT NULL,
+  address VARCHAR(64) NOT NULL,
+  state VARCHAR(32),
+  country VARCHAR(32),
+  postcode int,
+  PRIMARY KEY (recipient_id),
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
+)
+

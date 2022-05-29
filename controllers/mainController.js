@@ -1,6 +1,8 @@
+const { count } = require("console");
 const { getSystemErrorMap } = require("util");
 const db = require("../db");
 const userController = require('./userController');
+const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
 exports.newNote = (req, res) => {
 
@@ -52,6 +54,36 @@ exports.newNote = (req, res) => {
     } else {
         res.status(400).send("Please upload CSV filetype");
     }
+}
+
+//csv automatically generated
+exports.newNoteAutoGen = (req, res) => {
+    const { name, address, state, country, postcode, message } = req.body;
+
+    //first, save recipent to database
+    db.query('INSERT into RECIPIENTS SET ?', {user_id: req.user.id, name: name, address: address, state: state, country: country, postcode: postcode }, function(err) {
+        if (err) throw err
+    });
+
+    //next, create a CSV file
+    const csvWriter = createCsvWriter({
+        path: 'uploads\\notes_files\\autogen\\testcsv.csv',
+        header: [
+            {id: 'name', title: 'Name'},
+            {id: 'address', title: 'Address'}
+        ]
+    });
+
+    const records = [
+        {name: name, address: address}
+    ];
+
+    csvWriter.writeRecords(records)
+        .then(() => {
+            console.log('File has been written')
+        })
+
+    res.redirect('/')
 }
 
 exports.newCampaign = (req, res) => {
