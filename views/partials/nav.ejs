@@ -66,6 +66,11 @@
                         <span class="icon-text">Logout</span>
                     </span>
                 </a>
+                <div class="navbar-btns">
+                    <button onclick="window.location.href='/new_note'" class="new-note-btn" style="box-shadow: none;">New Note</button>
+                    <br>
+                    <button onclick="window.location.href='/new_campaign'" class="new-campaign-btn" style="margin-top: 15px; box-shadow: none;">New Campaign</button>
+                </div>
                 
 
             <% } else { %>
@@ -85,19 +90,10 @@
                     </span>
                 </a>
 
-                <a href="/subscriptions">
-                    <span>
-                        <i class="material-symbols-outlined">storefront</i>
-                        <span class="icon-text">Shop</span>
-                    </span>
-                </a>
+             
 
             <% } %>
-            <div class="navbar-btns">
-                <button onclick="window.location.href='/new_note'" class="new-note-btn" style="box-shadow: none;">New Note</button>
-                <br>
-                <button onclick="window.location.href='/new_campaign'" class="new-campaign-btn" style="margin-top: 15px; box-shadow: none;">New Campaign</button>
-            </div>
+            
             <span class="material-symbols-outlined toggle-nav" onclick="toggleSidebar()">indeterminate_check_box</span>
 
         </div>

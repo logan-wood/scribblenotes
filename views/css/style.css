@@ -557,7 +557,8 @@ SETTING PAGE
   .logo {
     display: block;
     margin: 0 auto;
-    width: 60%;
+    width: 60%; 
+    border-radius: 0.5rem;
   }
   .material-symbols-outlined {
     color: white;
@@ -644,6 +645,7 @@ SETTING PAGE
     margin: auto;
     width: 60%;
     height: auto;
+    border-radius: 0.5rem;
   }
 
   .regform {
@@ -724,6 +726,7 @@ SETTING PAGE
     margin: auto;
     width: 60%;
     height: auto;
+    border-radius: 0.5rem;
   }
 
   .regform {
@@ -858,6 +861,7 @@ SETTING PAGE
     margin: auto;
     width: 60%;
     height: auto;
+    border-radius: 0.5rem;
   }
 
   .widget-wrapper {
@@ -969,6 +973,7 @@ SETTING PAGE
     margin: auto;
     width: 60%;
     height: auto;
+    border-radius: 0.5rem;
   }
 
   .dashboard-btn-wrapper {
@@ -1066,6 +1071,7 @@ SETTING PAGE
     margin: auto;
     width: 60%;
     height: auto;
+    border-radius: 0.5rem;
   }
 
   .dashboard-btn-wrapper {
