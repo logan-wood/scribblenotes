@@ -50,6 +50,7 @@ router.get('/new_note', isAuthenticated, (req, res) => {
 });
 router.post('/new_note', isAuthenticated, mainController.newNote);
 
+
 router.get('/new_campaign', isAuthenticated, (req, res) => {
     res.render('new_campaign', {
         user: req.user,

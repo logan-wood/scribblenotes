@@ -42,15 +42,16 @@
 <div class="content">
   <h4 class="title">New Note </h4>
   <div class="card-base">
-    <div class="dashboard-card-header">
+    <!--<div class="dashboard-card-header">
       <h6>Download Template</h6>
       <div class="dashboard-button dashboard-success">
         Complete
-      </div>
+      </div> 
     </div>
   <a style="text-align: center;" target="_blank" href="https://docs.google.com/spreadsheets/d/1hOC-ADPe_Aiv_cGbYfBlVTSlyOaQMZzc/edit#gid=724155891">Download Template Here!</a>
-  </div>
-  <div class="card-base">
+ 
+  </div> -->
+ <!-- <div class="card-base">
     <div class="dashboard-caption">
       <h6>Video Tutorial</h6>
       <div class="video">
@@ -62,8 +63,44 @@
       <input type="submit" value="Pending.." class="pending-box" />
     </div>
     </div>
-  </div>
+  </div>-->
   <div class="card-base">
+    <div class="dashboard-caption">
+      <h6>Enter Details</h6>
+    <% if (user.credits >= 5) { %>
+    <form name="submit" style="text-align: center;" action="./new_note" method="post" enctype="multipart/form-data" id="uploadForm" class="upload-file">
+      <label class="text-label" for="name">Recipient Name</label>
+      <input class="text-field" type="text" name="recipient_name" id="recipient_name" maxlength="31" required style="margin-bottom: 20px;"> <br>
+      <label class="text-label" for="name">Recipient Address</label>
+      <input class="text-field" type="text" name="recipient_address" id="recipient_address" maxlength="31" required style="margin-bottom: 20px;"> <br>
+      <label class="text-label" for="name">Recipient State</label>
+      <input class="text-field" type="text" name="recipient_state" id="recipient_state" maxlength="31" required style="margin-bottom: 20px;"> <br>
+      <label class="text-label" for="name">Recipient Country</label>
+      <input class="text-field" type="text" name="recipient_country" id="recipient_country" maxlength="31" required style="margin-bottom: 20px;"> <br>
+      <label class="text-label" for="name">Recipient Post Code</label>
+      <input class="text-field" type="text" name="recipient_post_code" id="recipient_post_code" maxlength="31" required style="margin-bottom: 20px;"> <br>
+      <label class="text-label" for="name">Recipient Message</label>
+      <textarea class="text-field" name="recipient_message" id="recipient_message" cols="50" rows="20"> </textarea>
+      <div class="btn-wrapper">
+        <input type="submit" value="Next" class="submit-btn" />
+      </div>
+      </form>
+    <% } else { %>
+      <!-- If not enough credits -->
+      <form name="submit" action="/subscriptions" method="get" enctype="multipart/form-data" id="uploadForm" class="upload-file">
+        <label class="text-label" for="name">Note Name</label>
+        <input class="text-field" type="text" name="" id="name" maxlength="31" style="margin-bottom: 20px;" disabled> <br>
+        <input name="" type="file" disabled/>
+        <div class="btn-wrapper">
+          <input type="submit" value="Insufficient credits" class="submit-btn" style="width: auto; background-color: #f24913;"/>
+        </div>
+      </form>
+    <% } %>
+      </div>
+    </form>
+    </div>
+  
+    <div class="card-base">
     <div class="dashboard-caption">
       <h6>Upload Template</h6>
     <% if (user.credits >= 5) { %>
@@ -89,7 +126,7 @@
     <% } %>
       </div>
     </form>
-    </div>
+    </div> 
   
   </div>
   <br>
