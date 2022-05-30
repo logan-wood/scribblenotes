@@ -72,6 +72,7 @@ CREATE TABLE IF NOT EXISTS recipients (
   address VARCHAR(64) NOT NULL,
   state VARCHAR(32),
   country VARCHAR(32),
+  city VARCHAR(32),
   postcode int,
   PRIMARY KEY (recipient_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id)

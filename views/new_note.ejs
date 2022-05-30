@@ -69,6 +69,8 @@
       <h6>Enter Details</h6>
     <% if (user.credits >= 5) { %>
     <form name="submit" style="text-align: center;" action="./new_note_autogen" method="post" id="uploadForm" class="upload-file">
+      <label class="text-label" for="name">Note Name</label>
+      <input class="text-field" type="text" name="note_name" id="note_name" maxlength="31" required style="margin-bottom: 20px;"> <br>
       <label class="text-label" for="name">Recipient Name</label>
       <input class="text-field" type="text" name="name" id="name" maxlength="31" required style="margin-bottom: 20px;"> <br>
       <label class="text-label" for="name">Recipient Address</label>
@@ -77,6 +79,8 @@
       <input class="text-field" type="text" name="state" id="state" maxlength="31" required style="margin-bottom: 20px;"> <br>
       <label class="text-label" for="name">Recipient Country</label>
       <input class="text-field" type="text" name="country" id="country" maxlength="31" required style="margin-bottom: 20px;"> <br>
+      <label class="text-label" for="name">Recipient City</label>
+      <input class="text-field" type="text" name="city" id="city" maxlength="31" required style="margin-bottom: 20px;"> <br>
       <label class="text-label" for="name">Recipient Post Code</label>
       <input class="text-field" type="text" name="postcode" id="postcode" maxlength="31" required style="margin-bottom: 20px;"> <br>
       <label class="text-label" for="name">Recipient Message</label>
