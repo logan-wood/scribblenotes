@@ -2,6 +2,8 @@ const db = require('../db');
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
 const emailService = require('../utils/emailService');
+const { raw } = require('body-parser');
+const e = require('connect-flash');
 
 
 //code for login is in auth/passport.js
@@ -26,15 +28,19 @@ exports.register = (req, res) => {
         }
 
         if(result.length > 0){
-            errors.push({ msg: 'This email is already in use'});
-            res.render('register', {
-                errors
-            });  
+            // errors.push({ msg: 'This email is already in use'});
+            // res.render('register', {
+            //     errors
+            // });
+            req.flash('signup_error', 'Email is already in use');
+            res.redirect('/register')
         } else if(password !== password2){
-            errors.push({ msg: 'Passwords do not match'});
-            res.render('register', {
-                errors
-            }); 
+            // errors.push({ msg: 'Passwords do not match'});
+            // res.render('register', {
+            //     errors
+            // }); 
+            req.flash('signup_error', 'Passwords Do Not Match');
+            res.redirect('/register')
         }
         
         //hash pasword and create user
@@ -49,6 +55,18 @@ exports.register = (req, res) => {
                         if(error){
                             console.log(error);
                         } else {
+                            // emailService(email, 'Verify Account')
+
+                            //send email verification
+                            const verification_id = crypto.randomUUID();
+
+                            db.query('INSERT INTO verification SET ?', {verification_id: verification_id, user_id: result.insertId}, function(err) {
+                                if (err) throw err;
+
+                                emailService(email, 'Verify Account', 'Visit this link to verify your email: ' + process.env.DOMAIN + 'verify_account/' + verification_id + "/" + result.insertId)
+                            })
+
+                            req.flash('login', 'Your account has been successfully created.');
                             res.redirect('/');
                         }
                     })
@@ -88,6 +106,8 @@ exports.changePassword = async (req, res) => {
 
                                 console.log('reset password database record deleted')
                             })
+
+                            req.flash('login', 'Your password has been reset.')
 
                             res.redirect('/');
                         })
@@ -237,9 +257,47 @@ exports.sendPasswordReset = async (req, res) => {
                 emailService(req.body.email, 'Password reset link', 'Visit this link to reset your password: ' + process.env.DOMAIN + 'reset_password/' + uuid)
                 exports.createNotification(user_id, 'Reset Password', 'A link to reset your password has been sent to your email')
 
-                req.flash('password_reset_sent', 'A password reset link has been sent to your email');
+                req.flash('login', 'A password reset link has been sent to your email');
                 res.redirect('/')
             })
         }
     });
+}
+
+exports.verifyAccount = (req, res) => {
+    const verification_uuid = req.body.uuid;
+    console.log(verification_uuid)
+    let user_id
+
+    db.query('SELECT * FROM verification WHERE verification_id = ?', verification_uuid, function(err, result) {
+        if (err) {
+            res.send('There was a problem verifying your account');
+
+            throw err;
+        }
+
+        console.log(result)
+
+        if (result) {
+            user_id = result[0].user_id
+
+            console.log(user_id)
+
+            db.query('UPDATE users SET is_active = 1 WHERE user_id = ?', user_id, function(err) {
+                if (err) {
+                    res.send('There was a problem verifying your account');
+
+                    throw err;
+                };
+
+                console.log('second query cleared')
+
+                //no errors, return user to login page
+                req.flash('login', 'Your account has been verified.')
+                res.redirect('/')
+            })
+        } else {
+            res.send('No user was found')
+        }
+    })
 }

@@ -19,14 +19,15 @@ router.get('/', isAuthenticated, async (req, res) => {
 
 router.get('/register', (req, res) => {
     res.render('register', { 
-        title: 'scribblenotes'
+        title: 'scribblenotes',
+        errors: req.flash('signup_error')
      });
 });
 
 router.get('/login', (req, res) => {
     res.render('login', { 
         title: 'scribblenotes',
-        errors: req.flash('password_reset_sent')
+        errors: req.flash('login')
     });
 });
 
@@ -121,8 +122,10 @@ router.get('/subscriptions', function(req, res) {
     }
 })
 
-router.get('/confirmation_message', function(req, res) {
-    res.render('blank_card')
-})
+router.get('/verify_account/:uuid', function(req, res) {
+    res.render('verify_account', { 
+        uuid: req.params['uuid'],
+    })
+});
 
 module.exports = router;

@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS users (
   stripe_cust_id VARCHAR(128),
   subscription VARCHAR(16) DEFAULT 'none',
   is_admin BOOLEAN DEFAULT false,
+  is_active BOOLEAN DEFAULT false,
   PRIMARY KEY (user_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
@@ -78,3 +79,8 @@ CREATE TABLE IF NOT EXISTS recipients (
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 )
 
+CREATE TABLE IF NOT EXISTS verification (
+  verification_id VARCHAR(128) NOT NULL,
+  user_id int NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
+)
