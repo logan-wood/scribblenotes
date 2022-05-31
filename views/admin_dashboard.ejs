@@ -59,26 +59,22 @@
                         <div class="content-data">
 
                         <h5 class="text-large">Track Note Order Status</h3>
-                        
-                            <input class="text-field" type="text" name="order_id" placeholder="Order ID" id="track_order_input" style="margin-bottom: 40px;" onkeyup="trackOrder()">
+                            
+                            <form action="/admin" method="get">
+                                <input class="text-field" type="text" name="filter" placeholder="Order ID" id="track_order_input" style="margin-bottom: 40px;" onkeyup="trackOrder()">
+                                <input type="submit" value="Filter">
+                            </form>
 
+                            <form action="/admin" method="get">
+                                <input type="submit" value="Clear Filter">
+                            </form>
+
+                            <%- filter %>
+                            <% console.log(filter) %>
+                            
                             <script>
                                 function trackOrder() {
                                                                 
-
-                                    cards = document.getElementsByClassName('order_card')
-
-                                    
-                                    for (i = 0; i < cards.length; i++) {
-                                        element = cards[i]
-                                        var a = element.firstChild
-                                        if (a.innerText != filter) {
-                                            cards[i].style.display = "none";
-                                        } else {
-                                            cards[i].style.display = "";
-                                        }
-
-                                    }
 
                                 }
                             </script>
@@ -167,15 +163,18 @@
                                                 <a style="display:none"><%- element.note_id %></a> 
                                                 <!-- -->
 
-                                                <%- include('./partials/admin/note_card.ejs', {
-                                                    name: element.name,
-                                                    note_id: element.note_id, 
-                                                    user_id: element.user_id, 
-                                                    username: element.username, 
-                                                    email: element.email, 
-                                                    filename: element.filename, 
-                                                    status: element.note_status,
-                                                        }) %>
+                                                <!-- Check if user is filtering, and if card_id matches filter -->
+                                                <% if (filter == null || filter == element.note_id) { %>
+                                                    <%- include('./partials/admin/note_card.ejs', {
+                                                        name: element.name,
+                                                        note_id: element.note_id, 
+                                                        user_id: element.user_id, 
+                                                        username: element.username, 
+                                                        email: element.email, 
+                                                        filename: element.filename, 
+                                                        status: element.note_status,
+                                                            }) %>
+                                                <% } %>
 
                                             </div>
                                         <% } %>
@@ -195,15 +194,17 @@
                                                 <a style="display:none"><%- element.note_id %></a> 
                                                 <!-- -->
 
-                                                <%- include('./partials/admin/note_card.ejs', {
-                                                    name: element.name,
-                                                    note_id: element.note_id, 
-                                                    user_id: element.user_id, 
-                                                    username: element.username, 
-                                                    email: element.email, 
-                                                    filename: element.filename, 
-                                                    status: element.note_status,
-                                                        }) %>
+                                                <% if (filter == null || filter == element.note_id) { %>
+                                                    <%- include('./partials/admin/note_card.ejs', {
+                                                        name: element.name,
+                                                        note_id: element.note_id, 
+                                                        user_id: element.user_id, 
+                                                        username: element.username, 
+                                                        email: element.email, 
+                                                        filename: element.filename, 
+                                                        status: element.note_status,
+                                                            }) %>
+                                                <% } %>
 
                                             </div>
                                         <% } %>
@@ -218,16 +219,19 @@
                                     <% campaignCardInformation.forEach(element => { %>
                                         <% if (element) { %>
                                             <div class="order_card">
-                                                <%- include('./partials/admin/campaign_card.ejs', {
-                                                    name: element.name,
-                                                    campaign_id: element.campaign_id, 
-                                                    user_id: element.campaign_id, 
-                                                    username: element.username, 
-                                                    email: element.email, 
-                                                    filename: element.filename, 
-                                                    status: element.campaign_status,
-                                                        }) %>
-                                            </div>
+
+                                                <% if (filter == null || filter == element.campaign_id) { %>
+                                                    <%- include('./partials/admin/campaign_card.ejs', {
+                                                        name: element.name,
+                                                        campaign_id: element.campaign_id, 
+                                                        user_id: element.campaign_id, 
+                                                        username: element.username, 
+                                                        email: element.email, 
+                                                        filename: element.filename, 
+                                                        status: element.campaign_status,
+                                                            }) %>
+                                                <% } %>    
+                                        </div>
                                         <% } %>
                                     <% }) %>
                                 <% } else { %>
@@ -240,6 +244,8 @@
                                     <% completedCampaignCardInformation.forEach(element => { %>
                                         <% if (element) { %>
                                             <div class="order_card">
+
+                                                <% if (filter == null || filter == element.campaign_id) { %>
                                                 <%- include('./partials/admin/campaign_card.ejs', {
                                                     name: element.name,
                                                     campaign_id: element.campaign_id, 
@@ -249,6 +255,7 @@
                                                     filename: element.filename, 
                                                     status: element.campaign_status,
                                                         }) %>
+                                                <% } %>
                                             </div>
                                         <% } %>
                                     <% }) %>

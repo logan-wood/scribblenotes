@@ -74,7 +74,8 @@ router.get('/admin', isAuthenticated, async (req, res) => {
             completedCampaignCardInformation: await adminController.getAllCompletedCampaignCardInformation(),
             notifications: await userController.getUserNotifications(req),
             isAdmin: userController.isAdmin(req),
-            totalSubscriptions: await adminController.readTotalSubscriptions()
+            totalSubscriptions: await adminController.readTotalSubscriptions(),
+            filter: req.query.filter || null
         })
     } else {
         res.redirect('/')
