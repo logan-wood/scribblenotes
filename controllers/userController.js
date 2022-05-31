@@ -63,10 +63,10 @@ exports.register = (req, res) => {
                             db.query('INSERT INTO verification SET ?', {verification_id: verification_id, user_id: result.insertId}, function(err) {
                                 if (err) throw err;
 
-                                emailService(email, 'Verify Account', 'Visit this link to verify your email: ' + process.env.DOMAIN + 'verify_account/' + verification_id + "/" + result.insertId)
+                                emailService(email, 'Verify Account', 'Visit this link to verify your email: ' + process.env.DOMAIN + 'verify_account/' + verification_id)
                             })
 
-                            req.flash('login', 'Your account has been successfully created.');
+                            req.flash('login', 'Your account has been successfully created, please check your email for verification');
                             res.redirect('/');
                         }
                     })
