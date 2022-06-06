@@ -12,9 +12,20 @@ const REGULAR_SENDER = 'price_1Ky7ejKpJ99xu55gG1aoy4V1';
 const BULK_NOTES = 'price_1KyzgjKpJ99xu55g1k1jPVwX';
 
 router.post('/single_note', isAuthenticated, async function(req, res) {
+    let price_id
+    
+    if (req.user.subscription == 'none') {
+        price_id = 'price_1Kx2nUKpJ99xu55grNJRy8Vb'
+    } else if (req.user.subscription == 'regular_sender') {
+        price_id = 'price_1L7gzjKpJ99xu55grgqSJe3b'
+    } else if (req.user.subscription == 'bulk_notes') {
+        price_id = 'price_1L7gzrKpJ99xu55gRnsuCrWs'
+    }
+
+
     const session = await stripe.checkout.sessions.create({
         line_items: [{
-            price: 'price_1Kx2nUKpJ99xu55grNJRy8Vb', //update with live
+            price: price_id, //update with live
             quantity: 1
         }],
         customer_email: req.user.email,

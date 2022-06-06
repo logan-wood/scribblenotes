@@ -74,8 +74,9 @@
     <div id="notes">
       <% if (allNotes) { %>
         <% allNotes.forEach(element => { %>
+          <% let date = element.createdAt.getDate() + "/" + element.createdAt.getMonth() + "/" + element.createdAt.getFullYear() %>
           <div class="note-js">
-            <%- include ('./partials/userDashboard/note_card', { filename: element.filename, status: element.note_status, name: element.note_name, username: user.username }); %>
+            <%- include ('./partials/userDashboard/note_card', { filename: element.filename, status: element.note_status, name: element.note_name, date: date, username: user.username }); %>
           </div>
           <% }); %>
       <% } else { %>
@@ -86,7 +87,8 @@
     <div id="campaigns">
       <% if (allCampaigns) { %>
         <% allCampaigns.forEach(element => { %>
-          <%- include ('./partials/userDashboard/campaign_card', { filename: element.filename, status: element.campaign_status, name: element.campaign_name, username: user.username }); %>
+          <% let date = element.createdAt.getDate() + "/" + element.createdAt.getMonth() + "/" + element.createdAt.getFullYear() %>
+          <%- include ('./partials/userDashboard/campaign_card', { filename: element.filename, status: element.campaign_status, name: element.campaign_name, date: date, username: user.username }); %>
         <% }); %>
       <% } else { %>
         <p>No Campaigns Found</p>

@@ -301,3 +301,23 @@ exports.verifyAccount = (req, res) => {
         }
     })
 }
+
+exports.getAllRecipentsByUser = async (req) => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * FROM recipients WHERE user_id = ?', [req.user.id], function(error, results) {
+            if (error) { return reject(error) }
+
+            return resolve(results);
+        })
+    })
+}
+
+exports.getRecipientById = async (recipient_id) => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * FROM recipients WHERE recipient_id = ?', [recipient_id], function(error, results) {
+            if (error) { return reject(error) }
+
+            return resolve(results[0]);
+        })
+    })
+}

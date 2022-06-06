@@ -43,10 +43,11 @@ router.get('/forgot_password', (req, res) => {
 });
 
 
-router.get('/new_note', isAuthenticated, (req, res) => {
+router.get('/new_note', isAuthenticated, async (req, res) => {
     res.render('new_note', { 
         user: req.user,
-        isAdmin: userController.isAdmin(req)
+        isAdmin: userController.isAdmin(req),
+        allRecipients: await userController.getAllRecipentsByUser(req)
     });
 });
 router.post('/new_note', isAuthenticated, mainController.newNote);

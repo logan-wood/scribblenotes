@@ -11,13 +11,14 @@ exports.newNote = (req, res) => {
     //local variable
     const file = req.files.csv;
     const note_name = req.body.name;
+    console.log(req.files.csv)
     const user_id = req.user.id;
 
     //handle no file upload
     if(!req.files) return res.status(400).send('No files were uploaded')
 
     //UPDATE TO CSV MIMETYPE
-    if (file.mimetype === 'text/csv') {
+    if (file.mimetype === 'text/csv' || file.mimetype === 'application/vnd.ms-excel') {
 
         //check user has enough credits
         if (req.user.credits >= 5) {
@@ -59,19 +60,47 @@ exports.newNote = (req, res) => {
 }
 
 //csv automatically generated
-exports.newNoteAutoGen = (req, res) => {
+exports.newNoteAutoGen = async (req, res) => {
 
     //check user has enough credits
     if (req.user.credits >= 5) {
 
-        const { name, address, state, country, city, postcode, message, note_name } = req.body;
+        //check if user selected a recipient, and handle
+        let { name, address, state, country, city, postcode, message, note_name } = "";
+        let createRecipient = true;
+        if (req.body.recipient != "none") {
+            createRecipient = false
+
+            const recipient = await userController.getRecipientById(req.body.recipient);
+
+            name = recipient.name
+            address = recipient.address
+            state = recipient.state
+            country = recipient.country
+            city = recipient.city
+            postcode = recipient.postcode
+
+            message = req.body.message
+            note_name = req.body.note_name
+        } else {
+           name = req.body.name
+           address = req.body.address
+           state = req.body.state
+           country = req.body.country
+           city = req.body.city
+           postcode = req.body.postcode
+           message = req.body.message
+           note_name = req.body.note_name
+        }
         const path = 'uploads\\notes_files\\';
         const filename = path + randomUUID() + '.csv';
 
         //first, save recipent to database
-        db.query('INSERT into RECIPIENTS SET ?', {user_id: req.user.id, name: name, address: address, state: state, country: country, city: city, postcode: postcode }, function(err) {
-            if (err) throw err
-        });
+        if (createRecipient) {
+            db.query('INSERT into RECIPIENTS SET ?', {user_id: req.user.id, name: name, address: address, state: state, country: country, city: city, postcode: postcode }, function(err) {
+                if (err) throw err
+            });
+        }
 
         //next, create a CSV file
         const csvWriter = createCsvWriter({
@@ -141,7 +170,7 @@ exports.newCampaign = (req, res) => {
         return res.send('No user logged in. (this may be a bug)')
     }
 
-    if (file.mimetype === 'text/csv') {
+    if (file.mimetype === 'text/csv' || file.mimetype === 'application/vnd.ms-excel') {
 
 
         //insert into db

@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS notes (
   user_id int NOT NULL,
   note_status VARCHAR(32),
   PRIMARY KEY (note_id),
+  createdAt datetime DEFAULT CURRENT_TIMESTAMP
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 )
 
@@ -45,6 +46,7 @@ CREATE TABLE IF NOT EXISTS campaigns (
   campaign_status VARCHAR(32),
   PRIMARY KEY (campaign_id),
   recipents int DEFAULT 1,
+  createdAt datetime DEFAULT CURRENT_TIMESTAMP
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 )
 
