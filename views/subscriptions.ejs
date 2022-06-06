@@ -14,7 +14,6 @@
         <div class="card-container">
           <div class="card-wrapper">
             <div class="card-header">Single Note</div>
-            <div class="card-header">1 Note</div>
             <div class="card-body">
               <div class="card-body-text">
                 <p>
@@ -31,7 +30,12 @@
             <div class="card-bottom-content">
               <div class="card-content">
                 <div class="card-price-bottom">
-                  <span class="card-price-sign">$5</span> per note
+                  <span class="card-price-sign">
+                    <% if (subscription == 'none') { %> $5 <% } %>
+                    <% if (subscription == 'regular_sender') { %> $4 <% } %>
+                    <% if (subscription == 'bulk_notes') { %> $3.75 <% } %>
+                  </span> per note
+
                 </div>
                 <form action="payment/single_note" method="POST" >
                   <input type="submit" class="card-btn-bottom" value="select" />

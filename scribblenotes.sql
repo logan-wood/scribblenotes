@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS users (
   stripe_cust_id VARCHAR(128),
   subscription VARCHAR(16) DEFAULT 'none',
   is_admin BOOLEAN DEFAULT false,
+  is_active BOOLEAN DEFAULT false,
   PRIMARY KEY (user_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
@@ -33,6 +34,7 @@ CREATE TABLE IF NOT EXISTS notes (
   user_id int NOT NULL,
   note_status VARCHAR(32),
   PRIMARY KEY (note_id),
+  createdAt datetime DEFAULT CURRENT_TIMESTAMP
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 )
 
@@ -44,6 +46,7 @@ CREATE TABLE IF NOT EXISTS campaigns (
   campaign_status VARCHAR(32),
   PRIMARY KEY (campaign_id),
   recipents int DEFAULT 1,
+  createdAt datetime DEFAULT CURRENT_TIMESTAMP
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 )
 
@@ -65,3 +68,21 @@ CREATE TABLE IF NOT EXISTS notifications (
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 )
 
+CREATE TABLE IF NOT EXISTS recipients (
+  recipient_id int NOT NULL AUTO_INCREMENT,
+  user_id int NOT NULL,
+  name VARCHAR(16) NOT NULL,
+  address VARCHAR(64) NOT NULL,
+  state VARCHAR(32),
+  country VARCHAR(32),
+  city VARCHAR(32),
+  postcode int,
+  PRIMARY KEY (recipient_id),
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
+)
+
+CREATE TABLE IF NOT EXISTS verification (
+  verification_id VARCHAR(128) NOT NULL,
+  user_id int NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
+)

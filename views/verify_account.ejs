@@ -1,0 +1,28 @@
+<html>
+
+    <%- include('./partials/head.ejs'); %>
+
+<body>
+
+    <%- include('./partials/nav.ejs'); %>
+
+    <a onclick="toggleSidebar()" class="toggle-nav medium material-icons" style="cursor: pointer;">menu</a>
+<div class="form">
+    <div class="content">
+        <form action="../user/verify_account" method="post">
+            <input type="text" name="uuid" value="<%= uuid %>" hidden>
+            <input type="submit" value="Verify Account">
+        </form>
+    </div>
+</div>
+      
+  
+      
+
+
+
+</body>
+
+    <%- include('./partials/footer.ejs'); %>
+
+</html>

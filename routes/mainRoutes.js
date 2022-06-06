@@ -19,14 +19,15 @@ router.get('/', isAuthenticated, async (req, res) => {
 
 router.get('/register', (req, res) => {
     res.render('register', { 
-        title: 'scribblenotes'
+        title: 'scribblenotes',
+        errors: req.flash('signup_error')
      });
 });
 
 router.get('/login', (req, res) => {
     res.render('login', { 
         title: 'scribblenotes',
-        errors: req.flash('password_reset_sent')
+        errors: req.flash('login')
     });
 });
 
@@ -42,13 +43,16 @@ router.get('/forgot_password', (req, res) => {
 });
 
 
-router.get('/new_note', isAuthenticated, (req, res) => {
+router.get('/new_note', isAuthenticated, async (req, res) => {
     res.render('new_note', { 
         user: req.user,
-        isAdmin: userController.isAdmin(req)
+        isAdmin: userController.isAdmin(req),
+        allRecipients: await userController.getAllRecipentsByUser(req)
     });
 });
 router.post('/new_note', isAuthenticated, mainController.newNote);
+//csv automatically generated
+router.post('/new_note_autogen', isAuthenticated, mainController.newNoteAutoGen);
 
 
 router.get('/new_campaign', isAuthenticated, (req, res) => {
@@ -71,7 +75,8 @@ router.get('/admin', isAuthenticated, async (req, res) => {
             completedCampaignCardInformation: await adminController.getAllCompletedCampaignCardInformation(),
             notifications: await userController.getUserNotifications(req),
             isAdmin: userController.isAdmin(req),
-            totalSubscriptions: await adminController.readTotalSubscriptions()
+            totalSubscriptions: await adminController.readTotalSubscriptions(),
+            filter: req.query.filter || null
         })
     } else {
         res.redirect('/')
@@ -119,8 +124,10 @@ router.get('/subscriptions', function(req, res) {
     }
 })
 
-router.get('/confirmation_message', function(req, res) {
-    res.render('blank_card')
-})
+router.get('/verify_account/:uuid', function(req, res) {
+    res.render('verify_account', { 
+        uuid: req.params['uuid'],
+    })
+});
 
 module.exports = router;
