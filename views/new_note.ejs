@@ -65,44 +65,45 @@
     </div>
   </div>-->
   <div class="card-base">
-    <div class="dashboard-caption">
+    <div style="text-align: center;" class="dashboard-caption">
       <h6>Enter Details</h6>
     <% if (user.credits >= 5) { %>
       
     <form name="submit" style="text-align: center;" action="./new_note_autogen" method="post" id="uploadForm" class="upload-file">
-      <!-- Recipient Selection -->
+          <label class="text-label" for="name" id="note_name_label">Note Name</label>
+          <input class="text-field" type="text" name="note_name" id="note_name" maxlength="31" required style="margin-bottom: 20px;"> <br>
+          <label class="text-label" for="name" id="message_label">Recipient Message</label>
+          <textarea class="text-field" name="message" id="message" cols="50" rows="20" style="margin-bottom: 20px;"> </textarea>
+        <!-- Recipient Selection -->
+          <% if (allRecipients.length != 0) { %>
+            <label class="text-label" for="select-recipient">Select a Recipient</label> <br>
+            <select class="text-field" id="select-recipient" name="recipient" onchange="report()" style="margin-bottom: 20px;"> 
+                <option value="none">New Recipient...</option>
+              <% allRecipients.forEach(element => { %>
+                <option value="<%= element.recipient_id %> "><%- element.name %> </option>
+              <% }) %>
+            </select> <br>
+          <% } %>
 
-      <% if (allRecipients.length != 0) { %>
-        <label class="text-label" for="select-recipient">Select a Recipient</label> <br>
-        <select class="text-field" id="select-recipient" name="recipient" onchange="report()"> 
-            <option value="none">Select</option>
-          <% allRecipients.forEach(element => { %>
-            <option value="<%= element.recipient_id %> "><%- element.name %> </option>
-          <% }) %>
-        </select> <br>
-      <% } %>
-
-      <!-- -- -->
-      <label class="text-label" for="name" id="note_name_label">Note Name</label>
-      <input class="text-field" type="text" name="note_name" id="note_name" maxlength="31" required style="margin-bottom: 20px;"> <br>
-      <label class="text-label" for="name" id="name_label">Recipient Name</label>
-      <input class="text-field" type="text" name="name" id="name" maxlength="31" required style="margin-bottom: 20px;"> <br>
-      <label class="text-label" for="name" id="address_label">Recipient Address</label>
-      <input class="text-field" type="text" name="address" id="address" maxlength="31" required style="margin-bottom: 20px;"> <br>
-      <label class="text-label" for="name" id="state_label">Recipient State</label>
-      <input class="text-field" type="text" name="state" id="state" maxlength="31" required style="margin-bottom: 20px;"> <br>
-      <label class="text-label" for="name" id="country_label">Recipient Country</label>
-      <input class="text-field" type="text" name="country" id="country" maxlength="31" required style="margin-bottom: 20px;"> <br>
-      <label class="text-label" for="name" id="city_label">Recipient City</label>
-      <input class="text-field" type="text" name="city" id="city" maxlength="31" required style="margin-bottom: 20px;"> <br>
-      <label class="text-label" for="name" id="postcode_label">Recipient Post Code</label>
-      <input class="text-field" type="text" name="postcode" id="postcode" maxlength="31" required style="margin-bottom: 20px;"> <br>
-      <label class="text-label" for="name" id="message_label">Recipient Message</label>
-      <textarea class="text-field" name="message" id="message" cols="50" rows="20"> </textarea>
-      <div class="btn-wrapper">
-        <input type="submit" value="Next" class="submit-btn" />
-      </div>
-      </form>
+          <label class="text-label" for="name" id="name_label">Recipient Name</label>
+          <input class="text-field" type="text" name="name" id="name" maxlength="31" required style="margin-bottom: 20px;"> <br>
+          <label class="text-label" for="name" id="address_label">Recipient Address</label>
+          <input class="text-field" type="text" name="address" id="address" maxlength="31" required style="margin-bottom: 20px;"> <br>
+          <label class="text-label" for="name" id="state_label">Recipient State</label>
+          <input class="text-field" type="text" name="state" id="state" maxlength="31" required style="margin-bottom: 20px;"> <br>
+          <label class="text-label" for="name" id="country_label">Recipient Country</label>
+          <input class="text-field" type="text" name="country" id="country" maxlength="31" required style="margin-bottom: 20px;"> <br>
+          <label class="text-label" for="name" id="city_label">Recipient City</label>
+          <input class="text-field" type="text" name="city" id="city" maxlength="31" required style="margin-bottom: 20px;"> <br>
+          <label class="text-label" for="name" id="postcode_label">Recipient Post Code</label>
+          <input class="text-field" type="text" name="postcode" id="postcode" maxlength="31" required style="margin-bottom: 20px;"> <br>
+          <label class="text-label" for="save_recipient" id="save_recipient">Save Recipient</label>
+          <input type="checkbox" name="save_recipient">
+          <div class="btn-wrapper">
+            <input type="submit" value="Next" class="submit-btn" />
+          </div>
+    </form>
+  
     <% } else { %>
       <!-- If not enough credits -->
       <form name="submit" action="/subscriptions" method="get" enctype="multipart/form-data" id="uploadForm" class="upload-file">
@@ -118,37 +119,37 @@
     </form>
     </div>
   
-    <div class="card-base">
-    <div class="dashboard-caption">
-      <h6>Upload Template</h6>
-    <% if (user.credits >= 5) { %>
-    <form name="submit" action="./new_note" method="post" enctype="multipart/form-data" id="uploadForm" class="upload-file">
-      <label class="text-label" for="name">Note Name</label>
-      <input class="text-field" type="text" name="name" id="name" maxlength="31" required style="margin-bottom: 20px;"> <br>
-      <input name="csv" type="file" required/>
-      <!-- must remain in form -->
-      <div class="btn-wrapper">
-          <input type="submit" value="Upload" class="submit-btn" />
-      </div>
-      </form>
-    <% } else { %>
-      <!-- If not enough credits -->
-      <form name="submit" action="/subscriptions" method="get" enctype="multipart/form-data" id="uploadForm" class="upload-file">
-        <label class="text-label" for="name">Note Name</label>
-        <input class="text-field" type="text" name="" id="name" maxlength="31" style="margin-bottom: 20px;" disabled> <br>
-        <input name="" type="file" disabled/>
-        <div class="btn-wrapper">
-          <input type="submit" value="Insufficient credits" class="submit-btn" style="width: auto; background-color: #f24913;"/>
-        </div>
-      </form>
-    <% } %>
-      </div>
+    
+  
+
+<!--
+<button class="accordion">Download Template</button>
+<div class="panel">
+  Link to Template
+  <a style="text-align: center;" target="_blank" href="https://docs.google.com/spreadsheets/d/1hOC-ADPe_Aiv_cGbYfBlVTSlyOaQMZzc/edit#gid=724155891">Download Template Here!</a>
+  End Link to Template
+</div>
+
+<button class="accordion">Video Tutorial</button>
+<div class="panel">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  <button >Skip</button>
+</div>
+
+<button class="accordion">Upload Template</button>
+<div class="panel">
+    <form name="submit" action="./new_note" method="post" enctype="multipart/form-data" id="uploadForm" class="regform">
+        <label class="custom-file-upload">
+        <input name="csv" type="file" />
+        </label>
+        
+        <input type="submit" value="Upload" />
     </form>
-    </div> 
-  
-  </div>
-  <br>
-  
+</div>
+-->
+
+</div>
+</div>
 
 <!--
 <button class="accordion">Download Template</button>
@@ -204,67 +205,68 @@
 
     <script>
       function report(value) {
+        console.log('function called')
         if (value != "none") {
           document.getElementById("name").value = ""
           document.getElementById("name").required = false
-          document.getElementById("name").style.display = "none"
-          document.getElementById("name_label").style.display = "none"
+          // document.getElementById("name").style.display = "none"
+          // document.getElementById("name_label").style.display = "none"
 
           document.getElementById("address").value = ""
           document.getElementById("address").required = false
-          document.getElementById("address").style.display = "none"
-          document.getElementById("address_label").style.display = "none"
+          // document.getElementById("address").style.display = "none"
+          // document.getElementById("address_label").style.display = "none"
 
           document.getElementById("state").value = ""
           document.getElementById("state").required = false
-          document.getElementById("state").style.display = "none"
-          document.getElementById("state_label").style.display = "none"
+          // document.getElementById("state").style.display = "none"
+          // document.getElementById("state_label").style.display = "none"
 
           document.getElementById("country").value = ""
           document.getElementById("country").required = false
-          document.getElementById("country").style.display = "none"
-          document.getElementById("country_label").style.display = "none"
+          // document.getElementById("country").style.display = "none"
+          // document.getElementById("country_label").style.display = "none"
 
           document.getElementById("city").value = ""
           document.getElementById("city").required = false
-          document.getElementById("city").style.display = "none"
-          document.getElementById("city_label").style.display = "none"
+          // document.getElementById("city").style.display = "none"
+          // document.getElementById("city_label").style.display = "none"
 
           document.getElementById("postcode").value = ""
           document.getElementById("postcode").required = false
-          document.getElementById("postcode").style.display = "none"
-          document.getElementById("postcode_label").style.display = "none"
+          // document.getElementById("postcode").style.display = "none"
+          // document.getElementById("postcode_label").style.display = "none"
 
         } else {
           document.getElementById("name").value = ""
           document.getElementById("postcode").required = true
-          document.getElementById("name").style.display = ""
-          document.getElementById("name_label").style.display = ""
+          // document.getElementById("name").style.display = ""
+          // document.getElementById("name_label").style.display = ""
 
           document.getElementById("address").value = ""
           document.getElementById("postcode").required = true
-          document.getElementById("address").style.display = ""
-          document.getElementById("address_label").style.display = ""
+          // document.getElementById("address").style.display = ""
+          // document.getElementById("address_label").style.display = ""
 
           document.getElementById("state").value = ""
           document.getElementById("postcode").required = true
-          document.getElementById("state").style.display = ""
-          document.getElementById("state_label").style.display = ""
+          // document.getElementById("state").style.display = ""
+          // document.getElementById("state_label").style.display = ""
 
           document.getElementById("country").value = ""
           document.getElementById("postcode").required = true
-          document.getElementById("country").style.display = ""
-          document.getElementById("country_label").style.display = ""
+          // document.getElementById("country").style.display = ""
+          // document.getElementById("country_label").style.display = ""
 
           document.getElementById("city").value = ""
           document.getElementById("postcode").required = true
-          document.getElementById("city").style.display = ""
-          document.getElementById("city_label").style.display = ""
+          // document.getElementById("city").style.display = ""
+          // document.getElementById("city_label").style.display = ""
 
           document.getElementById("postcode").value = ""
           document.getElementById("postcode").required = true
-          document.getElementById("postcode").style.display = ""
-          document.getElementById("postcode_label").style.display = ""
+          // document.getElementById("postcode").style.display = ""
+          // document.getElementById("postcode_label").style.display = ""
         }
       }
     </script>
