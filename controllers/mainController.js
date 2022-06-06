@@ -96,7 +96,8 @@ exports.newNoteAutoGen = async (req, res) => {
         const filename = path + randomUUID() + '.csv';
 
         //first, save recipent to database
-        if (createRecipient) {
+        console.log(createRecipient + req.body.save_recipient)
+        if (createRecipient && req.body.save_recipient == 'on') {
             db.query('INSERT into RECIPIENTS SET ?', {user_id: req.user.id, name: name, address: address, state: state, country: country, city: city, postcode: postcode }, function(err) {
                 if (err) throw err
             });

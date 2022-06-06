@@ -557,6 +557,11 @@ SETTING PAGE
 */
 
 @media (min-width: 1281px) {
+  .new_note_form {
+    display: flex;
+    flex-direction: row;
+  }
+
   .logo {
     display: block;
     margin: 0 auto;
