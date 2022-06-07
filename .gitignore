@@ -3,7 +3,8 @@ node_modules
 package-lock.json
 
 #file upload
-uploads/
+uploads/notes_files/
+uploads/campaign_files/
 
 #env files
 .env
