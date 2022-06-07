@@ -121,7 +121,7 @@ exports.newNoteAutoGen = async (req, res) => {
             {name: name, address: address, state: state, country: country, city: city, postcode: postcode, message: message}
         ];
 
-        csvWriter.writeRecords(records)
+        await csvWriter.writeRecords(records)
             .then(() => {
 
                 let note_id;
