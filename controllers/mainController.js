@@ -104,7 +104,7 @@ exports.newNoteAutoGen = async (req, res) => {
         }
 
         //next, create a CSV file
-        const csvWriter = createCsvWriter({
+        const csvWriter = await createCsvWriter({
             path: filename,
             header: [
                 {id: 'name', title: 'Name'},
