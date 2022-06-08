@@ -92,7 +92,7 @@ exports.newNoteAutoGen = async (req, res) => {
            message = req.body.message
            note_name = req.body.note_name
         }
-        const path = 'uploads\\notes_files\\';
+        const path = 'local\\';
         const filename = path + randomUUID() + '.csv';
 
         //first, save recipent to database
@@ -104,7 +104,7 @@ exports.newNoteAutoGen = async (req, res) => {
         }
 
         //next, create a CSV file
-        const csvWriter = await createCsvWriter({
+        const csvWriter = createCsvWriter({
             path: filename,
             header: [
                 {id: 'name', title: 'Name'},
@@ -194,6 +194,7 @@ exports.newCampaign = (req, res) => {
                         res.redirect('/');
                         return res.status(500);
                     }
+                    console.log('campaign file moved')
 
                     //create notification before ending function
                     userController.createNotification(user_id, "New Campaign", "New campaign has been sent to our team for approval.");
