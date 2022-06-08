@@ -1,10 +1,11 @@
-const { count } = require("console");
-const { getSystemErrorMap } = require("util");
+
 const db = require("../db");
 const userController = require('./userController');
-const createCsvWriter = require('csv-writer').createObjectCsvWriter;
-const fs = require('fs');
+// const fs = require('azure-storage-fs').blob('scribblecsvstorage', process.env.STORAGE_KEY, 'uploads');
 const { randomUUID } = require("crypto");
+const createCsvStringifier = require('csv-writer').createObjectCsvStringifier;
+const storageBlob = require('@azure/storage-blob');
+
 
 exports.newNote = (req, res) => {
 
@@ -61,10 +62,10 @@ exports.newNote = (req, res) => {
 
 //csv automatically generated
 exports.newNoteAutoGen = async (req, res) => {
+    
 
     //check user has enough credits
     if (req.user.credits >= 5) {
-
         //check if user selected a recipient, and handle
         let { name, address, state, country, city, postcode, message, note_name } = "";
         let createRecipient = true;
@@ -92,8 +93,8 @@ exports.newNoteAutoGen = async (req, res) => {
            message = req.body.message
            note_name = req.body.note_name
         }
-        const path = 'local\\';
-        const filename = path + randomUUID() + '.csv';
+        const path = 'notes\\';
+        
 
         //first, save recipent to database
         console.log(createRecipient + req.body.save_recipient)
@@ -103,54 +104,66 @@ exports.newNoteAutoGen = async (req, res) => {
             });
         }
 
-        //next, create a CSV file
-        const csvWriter = createCsvWriter({
-            path: filename,
-            header: [
-                {id: 'name', title: 'Name'},
-                {id: 'address', title: 'Address'},
-                {id: 'state', title: 'State'},
-                {id: 'country', title: 'Country'},
-                {id: 'city', title: 'City'},
-                {id: 'postcode', title: 'Postcode'},
-                {id: 'message', title: 'Message'}
-            ]
-        });
+        //save note to database
+        db.query(`INSERT INTO notes SET ?`, {filename: 'temp', user_id: req.user.id, note_status: 'pending', note_name: note_name }, function(err, result) {
+            if (err) throw err;
 
-        const records = [
-            {name: name, address: address, state: state, country: country, city: city, postcode: postcode, message: message}
-        ];
+            const note_id = result.insertId
+            const filename = 'note_' + note_id + '_user_' + req.user.id + '.csv';
 
-        await csvWriter.writeRecords(records)
-            .then(() => {
+            //create csv file data
+            const csvStringifier = createCsvStringifier({
+                header: [
+                    {id: 'name', title: 'name'},
+                    {id: 'address', title: 'address'},
+                    {id: 'state', title: 'state'},
+                    {id: 'country', title: 'country'},
+                    {id: 'city', title: 'city'},
+                    {id: 'postcode', title: 'postcode'},
+                    {id: 'message', title: 'message'}
+                ]
+             });
+             const records = [
+                 {name: name, address: address, state: state, country: country, city: city, postcode: postcode, message: message}
+             ];
+             
+             //upload to azure     
+             const headers = csvStringifier.getHeaderString();
+             const data = csvStringifier.stringifyRecords(records);
+             const blobData = `${headers}${data}`;
+             const credentials = new storageBlob.StorageSharedKeyCredential(process.env.STORAGE_ACCOUNT_NAME, process.env.STORAGE_KEY);
+             const BlobServiceClient = new storageBlob.BlobServiceClient(`https://${process.env.STORAGE_ACCOUNT_NAME}.blob.core.windows.net`, credentials);
+             const containerClient = BlobServiceClient.getContainerClient('uploads');
+             const blockBlobClient = containerClient.getBlockBlobClient(filename);
+             const options = {
+                 blobHTTPHeaders: {
+                     blobContentType: 'text/csv'
+                 }
+             };
+             blockBlobClient.uploadData(Buffer.from(blobData), options)
+             .then((result) => {
+                //note uploaded
+                console.log('blob uploaded successfully');
+                console.log(result);
 
-                let note_id;
-                db.query(`INSERT INTO notes SET ?`, {filename: 'temp', user_id: req.user.id, note_status: 'pending', note_name: note_name }, function(err, result) {
+                //update filename in database
+                db.query('UPDATE notes SET filename = ? WHERE note_id = ?', [ filename, note_id ], function(err) {
                     if (err) throw err;
-                    
-                    // rename file to format 'note*id*_user*id*
-                    note_id = result.insertId
-                    const new_filename = 'note' + note_id + '_user' + req.user.id + '.csv'
-
-                    //update in DB
-                    db.query('UPDATE notes SET filename = ? WHERE note_id = ?', [ new_filename, note_id ], function(err) {
-                        if (err) throw err;
-
-                        //move to uploads folder
-                        fs.rename(filename, path + new_filename, function(err) {
-                            if (err) {
-                                console.log(err);
-                                res.send('There was a problem uploading your file. Please try again.');
-                            }
-
-                            //create notification before ending function
-                            userController.createNotification(req.user.id, "New Note", "New note has been sent to our team for approval.");
-                                                
-                            res.redirect('/');
-                        });
-                    });
                 });
-            })
+
+                //create notification before ending function
+                userController.createNotification(req.user.id, "New Note", "New note has been sent to our team for approval.");
+
+                res.redirect('/');
+             })
+             .catch((error) => {
+                 //error
+                 console.log('failed to upload blob');
+                 console.log(error);
+                 res.redirect('/')
+             })
+        });
+            
     } else {
         res.status(400).send('Not enough credits.')
     }
@@ -208,3 +221,31 @@ exports.newCampaign = (req, res) => {
         res.send("Please upload CSV filetype");
     }
 }
+
+
+// let note_id;
+//                 db.query(`INSERT INTO notes SET ?`, {filename: 'temp', user_id: req.user.id, note_status: 'pending', note_name: note_name }, function(err, result) {
+//                     if (err) throw err;
+                    
+//                     // rename file to format 'note*id*_user*id*
+//                     note_id = result.insertId
+//                     const new_filename = 'note' + note_id + '_user' + req.user.id + '.csv'
+
+//                     //update in DB
+//                     db.query('UPDATE notes SET filename = ? WHERE note_id = ?', [ new_filename, note_id ], function(err) {
+//                         if (err) throw err;
+
+//                         //move to uploads folder
+//                         fs.rename(filename, path + new_filename, function(err) {
+//                             if (err) {
+//                                 console.log(err);
+//                                 res.send('There was a problem uploading your file. Please try again.');
+//                             }
+
+//                             //create notification before ending function
+//                             userController.createNotification(req.user.id, "New Note", "New note has been sent to our team for approval.");
+                                                
+//                             res.redirect('/');
+//                         });
+//                     });
+//                 });
