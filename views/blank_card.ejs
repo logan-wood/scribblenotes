@@ -6,9 +6,9 @@
     <%- include('./partials/head.ejs'); %>
 
 <body>
-
+    <%- include('./partials/searchbar-basic.ejs');  %>
     <%- include('./partials/nav.ejs'); %>
-    <a onclick="toggleSidebar()" class="toggle-nav medium material-icons" style="cursor: pointer;">menu</a>
+
 
     <div class="form" id="dashboardContainer">
         <form class="regform" action="/user/forgot_password" method="POST">

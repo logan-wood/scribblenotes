@@ -20,31 +20,9 @@
     <body>
         <div class="topnav">
 
-            <input class="searchBar" style="width: 50%;" type="text" placeholder="Search..." />
-            <% if (locals.user) { %>
-            
-                <span class="material-symbols-outlined" id="notif-bell" onclick="showNotifications()">notifications</span>
-            
-            <% } %> 
+
                    
         </div>
-            <div class="notif-box" id="notif-box">
-                <div class="notif-title">
-                    <b>Notifications</b>
-                    <form action="user/clear_notifications" method="post" id="clear-notifs">
-                        <a href="javascript:{}" onclick="document.getElementById('clear-notifs').submit()" class="clear-notifs">Clear All</a>
-                    </form>
-                </div>
-                <% if (notifications) { %>
-                    <% notifications.forEach(element => { %>
-                    <%- include('./notification', { name: element.name, message: element.message, id: element.notification_id}); %>
-                    <% }); %>
-                <% } else { %>
-                    <p style="text-align: center;">No Notifications</p>
-                <% } %>
-            </div>
-            
-
     </body>
 
     <script>
