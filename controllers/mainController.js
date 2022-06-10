@@ -75,6 +75,8 @@ exports.newNoteAutoGen = async (req, res) => {
 
             const recipient = await userController.getRecipientById(req.body.recipient);
 
+            console.log(recipient)
+
             name = recipient.name
             address = recipient.address
             state = recipient.state
@@ -170,7 +172,7 @@ exports.newNoteAutoGen = async (req, res) => {
     }
 }
 
-exports.newCampaign = (req, res) => {
+exports.newCampaign = async (req, res) => {
 
     //local variable
     const file = req.files.csv;
@@ -179,11 +181,6 @@ exports.newCampaign = (req, res) => {
 
     //handle no file upload
     if(!req.files) return res.status(400).send('No files were uploaded')
-
-    //check if email exists
-    if (!user_id) {
-        return res.send('No user logged in. (this may be a bug)')
-    }
 
     if (file.mimetype === 'text/csv' || file.mimetype === 'application/vnd.ms-excel') {
 
@@ -195,26 +192,36 @@ exports.newCampaign = (req, res) => {
             
             // rename file to format 'note*id*_user*id*
             campaign_id = result.insertId
-            const new_filename = 'campaign' + campaign_id + '_user' + user_id + '.csv'
+            const filename = 'campaign' + campaign_id + '_user' + user_id + '.csv'
+
+            const credentials = new storageBlob.StorageSharedKeyCredential(process.env.STORAGE_ACCOUNT_NAME, process.env.STORAGE_KEY);
+             const BlobServiceClient = new storageBlob.BlobServiceClient(`https://${process.env.STORAGE_ACCOUNT_NAME}.blob.core.windows.net`, credentials);
+             const containerClient = BlobServiceClient.getContainerClient('uploads');
+             const blockBlobClient = containerClient.getBlockBlobClient(filename);
+             const options = {
+                 blobHTTPHeaders: {
+                     blobContentType: 'text/csv'
+                 }
+             };
+             blockBlobClient.uploadData(file.data, options)
+             .then((result) => {
+                console.log('blob successfully uploaded');
+             })
+             .catch((error) => {
+                 console.log('error uploading file to blob');
+                 console.log(error);
+             })
 
             //update in DB
-            db.query('UPDATE campaigns SET filename = ? WHERE campaign_id = ?', [ new_filename, campaign_id ], function(err) {
+            db.query('UPDATE campaigns SET filename = ? WHERE campaign_id = ?', [ filename, campaign_id ], function(err) {
                 if (err) throw err;
 
-                //move to uploads folder
-                file.mv('./uploads/campaign_files/' + new_filename, (err) => {
-                    if (err) {
-                        console.log(err);
-                        res.redirect('/');
-                        return res.status(500);
-                    }
-                    console.log('campaign file moved')
+                
 
                     //create notification before ending function
                     userController.createNotification(user_id, "New Campaign", "New campaign has been sent to our team for approval.");
                                         
                     res.redirect('/');
-                });
             });
         });
 
