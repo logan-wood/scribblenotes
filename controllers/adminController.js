@@ -1,6 +1,7 @@
 const db = require('../db');
 const userController = require('./userController');
-const fs = require('fs')
+const fs = require('fs');
+const storageBlob = require('@azure/storage-blob');
 
 module.exports = {
     //notes
@@ -230,7 +231,14 @@ module.exports = {
         })
     },
 
-    downloadFile: (filename) => {
+    downloadFile: async (res, filename) => {
+        const credentials = new storageBlob.StorageSharedKeyCredential(process.env.STORAGE_ACCOUNT_NAME, process.env.STORAGE_KEY);
+        const BlobServiceClient = new storageBlob.BlobServiceClient(`https://${process.env.STORAGE_ACCOUNT_NAME}.blob.core.windows.net`, credentials);
+        const containerClient = BlobServiceClient.getContainerClient('uploads');
+        const blobClient = containerClient.getBlobClient(filename);
         
+        await blobClient.downloadToFile(filename);
+
+        res.redirect('/admin');
     }
 }

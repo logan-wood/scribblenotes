@@ -5,6 +5,7 @@ const adminController = require('../controllers/adminController');
 const userController = require('../controllers/userController');
 const { response } = require('express');
 const router = express.Router();
+const open = require('open')
 
 router.get('/', isAuthenticated, async (req, res) => {
     res.render('index', { 
@@ -84,9 +85,13 @@ router.get('/admin', isAuthenticated, async (req, res) => {
 });
 //download CSV file
 router.get('/admin/download/:filename', (req, res) => {
-    const filename = './uploads/notes_files/' + req.params['filename']
+    const filename = req.params['filename'];
+    
+    open('https://scribblecsvstorage.blob.core.windows.net/uploads/' + filename, function(err) {
+        if (err) throw err;
+    });
 
-    res.download(filename)
+    res.redirect('/admin');
 })
 
 router.get('/contact', (req, res) => {
