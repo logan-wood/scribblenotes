@@ -228,5 +228,9 @@ module.exports = {
         fs.writeFile("./stats/total_subscriptions", data.toString(), function(err) {
             if (err) throw err
         })
+    },
+
+    downloadFile: (filename) => {
+        
     }
 }

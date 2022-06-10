@@ -69,6 +69,7 @@ exports.newNoteAutoGen = async (req, res) => {
         //check if user selected a recipient, and handle
         let { name, address, state, country, city, postcode, message, note_name } = "";
         let createRecipient = true;
+        console.log(req.body.recipient);
         if (req.body.recipient != "none") {
             createRecipient = false
 
