@@ -175,35 +175,32 @@ module.exports = {
     },
 
     approveCampaign: async (req, res) => {
-        res.send('this function is under maintenance')
+        const user_id = req.body.user_id;
+        const noOfRecipients = req.body.recipients;
+        const campaign_id = req.body.campaign_id;
 
-        return
+        console.log(req.body)
 
         //check user has enough credits
-        const customer = await userController.getUserFromID(req.user_id)
+        const customer = await userController.getUserFromID(user_id)
 
-        userController.getUserFromID(req.user_id).then(function(res) {
-            console.log(res)
-        })
-        
-        if (customer.credits > req.recipents * 5) {
+        if (customer.credits > noOfRecipients * 5) {
             //update recipents record in database
-            db.query('UPDATE campaigns SET recipents = ?, campaign_status = ? WHERE campaign_id = ?', [req.recipents, req.campaign_id], function(err) {
-                if (error) throw error;
+            db.query(`UPDATE campaigns SET recipients = ?, campaign_status = 'approved' WHERE campaign_id = ?`, [noOfRecipients, campaign_id], function(err) {
+                if (err) throw err;
             });
 
             //deduct credits from user
-            db.query('UPDATE users SET credits = credits - ? WHERE user_id = ?', [req.recipents, req.user_id], function(err) {
-                if (error) throw error;
-
-                //update order status
-                updateCampaignStatus(req.campaign_id, 'approved');
-
+            db.query('UPDATE users SET credits = credits - ? WHERE user_id = ?', [noOfRecipients * 5, user_id], function(err) {
+                if (err) throw err;
+                
                 //send user a notification
-                userController.createNotification(req.user_id, 'Campaign Approved', 'Your campaign: ' + req.campaign_name + ' has been approved.')
+                userController.createNotification(user_id, 'Campaign Approved', 'Your campaign: ' + req.body.campaign_name + ' has been approved.');
+
+                res.redirect('/admin');
             });
         } else {
-            res.send('User does not have enough credits for this many recipents. (credits required: ' + req.recipents * 5 + ', credit balance: ' + customer.credits)
+            res.send('User does not have enough credits for this many recipents. (credits required: ' + noOfRecipients * 5 + ', credit balance: ' + customer.credits)
         }
     },
 
@@ -230,15 +227,4 @@ module.exports = {
             if (err) throw err
         })
     },
-
-    downloadFile: async (res, filename) => {
-        const credentials = new storageBlob.StorageSharedKeyCredential(process.env.STORAGE_ACCOUNT_NAME, process.env.STORAGE_KEY);
-        const BlobServiceClient = new storageBlob.BlobServiceClient(`https://${process.env.STORAGE_ACCOUNT_NAME}.blob.core.windows.net`, credentials);
-        const containerClient = BlobServiceClient.getContainerClient('uploads');
-        const blobClient = containerClient.getBlobClient(filename);
-        
-        await blobClient.downloadToFile(filename);
-
-        res.redirect('/admin');
-    }
 }

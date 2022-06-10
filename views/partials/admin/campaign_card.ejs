@@ -56,12 +56,12 @@
                   <form action="admin/approve_campaign" method="post">
                     <label for="recipents" style="margin-top: 10px">Number of recipents</label>
                     <br>
-                    <input type="number" name="recipents" id="recipents" default="1">
+                    <input type="number" name="recipients" id="recipents" default="1">
 
                     <!-- Hidden, to be passed into post function -->
                     <input name="campaign_id" value=<%= campaign_id %>  type="hidden">
                     <input name="user_id" value=<%= user_id %>  type="hidden">
-                    <input name="user_id" value=<%= name %>  type="hidden">
+                    <input name="campaign_name" value=<%= name %>  type="hidden">
 
                     <input class="small-btn" type="submit" value="Approve Order">
                   </form>

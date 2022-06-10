@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS campaigns (
   user_id int NOT NULL,
   campaign_status VARCHAR(32),
   PRIMARY KEY (campaign_id),
-  recipents int DEFAULT 1,
+  recipients int DEFAULT 1,
   createdAt datetime DEFAULT CURRENT_TIMESTAMP
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 )
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS notifications (
   user_id int NOT NULL,
   message VARCHAR(64),
   createdAt datetime DEFAULT CURRENT_TIMESTAMP,
-  name varchar(16),
+  name varchar(32),
   PRIMARY KEY (notification_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 )
