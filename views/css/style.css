@@ -858,7 +858,7 @@ SETTING PAGE
     ##Screen = B/w 481px to 767px
   */
 
-@media (min-width: 481px) and (max-width: 767px) {
+@media (min-width: 321px) and (max-width: 767px) {
   .dashboard-btn-wrapper {
     display: flex;
     flex-direction: column;
@@ -975,103 +975,7 @@ SETTING PAGE
     ##Screen = B/w 320px to 479px
   */
 
-@media (min-width: 320px) and (max-width: 480px) {
-  .logo {
-    padding: auto;
-    margin: auto;
-    width: 60%;
-    height: auto;
-    border-radius: 0.5rem;
-  }
 
-  .dashboard-btn-wrapper {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .widget-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: auto;
-    margin-top: 60px;
-    margin-bottom: 60px;
-  }
-
-  .form {
-    margin-left: 250px;
-    margin-top: 50px;
-  }
-  .regform {
-    width: 380px;
-    margin: auto;
-    background-color: white;
-    margin-top: 50px;
-    padding: 35;
-    align-items: center;
-    z-index: 1;
-    border-radius: 2.5%;
-  }
-
-  .form-label {
-    color: #9fa2b4;
-    font-size: 14px;
-    /* font-family: mulish; */
-  }
-
-  .form-control {
-    width: 316px;
-    height: 42px;
-    background: #f0f1f7;
-  }
-
-  /* custom classes */
-
-  .content {
-    width: 90%;
-    margin: auto;
-    background: white;
-    margin-top: 20px;
-    padding: 20px;
-    align-items: center;
-    z-index: 1;
-    border-radius: 15px;
-  }
-
-  .content-data {
-    width: 100%;
-    margin: auto;
-    background-color: white;
-    margin-top: 20px;
-    padding: 10px;
-    align-items: center;
-    z-index: 1;
-    border-radius: 2.5%;
-  }
-
-  .btn-child {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .card-container {
-    display: flex;
-    flex-direction: column;
-  }
-  .card-wrapper {
-    width: 100%;
-    margin-bottom: 20;
-  }
-
-  nav span {
-    color: white;
-  }
-
-  .field-container {
-    width: 100%;
-  }
-}
 
 @media (max-width: 320px) {
   .logo {
