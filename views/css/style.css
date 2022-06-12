@@ -724,6 +724,15 @@ SETTING PAGE
   nav span {
     color: white;
   }
+
+  .card-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .card-wrapper {
+    width: 100%;
+    margin-bottom: 20;
+  }
 }
 
 /* 
@@ -819,6 +828,15 @@ SETTING PAGE
   nav span {
     color: white;
   }
+
+  .card-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .card-wrapper {
+    width: 100%;
+    margin-bottom: 20;
+  }
 }
 
 /* 
@@ -850,9 +868,13 @@ SETTING PAGE
     margin-bottom: 60px;
   }
 
-  .card-containers {
+  .card-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+  }
+  .card-wrapper {
+    width: 100%;
+    margin-bottom: 20;
   }
 }
 
