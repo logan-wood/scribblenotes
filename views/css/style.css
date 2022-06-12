@@ -42,7 +42,6 @@ body {
 
 .upload-file {
   padding: 35;
-  width: 380px;
   margin: auto;
 }
 
@@ -540,7 +539,7 @@ SETTING PAGE
   border: 0;
   border-bottom: 1px solid #d3d8dd;
   padding-bottom: 10px;
-  width: 300px;
+  width: 100%;
 }
 
 .change-password {
@@ -599,6 +598,10 @@ SETTING PAGE
     width: 316px;
     height: 42px;
     background: #f0f1f7;
+  }
+
+  .upload-file {
+    width: 600px;
   }
 
   /* custom classes */
