@@ -42,7 +42,6 @@ body {
 
 .upload-file {
   padding: 35;
-  width: 380px;
   margin: auto;
 }
 
@@ -540,7 +539,7 @@ SETTING PAGE
   border: 0;
   border-bottom: 1px solid #d3d8dd;
   padding-bottom: 10px;
-  width: 300px;
+  width: 100%;
 }
 
 .change-password {
@@ -557,17 +556,18 @@ SETTING PAGE
 */
 
 @media (min-width: 1281px) {
-  .new_note_form {
-    display: flex;
-    flex-direction: row;
-  }
-
   .logo {
     display: block;
     margin: 0 auto;
     width: 60%; 
     border-radius: 0.5rem;
   }
+  
+  .new_note_form {
+    display: flex;
+    flex-direction: row;
+  }
+
   .material-symbols-outlined {
     color: white;
     cursor: pointer;
@@ -599,6 +599,10 @@ SETTING PAGE
     width: 316px;
     height: 42px;
     background: #f0f1f7;
+  }
+
+  .upload-file {
+    width: 600px;
   }
 
   /* custom classes */
@@ -649,10 +653,9 @@ SETTING PAGE
 
 @media (min-width: 1025px) and (max-width: 1280px) {
   .logo {
-    padding: auto;
-    margin: auto;
-    width: 60%;
-    height: auto;
+    display: block;
+    margin: 0 auto;
+    width: 60%; 
     border-radius: 0.5rem;
   }
 
@@ -721,6 +724,15 @@ SETTING PAGE
   nav span {
     color: white;
   }
+
+  .card-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .card-wrapper {
+    width: 100%;
+    margin-bottom: 20;
+  }
 }
 
 /* 
@@ -730,10 +742,9 @@ SETTING PAGE
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .logo {
-    padding: auto;
-    margin: auto;
-    width: 60%;
-    height: auto;
+    display: block;
+    margin: 0 auto;
+    width: 60%; 
     border-radius: 0.5rem;
   }
 
@@ -816,6 +827,15 @@ SETTING PAGE
   nav span {
     color: white;
   }
+
+  .card-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .card-wrapper {
+    width: 100%;
+    margin-bottom: 20;
+  }
 }
 
 /* 
@@ -847,9 +867,13 @@ SETTING PAGE
     margin-bottom: 60px;
   }
 
-  .card-containers {
+  .card-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+  }
+  .card-wrapper {
+    width: 100%;
+    margin-bottom: 20;
   }
 }
 
@@ -858,17 +882,16 @@ SETTING PAGE
     ##Screen = B/w 481px to 767px
   */
 
-@media (min-width: 481px) and (max-width: 767px) {
+@media (min-width: 321px) and (max-width: 767px) {
   .dashboard-btn-wrapper {
     display: flex;
     flex-direction: column;
   }
 
   .logo {
-    padding: auto;
-    margin: auto;
-    width: 60%;
-    height: auto;
+    display: block;
+    margin: 0 auto;
+    width: 60%; 
     border-radius: 0.5rem;
   }
 
@@ -975,110 +998,13 @@ SETTING PAGE
     ##Screen = B/w 320px to 479px
   */
 
-@media (min-width: 320px) and (max-width: 480px) {
-  .logo {
-    padding: auto;
-    margin: auto;
-    width: 60%;
-    height: auto;
-    border-radius: 0.5rem;
-  }
 
-  .dashboard-btn-wrapper {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .widget-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: auto;
-    margin-top: 60px;
-    margin-bottom: 60px;
-  }
-
-  .form {
-    margin-left: 250px;
-    margin-top: 50px;
-  }
-  .regform {
-    width: 380px;
-    margin: auto;
-    background-color: white;
-    margin-top: 50px;
-    padding: 35;
-    align-items: center;
-    z-index: 1;
-    border-radius: 2.5%;
-  }
-
-  .form-label {
-    color: #9fa2b4;
-    font-size: 14px;
-    /* font-family: mulish; */
-  }
-
-  .form-control {
-    width: 316px;
-    height: 42px;
-    background: #f0f1f7;
-  }
-
-  /* custom classes */
-
-  .content {
-    width: 90%;
-    margin: auto;
-    background: white;
-    margin-top: 20px;
-    padding: 20px;
-    align-items: center;
-    z-index: 1;
-    border-radius: 15px;
-  }
-
-  .content-data {
-    width: 100%;
-    margin: auto;
-    background-color: white;
-    margin-top: 20px;
-    padding: 10px;
-    align-items: center;
-    z-index: 1;
-    border-radius: 2.5%;
-  }
-
-  .btn-child {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .card-container {
-    display: flex;
-    flex-direction: column;
-  }
-  .card-wrapper {
-    width: 100%;
-    margin-bottom: 20;
-  }
-
-  nav span {
-    color: white;
-  }
-
-  .field-container {
-    width: 100%;
-  }
-}
 
 @media (max-width: 320px) {
   .logo {
-    padding: auto;
-    margin: auto;
-    width: 60%;
-    height: auto;
+    display: block;
+    margin: 0 auto;
+    width: 60%; 
     border-radius: 0.5rem;
   }
 
