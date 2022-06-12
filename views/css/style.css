@@ -556,17 +556,18 @@ SETTING PAGE
 */
 
 @media (min-width: 1281px) {
-  .new_note_form {
-    display: flex;
-    flex-direction: row;
-  }
-
   .logo {
     display: block;
     margin: 0 auto;
     width: 60%; 
     border-radius: 0.5rem;
   }
+  
+  .new_note_form {
+    display: flex;
+    flex-direction: row;
+  }
+
   .material-symbols-outlined {
     color: white;
     cursor: pointer;
@@ -652,10 +653,9 @@ SETTING PAGE
 
 @media (min-width: 1025px) and (max-width: 1280px) {
   .logo {
-    padding: auto;
-    margin: auto;
-    width: 60%;
-    height: auto;
+    display: block;
+    margin: 0 auto;
+    width: 60%; 
     border-radius: 0.5rem;
   }
 
@@ -742,10 +742,9 @@ SETTING PAGE
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .logo {
-    padding: auto;
-    margin: auto;
-    width: 60%;
-    height: auto;
+    display: block;
+    margin: 0 auto;
+    width: 60%; 
     border-radius: 0.5rem;
   }
 
@@ -890,10 +889,9 @@ SETTING PAGE
   }
 
   .logo {
-    padding: auto;
-    margin: auto;
-    width: 60%;
-    height: auto;
+    display: block;
+    margin: 0 auto;
+    width: 60%; 
     border-radius: 0.5rem;
   }
 
@@ -1004,10 +1002,9 @@ SETTING PAGE
 
 @media (max-width: 320px) {
   .logo {
-    padding: auto;
-    margin: auto;
-    width: 60%;
-    height: auto;
+    display: block;
+    margin: 0 auto;
+    width: 60%; 
     border-radius: 0.5rem;
   }
 
