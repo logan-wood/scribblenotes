@@ -34,9 +34,9 @@ CREATE TABLE IF NOT EXISTS notes (
   user_id int NOT NULL,
   note_status VARCHAR(32),
   PRIMARY KEY (note_id),
-  createdAt datetime DEFAULT CURRENT_TIMESTAMP
+  createdAt datetime DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(user_id)
-)
+);
 
 CREATE TABLE IF NOT EXISTS campaigns (
   campaign_id int NOT NULL AUTO_INCREMENT,
@@ -46,9 +46,9 @@ CREATE TABLE IF NOT EXISTS campaigns (
   campaign_status VARCHAR(32),
   PRIMARY KEY (campaign_id),
   recipients int DEFAULT 1,
-  createdAt datetime DEFAULT CURRENT_TIMESTAMP
+  createdAt datetime DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(user_id)
-)
+);
 
 CREATE TABLE IF NOT EXISTS reset_password (
   uuid VARCHAR(128) NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS reset_password (
   createdAt datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (uuid),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
-)
+);
 
 CREATE TABLE IF NOT EXISTS notifications (
   notification_id int NOT NULL AUTO_INCREMENT,
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS notifications (
   name varchar(32),
   PRIMARY KEY (notification_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
-)
+);
 
 CREATE TABLE IF NOT EXISTS recipients (
   recipient_id int NOT NULL AUTO_INCREMENT,
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS recipients (
   postcode int,
   PRIMARY KEY (recipient_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
-)
+);
 
 CREATE TABLE IF NOT EXISTS verification (
   verification_id VARCHAR(128) NOT NULL,
